@@ -1,0 +1,10 @@
+<div class="subdiv" ng-controller = "usersController as UC">
+    <h1> Welcome to Language Cards!</h1>
+    <h3>Log in:</h3>
+    <p>User name:</p>
+    <p>
+    <input type="text" ng-model = "UC.user.name"></p>
+    <p>Password: </p>
+    <p><input type="password" placeholder="Don't enter anything here yet" =""></p>
+    <input class="waves-effect waves-light btn" type="submit" value="Enter" ng-click="UC.login()">
+</div>

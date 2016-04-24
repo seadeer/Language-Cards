@@ -1,4 +1,4 @@
-var cardsApp = angular.module('CardsModule', ['ngRoute', 'ngStorage']);
+var cardsApp = angular.module('cardsApp', ['ngRoute']);
 //CONFIG
 cardsApp.config(function($routeProvider){
     $routeProvider
