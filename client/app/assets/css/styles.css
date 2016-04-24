@@ -3,11 +3,19 @@ body{
     background-color: #AF5A5E;
 }
 
+h1{
+    font-weight: bold;
+}
 
-.container{
-
+.subdiv{
+    background-color: #AF5A5E;
 
 }
-.subdiv{
+
+.login{
+    background-color: silver;
+    padding: 20px;
+    width: 300px;
+    margin-top: 20px;
 
 }

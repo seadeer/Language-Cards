@@ -1,10 +1,35 @@
-<div class="subdiv" ng-controller = "usersController as UC">
-    <h1> Welcome to Language Cards!</h1>
-    <h3>Log in:</h3>
+<div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <a href="#!" class="breadcrumb">Register</a>
+                    <a href="#!" class="breadcrumb">About</a>
+                    <a href="#!" class="breadcrumb">Features</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+<div class = "container" ng-controller = "usersController as UC">
+
+<div class="subdiv" >
+    <h1> VorTex</h1>
+    <h5>Language learning. Social. Playful.</h5>
+    <div class="login z-depth-2">
+    <h4>Log in</h4>
     <p>User name:</p>
     <p>
     <input type="text" ng-model = "UC.user.name"></p>
     <p>Password: </p>
     <p><input type="password" placeholder="Don't enter anything here yet" =""></p>
-    <input class="waves-effect waves-light btn" type="submit" value="Enter" ng-click="UC.login()">
+    <input class="waves-effect waves-light btn" type="submit" value="Enter" ng-click="UC.login()"></div>
+    </div>
+ 
+
 </div>
+
+
+
+
+
+ 
+

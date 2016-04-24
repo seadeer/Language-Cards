@@ -1,8 +1,11 @@
 <html ng-app="app">
 <head>
-    <title>Language cards</title>
+    <title>VorTex</title>
+    <link href="app/assets/materialize/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/app/assets/materialize/css/materialize.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/app/assets/css/styles.css">
+    <script src='/app/assets/materialize/js/materialize.js'></script>
     <script src='/angular/angular.js'></script> 
     <script src='/angular-route/angular-route.js'></script>
     <script src='/app/main.js'></script>
@@ -16,17 +19,7 @@
     
 </head>
 <body>
-    <div class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper">
-                <div class="col s12">
-                    <a href="#!" class="breadcrumb">Register</a>
-                    <a href="#!" class="breadcrumb">About</a>
-                    <a href="#!" class="breadcrumb">Features</a>
-                </div>
-            </div>
-        </nav>
-    </div>
-    <div class="container" ng-view=''>
+    
+    <div ng-view=''>
 </body>
 </html>
