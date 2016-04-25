@@ -11,6 +11,8 @@
         </nav>
     </div>
 <div class="container" ng-controller="dashController as DC">
+{{DC}}
+
     <h1>Welcome {{DC.user.name}}</h1>
     <div class="UserSettings">
         <h5>Your languages: </h5>
@@ -20,11 +22,11 @@
     </div>
     <h5>Your recent cards:</h2>
     <div class="showCards" ng-repeat="card in DC.ownCards">
-        <div class="cardFront">{{DC.card.target_word}}</div>
+        <div class="cardFront">{{card.target_word}}</div>
     </div>
     <h5>New Cards added:</h2>
     <div class="showCards" ng-repeat="card in DC.otherCards">
-        <div class="cardFront">{{DC.card.target_word}}</div>
+        <div class="cardFront">{{card.target_word}}</div>
     </div>
 
     <div class="makeCard">
