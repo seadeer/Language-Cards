@@ -11,4 +11,4 @@ var CardSchema = new mongoose.Schema({
     _creator: {type: Schema.ObjectId, ref: 'User'}
 },{timestamps: true});
 
-var Card = mongoose.model('Card', CardSchema)
+var Card = mongoose.model('Card', CardSchema);

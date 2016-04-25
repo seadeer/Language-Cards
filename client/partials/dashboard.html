@@ -3,7 +3,7 @@
             <div class="nav-wrapper">
                 <div class="col s12">
                     <a href="#!" class="breadcrumb">My Cards</a>
-                    <a href="#!" class="breadcrumb">New Card</a>
+                    <a href="#/cards/new" class="breadcrumb">New Card</a>
                     <a href="#!" class="breadcrumb">Settings</a>
                     <a href="#!" class="breadcrumb" ng-click=UC.logout()>Log Out</a>
                 </div>
@@ -11,7 +11,6 @@
         </nav>
     </div>
 <div class="container" ng-controller="dashController as DC">
-{{DC}}
 
     <h1>Welcome {{DC.user.name}}</h1>
     <div class="UserSettings">

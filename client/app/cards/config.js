@@ -6,4 +6,8 @@ cardsApp.config(function($routeProvider){
     .when('/', {
         templateUrl: 'partials/login.html'
     })
+
+    .when('/cards/new', {
+        templateUrl: 'partials/newcard.html'
+    })
 });
