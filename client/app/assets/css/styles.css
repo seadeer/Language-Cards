@@ -14,9 +14,19 @@ h1{
 
 .login{
     background-color: silver;
-    
     padding: 20px;
     width: 300px;
     margin-top: 20px;
-
+}
+.cardFront{
+	display: inline-block;
+	margin: 5px;
+	height: 250px;
+	width: 250px;
+	background-color: white;
+	color: black;
+}
+.showCards{
+	display: inline-block;
+	color: black;
 }

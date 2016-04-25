@@ -19,12 +19,14 @@
         </div>
     </div>
     <h5>Your recent cards:</h2>
-    <div class="showCards" ng-repeat="card in DC.ownCards">
-        <div class="cardFront">{{DC.card.target_word}}</div>
+    <div class="showCards" ng-repeat="card in DC.ownCards | limit:5">
+        <div class="cardFront">
+			  <h5>{{card.target_word}}</h5>
+		  </div>
     </div>
     <h5>New Cards added:</h2>
     <div class="showCards" ng-repeat="card in DC.otherCards">
-        <div class="cardFront">{{DC.card.target_word}}</div>
+        <div class="cardFront">{{card}}</div>
     </div>
 
     <div class="makeCard">
