@@ -51,5 +51,7 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
         }
     };
 
+    this.create_long = function({})
+
 
 });
