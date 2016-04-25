@@ -12,8 +12,8 @@ module.exports = {
                 res.json(err)
             }
             else{
-                console.log(user)
-                res.json(user)
+                console.log(user.cards)
+                res.json(user.cards)
             }
         })
     },
