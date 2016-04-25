@@ -1,29 +1,24 @@
-
-//FACTORY
 cardsApp.factory('cardFactory', function($http, $sessionStorage){
     var factory = {};
-    //initialize session storing user
-    $sessionStorage.currUser;
 
-    //get user name from db (or create new in db) and store in session
-    factory.login = function(newUser, callback){
-        console.log("Factory sending off ", newUser)
-        $http.post('/login', newUser).success(function(output){
-            $sessionStorage.currUser = output;
-            console.log($sessionStorage.currUser);
+    factory.indexOwnCards = function(id, callback){
+        console.log("Getting five cards from user", id)
+        $http.get('/users/'+id+'/cards/index').success(function(output){
             callback(output);
         });
     };
 
-    factory.logout = function(callback){
-        console.log("logged out!");
-        $sessionStorage.$reset();
-        callback();
+    factory.indexFive = function(callback){
+        $http.get('/cards/index5').success(function(output){
+            callback(output);
+        });
     };
 
-    factory.user = function(){
-        return $sessionStorage.currUser;
+    factory.create = function(data, callback){
+        $http.post('/cards/new').success(function(output){
+            callback(output);
+        });
     };
 
     return factory;
-})
+});

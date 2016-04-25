@@ -1,4 +1,37 @@
-<div class="container" ng-controller="dashController" as DC>
-    <div 
+<div class="navbar-fixed" ng-controller="usersController as UC">
+        <nav>
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <a href="#!" class="breadcrumb">My Cards</a>
+                    <a href="#!" class="breadcrumb">New Card</a>
+                    <a href="#!" class="breadcrumb">Settings</a>
+                    <a href="#!" class="breadcrumb" ng-click=UC.logout()>Log Out</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+<div class="container" ng-controller="dashController as DC">
+    <h1>Welcome {{DC.user.name}}</h1>
+    <div class="UserSettings">
+        <h5>Your languages: </h5>
+        <div ng-repeat="language in DC.user.languages">
+            <h5>{{language}}</h5>
+        </div>
+    </div>
+    <h5>Your recent cards:</h2>
+    <div class="showCards" ng-repeat="card in DC.ownCards">
+        <div class="cardFront">{{DC.card.target_word}}</div>
+    </div>
+    <h5>New Cards added:</h2>
+    <div class="showCards" ng-repeat="card in DC.otherCards">
+        <div class="cardFront">{{DC.card.target_word}}</div>
+    </div>
 
+    <div class="makeCard">
+    <h5>Quick add a card:</h3>
+        <select ng-model="DC.newCard.target_language" ng-options='language for language in DC.user.languages'></select>
+        <p>Word: <input type="text" ng-model="DC.newCard.target_word"></p>
+        <p>Translation: <input type="text" ng-model="DC.newCard.translation"></p>
+        <input class="waves-effect waves-light btn" type="submit" ng-click="DC.create()" value="Add">
+    </div>
 </div>
