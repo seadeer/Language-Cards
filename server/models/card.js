@@ -7,7 +7,8 @@ var CardSchema = new mongoose.Schema({
     translations: [],
     tags: [],
     part_of_speech: String,
-    contexts: []
+    contexts: [],
+    _creator: {type: Schema.ObjectId, ref: 'User'}
 },{timestamps: true});
 
 var Card = mongoose.model('Card', CardSchema)

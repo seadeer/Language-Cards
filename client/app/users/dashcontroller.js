@@ -12,6 +12,7 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
         cardFactory.indexOwnCards(this.user._id, function(data){
             if(data){
                 that.ownCards = data;
+                console.log(data);
             }
         });
     };
@@ -36,6 +37,7 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
         if(that.errors.length <= 0){
             console.log("Validations passed, saving new card!");
             var card = {
+                user_id: that.user._id,
                 target_language: that.newCard.target_language,
                 target_word: that.newCard.target_word,
                 translations: [that.newCard.translation],
@@ -43,7 +45,9 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
             }
             cardFactory.create(card, function(data){
                 console.log(data);
-            })
+                that.newCard = {};
+                that.indexOwnCards();
+            });
         }
     };
 

@@ -15,7 +15,7 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
     };
 
     factory.create = function(data, callback){
-        $http.post('/cards/new').success(function(output){
+        $http.post('/cards/new', data).success(function(output){
             callback(output);
         });
     };
