@@ -11,25 +11,34 @@
         </nav>
     </div>
 <div class="container" ng-controller="dashController as DC">
-{{DC}}
+<!-- {{DC}} -->
 
     <h1>Welcome {{DC.user.name}}</h1>
     <div class="UserSettings">
-        <h5>Your languages: </h5>
+        <h6>Your languages: </h6>
         <div ng-repeat="language in DC.user.languages">
             <h5>{{language}}</h5>
         </div>
     </div>
-    <h5>Your recent cards:</h2>
+    <h6>Your recent cards:</h6>
 
-    <div class="showCards" ng-repeat="card in DC.ownCards | limit:5">
-        <div class="cardFront">{{card.target_word}}</div>
+    <div class="showCards" ng-repeat="card in DC.ownCards | orderBy: 'date'">
+        <div class="cardFront">
+			  <h5>{{card.target_language}}</h5>
+			  <br><br>
+			  <h5>{{card.target_word}}</h5>
+			  <h5>{{card.translations[0]}}</h5>
+		  </div>
     </div>
-    <h5>New Cards added:</h2>
-    <div class="showCards" ng-repeat="card in DC.otherCards">
-        <div class="cardFront">{{card.target_word}}</div>
-    </div>
-
+    <h6>New Cards added:</h6>
+    <div class="showCards" ng-repeat="card in DC.otherCards | orderBy: 'date'">
+		 <div class="cardFront">
+ 			<h5>{{card.target_language}}</h5>
+ 			<br><br>
+ 			<h5>{{card.target_word}}</h5>
+ 			<h5>{{card.translations[0]}}</h5>
+ 		</div>
+	</div>
     <div class="makeCard">
     <h5>Quick add a card:</h3>
         <!-- <select ng-model="DC.newCard.target_language" ng-options='language for language in DC.user.languages'></select> -->
