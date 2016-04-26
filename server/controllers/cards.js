@@ -37,9 +37,8 @@ module.exports = {
                 res.json("Card already exists!", card)
             }
             else{
-                User.findOne({_id:req.body.user_id}, function(err, user){ 
-                var newCard = new Card({target_language: req.body.target_language, target_word: req.body.target_word, translated_language: req.body.translated_language, translations: req.body.translations});
-                newCard._creator = req.body.user_id;
+                User.findOne({_id:req.body._creator}, function(err, user){ 
+                var newCard = new Card(req.body);
                 user.cards.push(newCard);
                 newCard.save(function(err){
                     if(err){
