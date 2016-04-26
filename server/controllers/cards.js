@@ -19,7 +19,7 @@ module.exports = {
     },
 
     indexFive: function(req, res){
-        var cards = Card.find().sort({'createdAt': -1}).limit(5);
+        var cards = Card.find().sort({'createdAt': -1}).populate('_creator', 'name').limit(5);
         cards.exec(function(err, cards){
             if(err){
                 res.json(err);
