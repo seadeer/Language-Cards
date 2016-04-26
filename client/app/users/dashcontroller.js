@@ -19,7 +19,6 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
     };
 
     this.indexOwnCards();
-
     //get 5 of other users' cards
     //can we do this and indexUser in a single query???
     this.indexFive = function(){
