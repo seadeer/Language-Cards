@@ -24,6 +24,12 @@ userApp.factory('userFactory', function($http, $sessionStorage){
         return $sessionStorage.currUser;
     };
 
+	 factory.scrape = function(){
+		 console.log('in scrape factory function')
+		 $http.get('/scrape').success(function(output){
+			 console.log('output', output)
+		 })
+	 }
+
     return factory;
 })
-

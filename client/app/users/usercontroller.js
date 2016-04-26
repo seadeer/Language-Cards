@@ -25,6 +25,12 @@ userApp.controller('usersController', function(userFactory, $location){
             that.user = {};
         })
     }
+	 this.scrape = function(){
+		 console.log('scraping')
+		 userFactory.scrape(function(){
+			 console.log('scraped.')
+		 })
+	 }
+	 this.scrape()
 
 })
-
