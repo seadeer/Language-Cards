@@ -1,46 +1,62 @@
 <html ng-app="app">
 <head>
-    <title>VorTex</title>
+	<title>VorTex</title>
 
-    <link rel="stylesheet" type="text/css" href="/app/assets/css/styles.css">
-    <script src='/angular/angular.js'></script>
-    <script src='/angular-route/angular-route.js'></script>
-    <script src='/app/main.js'></script>
-    <script src='/ng-storage/ngStorage.js'></script>
-    <script src='/app/users/config.js'></script>
-    <script src='/app/users/userfactory.js'></script>
-    <script src='/app/users/usercontroller.js'></script>
-    <script src='/app/cards/config.js'></script>
-    <script src='/app/cards/cardsfactory.js'></script>
-    <script src='/app/cards/cardscontroller.js'></script>
-    <script src='/app/users/dashcontroller.js'></script>
-	 <script type='text/javascript'>
-	 google.load('search', '1', {language: 'en', style: google.loader.themes.V2_DEFAULT});
-	 google.setOnLoadCallback(function() {
-	   var customSearchOptions = {};
-	   var orderByOptions = {};
-	   orderByOptions['keys'] = [{label: 'Relevance', key: ''} , {label: 'Date', key: 'date'}];
-	   customSearchOptions['enableOrderBy'] = true;
-	   customSearchOptions['orderByOptions'] = orderByOptions;
+	<!-- angular -->
+	<script src='/angular/angular.js'></script>
+	<script src='/angular-route/angular-route.js'></script>
+
+	<!-- stylesheet -->
+	<link rel="stylesheet" href="/app/assets/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/app/assets/css/styles.css">
+
+	<!-- modules/main app -->
+	<script src='/app/main.js'></script>
+
+	<!-- session storage -->
+	<script src='/ng-storage/ngStorage.js'></script>
+
+	<!-- users -->
+	<script src='/app/users/config.js'></script>
+	<script src='/app/users/userfactory.js'></script>
+	<script src='/app/users/usercontroller.js'></script>
+
+	<!-- cards -->
+	<script src='/app/cards/config.js'></script>
+	<script src='/app/cards/cardsfactory.js'></script>
+	<script src='/app/cards/cardscontroller.js'></script>
+
+	<!-- dashboard -->
+	<script src='/app/users/dashcontroller.js'></script>
+
+	<!-- google image search -->
+	<script src='//www.google.com/jsapi' type='text/javascript'></script>
+	<script type='text/javascript'>
+		google.load('search', '1', {language: 'en', style: google.loader.themes.V2_DEFAULT});
+		google.setOnLoadCallback(function() {
+		var customSearchOptions = {};
+		var orderByOptions = {};
+		orderByOptions['keys'] = [{label: 'Relevance', key: ''} , {label: 'Date', key: 'date'}];
+		customSearchOptions['enableOrderBy'] = true;
+		customSearchOptions['orderByOptions'] = orderByOptions;
 		customSearchOptions['limitTo'] = 6;
-	   // customSearchOptions['enableImageSearch'] = true;
-	   var imageSearchOptions = {};
-	   imageSearchOptions['layout'] = 'google.search.ImageSearch.LAYOUT_COLUMN';
-	   customSearchOptions['enableImageSearch'] = true;
+		// customSearchOptions['enableImageSearch'] = true;
+		var imageSearchOptions = {};
+		imageSearchOptions['layout'] = 'google.search.ImageSearch.LAYOUT_COLUMN';
+		customSearchOptions['enableImageSearch'] = true;
 		customSearchOptions['defaultToImageSearch'] = true;
 		customSearchOptions['imageSearchResultSetSize'] = 'small';
 		customSearchOptions['imageSearchLayout'] = 'column';
 
-	   var customSearchControl =   new google.search.CustomSearchControl('016395638918268128046:viw6pearh8i', customSearchOptions);
-	   customSearchControl.setResultSetSize(google.search.Search.SMALL_RESULTSET);
-	   var options = new google.search.DrawOptions();
-	   options.setAutoComplete(true);
-	   customSearchControl.draw('cse', options);
-	 }, true);
-	 </script>
+		var customSearchControl =   new google.search.CustomSearchControl('016395638918268128046:viw6pearh8i', customSearchOptions);
+		customSearchControl.setResultSetSize(google.search.Search.SMALL_RESULTSET);
+		var options = new google.search.DrawOptions();
+		options.setAutoComplete(true);
+		customSearchControl.draw('cse', options);
+		}, true);
+	</script>
 </head>
 <body>
-
     <div ng-view=''>
 </body>
 </html>
