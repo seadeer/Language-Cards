@@ -1,13 +1,14 @@
 <html ng-app="app">
 <head>
     <title>VorTex</title>
-    
+
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/app/assets/materialize/css/materialize.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/app/assets/css/styles.css">
     <script src='/app/assets/js/jquery-2.2.3.js'></script>
     <script src='/app/assets/materialize/js/materialize.js'></script>
-    <script src='/angular/angular.js'></script> 
+	 <script src='//www.google.com/jsapi' type='text/javascript'></script>
+    <script src='/angular/angular.js'></script>
     <script src='/angular-route/angular-route.js'></script>
     <script src='/app/main.js'></script>
     <script src='/ng-storage/ngStorage.js'></script>
@@ -18,10 +19,33 @@
     <script src='/app/cards/cardsfactory.js'></script>
     <script src='/app/cards/cardscontroller.js'></script>
     <script src='/app/users/dashcontroller.js'></script>
-    
+	 <script type='text/javascript'>
+	 google.load('search', '1', {language: 'en', style: google.loader.themes.V2_DEFAULT});
+	 google.setOnLoadCallback(function() {
+	   var customSearchOptions = {};
+	   var orderByOptions = {};
+	   orderByOptions['keys'] = [{label: 'Relevance', key: ''} , {label: 'Date', key: 'date'}];
+	   customSearchOptions['enableOrderBy'] = true;
+	   customSearchOptions['orderByOptions'] = orderByOptions;
+		customSearchOptions['limitTo'] = 6;
+	   // customSearchOptions['enableImageSearch'] = true;
+	   var imageSearchOptions = {};
+	   imageSearchOptions['layout'] = 'google.search.ImageSearch.LAYOUT_COLUMN';
+	   customSearchOptions['enableImageSearch'] = true;
+		customSearchOptions['defaultToImageSearch'] = true;
+		customSearchOptions['imageSearchResultSetSize'] = 'small';
+		customSearchOptions['imageSearchLayout'] = 'column';
+
+	   var customSearchControl =   new google.search.CustomSearchControl('016395638918268128046:viw6pearh8i', customSearchOptions);
+	   customSearchControl.setResultSetSize(google.search.Search.SMALL_RESULTSET);
+	   var options = new google.search.DrawOptions();
+	   options.setAutoComplete(true);
+	   customSearchControl.draw('cse', options);
+	 }, true);
+	 </script>
 </head>
 <body>
-    
+
     <div ng-view=''>
 </body>
 </html>
