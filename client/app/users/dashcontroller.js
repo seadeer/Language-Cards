@@ -41,7 +41,7 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
                 _creator: that.user._id,
                 target_language: that.newCard.target_language,
                 target_word: that.newCard.target_word,
-                translations: [that.newCard.translation],
+                translations: that.newCard.translations,
                 translated_language: that.user.default_language
             }
             cardFactory.create(card, function(data){
@@ -72,7 +72,7 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
                 console.log(data);
                 that.newCard={};
                 $location.url('/home');
-                that.index();
+                that.indexFive();
             })
         }
     };

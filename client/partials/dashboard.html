@@ -21,7 +21,7 @@
     </div>
     <h6>Your recent cards:</h6>
 
-    <div class="showCards" ng-repeat="card in DC.ownCards | orderBy: 'date'">
+    <div class="showCards" ng-repeat="card in DC.ownCards | orderBy: '-createdAt'">
         <div class="cardFront">
 			  <h5>{{card.target_language}}</h5>
 			  <br><br>
@@ -35,7 +35,7 @@
  			<h5>{{card.target_language}}</h5>
  			<br><br>
  			<h5>{{card.target_word}}</h5>
- 			<h5>{{card.translations[0]}}</h5>
+ 			<h5>{{card.translations[0]['0']}}</h5>
             <h5>{{card._creator.name}}</h5>
  		</div>
 	</div>
@@ -44,7 +44,7 @@
         <!-- <select ng-model="DC.newCard.target_language" ng-options='language for language in DC.user.languages'></select> -->
         <p>Language:<input type="text" ng-model="DC.newCard.target_language"></p>
         <p>Word: <input type="text" ng-model="DC.newCard.target_word"></p>
-        <p>Translation: <input type="text" ng-model="DC.newCard.translation"></p>
+        <p>Translation: <input type="text" ng-model="DC.newCard.translations[0]"></p>
         <input class="waves-effect waves-light btn" type="submit" ng-click="DC.create()" value="Add">
     </div>
 </div>
