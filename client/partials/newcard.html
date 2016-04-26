@@ -11,25 +11,10 @@
         </nav>
     </div>
 <div class="container" ng-controller="dashController as DC">
-	<!-- <script>
-      function translateText(response) {
-        document.getElementById("translation").innerHTML += "<br>" + response.data.translations[0].translatedText;
-      }
-    </script>
-    <script>
-      var newScript = document.createElement('script');
-      newScript.type = 'text/javascript';
-      var sourceText = escape(document.getElementById("sourceText").innerHTML);
-      var source = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyBJ7xnAFQxD3lbhBEx48rbFKVI50gh5xhU&source=en&target=fr&callback=translateText&q=' + sourceText;
-      newScript.src = source;
 
-      // When we add this script to the head, the request is sent off.
-      document.getElementsByTagName('head')[0].appendChild(newScript);
-    </script> -->
     <h1>Create New Card</h1>
 	 <div id='cse' style='width: 100%;'>Loading</div>
-	 <div id="sourceText">Hello world</div>
-    <div id="translation"></div>
+
     <div class="makeCard">
 
         <!-- <select ng-model="DC.newCard.target_language" ng-options='language for language in DC.user.languages'></select> -->

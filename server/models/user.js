@@ -6,6 +6,7 @@ var UserSchema = new mongoose.Schema({
     rank: String,
     challenges: [{type: Schema.ObjectId, ref: 'Challenge'}],
     decks: [{type: Schema.ObjectId, ref: 'Deck'}],
+	 cards: [{type: Schema.ObjectId, ref: 'Card'}],
     languages: [{type: Schema.ObjectId, ref: 'Language'}],
     default_language: {type: String, default: 'English'},
 }, {timestamps: true});
