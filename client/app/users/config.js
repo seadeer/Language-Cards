@@ -11,3 +11,4 @@ userApp.config(function($routeProvider){
         templateUrl: 'partials/dashboard.html'
     })
 });
+
