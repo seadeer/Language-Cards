@@ -4,14 +4,18 @@
                 <div class="col s12">
                     <a href="#!" class="breadcrumb">My Cards</a>
                     <a href="#/cards/new" class="breadcrumb">New Card</a>
-                    <a href="#/user/settings" class="breadcrumb">Settings</a>
+                    <a href="#!" class="breadcrumb">Settings</a>
                     <a href="#/" class="breadcrumb" ng-click=UC.logout()>Log Out</a>
                 </div>
             </div>
         </nav>
     </div>
-
 <div class="container" ng-controller="dashController as DC">
+<<<<<<< HEAD
+=======
+{{DC}}
+>>>>>>> anya_crud
+
     <h1>Welcome {{DC.user.name}}</h1>
     <div class="UserSettings">
         <h6>Your languages: </h6>
@@ -21,7 +25,7 @@
     </div>
     <h6>Your recent cards:</h6>
 
-    <div class="showCards" ng-repeat="card in DC.ownCards | orderBy: 'date'">
+    <div class="showCards" ng-repeat="card in DC.ownCards | orderBy:['-createdAt', 'target_language']">
         <div class="cardFront">
 			  <h5>{{card.target_language}}</h5>
 			  <br><br>
@@ -30,7 +34,7 @@
 		  </div>
     </div>
     <h6>New Cards added:</h6>
-    <div class="showCards" ng-repeat="card in DC.otherCards | orderBy: 'date'">
+    <div class="showCards" ng-repeat="card in DC.otherCards ">
 		 <div class="cardFront">
  			<h5>{{card.target_language}}</h5>
  			<br><br>
@@ -47,4 +51,6 @@
         <p>Translation: <input type="text" ng-model="DC.newCard.translation"></p>
         <input class="waves-effect waves-light btn" type="submit" ng-click="DC.create()" value="Add">
     </div>
+	 <!-- q=frodo&gl=mx&num=6&imgSize=small&safe=high -->
+
 </div>
