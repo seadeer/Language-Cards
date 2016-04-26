@@ -19,10 +19,15 @@
             <h5>{{language.name}}</h5>
         </div>
         <h6>Add a language you would like to learn:</h6>
-        <select ng-model="UC.newLanguage" ng-options="lang.name for lang in UC.languages track by $index">
+        <select ng-model="UC.newLanguage">
+            <option ng-repeat = "lang in UC.languages" value={{lang}}>{{lang.name}}
+            </option>
+        </select>
         <input type="submit" value="Add Language" ng-click="UC.addLanguage()">
         <h6>Set your native language: </h6>
-        <select ng-options = "l.name for l in UC.languages track by $index" ng-model="UC.userLanguage">
+        <select ng-model="UC.userLanguage">
+            <option ng-repeat = "lang in UC.languages" value={{lang}}>{{lang.name}}</option>
+        </select>
         <input type="submit" value="Set Language" ng-click="UC.setLanguage()">
     </div>
     <div>

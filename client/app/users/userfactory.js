@@ -34,17 +34,17 @@ userApp.factory('userFactory', function($http, $sessionStorage){
 
     factory.addLanguage = function(language, id, callback){
         $http.post('/users/' + id + '/updateLanguages', language).success(function(output){
-            factory.currUser = output;
+            $sessionStorage.currUser = output;
             callback(output);
-        })
-    }
+        });
+    };
 
     factory.setLanguage = function(language, id, callback){
         $http.post('/users/' + id + '/setDefaultLanguage', language).success(function(output){
-            factory.currUser = output;
+            $sessionStorage.currUser = output;
             callback(output);
-        })
-    }
+        });
+    };
 
 
     return factory;

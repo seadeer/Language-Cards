@@ -7,7 +7,7 @@ var UserSchema = new mongoose.Schema({
     challenges: [{type: Schema.ObjectId, ref: 'Challenge'}],
     decks: [{type: Schema.ObjectId, ref: 'Deck'}],
     languages: [{type: Schema.ObjectId, ref: 'Language'}],
-    default_language: {type: String, default: 'English'},
+    default_language: {type: Schema.ObjectId, ref: 'Language', default: "571f6f34b984b38d2e799ef4"},
 }, {timestamps: true});
 
 var User = mongoose.model('User', UserSchema);

@@ -29,6 +29,7 @@ userApp.controller('usersController', function(userFactory, $location){
 
     //Set user's set of languages to determine which cards to display
     this.addLanguage = function(){
+        console.log("NewLanguage: ", that.newLanguage)
         userFactory.addLanguage(that.newLanguage, that.user._id, function(data){
             that.user = data;
             console.log("Updated user", that.user);
