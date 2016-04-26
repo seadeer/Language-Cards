@@ -11,7 +11,6 @@
         </nav>
     </div>
 <div class="container" ng-controller="dashController as DC">
-
     <h1>Create New Card</h1>
     <div class="makeCard">
         <!-- <select ng-model="DC.newCard.target_language" ng-options='language for language in DC.user.languages'></select> -->
@@ -20,11 +19,21 @@
         <p>Translation 1: <input type="text" ng-model="DC.newCard.translations[0]"></p>
         <p>Translation 2 (optional): <input type="text" ng-model="DC.newCard.translations[1]"> </p>
         <p>Translation 3 (optional): <input type="text" ng-model="DC.newCard.translations[2]"></p>
-        <p>Part of Speech: <input type="text" ng-model="DC.newCard.part_of_speech"></p>
-        <p>Tags: <input type="text" ng-model=""></p>
+        <p>Part of Speech: 
+        <select ng-model='DC.newCard.part_of_speech' 
+            ng-options="i as i for i in DC.pos"></select>
         <p>Example 1: <input type="text" ng-model="DC.newCard.contexts[0]"></p>
-        <p>Example 1: <input type="text" ng-model="DC.newCard.contexts[1]"></p>
-        <p>Example 1: <input type="text" ng-model="DC.newCard.contexts[2]"></p> 
-        <input class="waves-effect waves-light btn" type="submit" ng-click="DC.create()" value="Add">
+        <p>Example 2: <input type="text" ng-model="DC.newCard.contexts[1]"></p>
+        <p>Example 3: <input type="text" ng-model="DC.newCard.contexts[2]"></p> 
+        <input class="waves-effect waves-light btn" type="submit" ng-click="DC.create_long()" value="Add">
+    </div>
+    <div class="GoogleTranslate">
+        <h4>Check translations that you want to add:</h4>
+        <h5>Google translate 1</h5>
+        <h5>Google translate 2</h5>
+        <h5>Google translate 3</h5>
+    </div>
+    <div class="Forvo">
+        <h5>Here be Forvo sounds</h5>
     </div>
 </div>
