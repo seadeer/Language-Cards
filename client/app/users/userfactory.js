@@ -3,6 +3,7 @@ userApp.factory('userFactory', function($http, $sessionStorage){
     var factory = {};
     //initialize session storing user
     $sessionStorage.currUser;
+    factory.languages = {};
 
     //get user name from db (or create new in db) and store in session
     factory.login = function(newUser, callback){
@@ -24,12 +25,27 @@ userApp.factory('userFactory', function($http, $sessionStorage){
         return $sessionStorage.currUser;
     };
 
-	 factory.scrape = function(){
-		 console.log('in scrape factory function')
-		 $http.get('/scrape').success(function(output){
-			 console.log('output', output)
-		 })
-	 }
+    factory.getLangs = function(callback){
+        $http.get('/languages/index').success(function(output){
+            factory.languages = output;
+            callback(output);
+        });
+    };
+
+    factory.addLanguage = function(language, id, callback){
+        $http.post('/users/' + id + '/updateLanguages', language).success(function(output){
+            factory.currUser = output;
+            callback(output);
+        })
+    }
+
+    factory.setLanguage = function(language, id, callback){
+        $http.post('/users/' + id + '/setDefaultLanguage', language).success(function(output){
+            factory.currUser = output;
+            callback(output);
+        })
+    }
+
 
     return factory;
-})
+});

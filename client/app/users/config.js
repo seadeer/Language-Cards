@@ -10,5 +10,9 @@ userApp.config(function($routeProvider){
     .when('/home', {
         templateUrl: 'partials/dashboard.html'
     })
+
+    .when('/user/settings', {
+        templateUrl: 'partials/settings.html'
+    })
 });
 
