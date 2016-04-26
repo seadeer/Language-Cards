@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 var CardSchema = new mongoose.Schema({
     target_language: String,
     target_word: String,
+	 image_url: String,
     translated_language: String,
     translations: [],
     tags: [],
