@@ -1,6 +1,7 @@
-
 body{
-    background-color: #AF5A5E;
+	background-color: #AF5A5E;
+	width: 90%;
+	margin: 0 auto;
 }
 
 h1{
@@ -39,7 +40,11 @@ h1{
 	display: none;
 	visibility: hidden;
 }
+.img-small{
+	max-width: 150px;
+	max-height: 100px;
 
+}
 
 
 

@@ -36,7 +36,10 @@
 		google.setOnLoadCallback(function() {
 		var customSearchOptions = {};
 		var orderByOptions = {};
-		orderByOptions['keys'] = [{label: 'Relevance', key: ''} , {label: 'Date', key: 'date'}];
+		orderByOptions['keys'] = [
+			{label: 'Relevance', key: ''} ,
+		 {label: 'Date', key: 'date'}
+	 ];
 		customSearchOptions['enableOrderBy'] = true;
 		customSearchOptions['orderByOptions'] = orderByOptions;
 		customSearchOptions['limitTo'] = 6;
@@ -55,6 +58,10 @@
 		customSearchControl.draw('cse', options);
 		}, true);
 	</script>
+
+	<!-- google translate -->
+
+
 </head>
 <body>
     <div ng-view=''>

@@ -21,10 +21,10 @@
     </div>
     <h6>Your recent cards:</h6>
 
-    <div class="showCards" ng-repeat="card in DC.ownCards | orderBy: '-createdAt'">
+    <div class="showCards" ng-repeat="card in DC.ownCards | orderBy: '-createdAt' | limitTo:'4'">
         <div class="cardFront">
 			  <h5>{{card.target_language}}</h5>
-			  <br><br>
+			  <img class="img-small" src="{{card.image_url}}" alt="{{card.image_url}}" />
 			  <h5>{{card.target_word}}</h5>
 			  <h5>{{card.translations[0]['0']}}</h5>
 		  </div>
@@ -33,7 +33,7 @@
     <div class="showCards" ng-repeat="card in DC.otherCards | orderBy: 'date'">
 		 <div class="cardFront">
  			<h5>{{card.target_language}}</h5>
- 			<br><br>
+ 			<img class="img-small" src="{{card.image_url}}" alt="{{card.image_url}}" />
  			<h5>{{card.target_word}}</h5>
  			<h5>{{card.translations[0]['0']}}</h5>
             <h5>{{card._creator.name}}</h5>
