@@ -45,8 +45,14 @@ h1{
 	max-height: 100px;
 
 }
-
-
+.makeCard{
+	text-align: right;
+	width: 20%;
+}
+.bigNbold{
+	font-size: 3em;
+	font-weight: bolder;
+}
 
 
 

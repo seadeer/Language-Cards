@@ -12,33 +12,46 @@
     </div>
 <div class="container" ng-controller="dashController as DC">
 
-    <h1>Create New Card</h1>
-	 <div id='cse' style='width: 100%;'>Loading</div>
+	<h1>Create New Card</h1>
 
-    <div class="makeCard">
-
-        <!-- <select ng-model="DC.newCard.target_language" ng-options='language for language in DC.user.languages'></select> -->
-        <p>Language:<input type="text" ng-model="DC.newCard.target_language"></p>
-        <p>Word: <input type="text" ng-model="DC.newCard.target_word"></p>
-		  <p>Image: <input type="url" ng-model="DC.newCard.image_url"></p>
-        <p>Translation 1: <input type="text" ng-model="DC.newCard.translations[0]"></p>
-        <p>Translation 2 (optional): <input type="text" ng-model="DC.newCard.translations[1]"> </p>
-        <p>Translation 3 (optional): <input type="text" ng-model="DC.newCard.translations[2]"></p>
-        <p>Part of Speech:
-        <select ng-model='DC.newCard.part_of_speech'
-            ng-options="i as i for i in DC.pos"></select>
-        <p>Example 1: <input type="text" ng-model="DC.newCard.contexts[0]"></p>
-        <p>Example 2: <input type="text" ng-model="DC.newCard.contexts[1]"></p>
-        <p>Example 3: <input type="text" ng-model="DC.newCard.contexts[2]"></p>
-        <input class="waves-effect waves-light btn" type="submit" ng-click="DC.create_long()" value="Add">
-    </div>
-    <div class="GoogleTranslate">
-        <h4>Check translations that you want to add:</h4>
-        <h5>Google translate 1</h5>
-        <h5>Google translate 2</h5>
-        <h5>Google translate 3</h5>
-    </div>
-    <div class="Forvo">
-        <h5>Here be Forvo sounds</h5>
-    </div>
-</div>
+	<div class="makeCard col-md-4">
+		<p>Language:<input type="text" ng-model="DC.newCard.target_language"></p>
+		<p>Word: <input type="text" ng-model="DC.newCard.target_word"></p>
+		<p>Image: <input type="url" ng-model="DC.newCard.image_url"></p>
+		<p>Translation 1: <input type="text" ng-model="DC.newCard.translations[0]"></p>
+		<p>Translation 2 (optional): <input type="text" ng-model="DC.newCard.translations[1]"> </p>
+		<p>Translation 3 (optional): <input type="text" ng-model="DC.newCard.translations[2]"></p>
+		<p>Part of Speech:
+		<select ng-model='DC.newCard.part_of_speech'
+		ng-options="i as i for i in DC.pos">
+		</select>
+		<p>Example 1: <input type="text" ng-model="DC.newCard.contexts[0]"></p>
+		<p>Example 2: <input type="text" ng-model="DC.newCard.contexts[1]"></p>
+		<p>Example 3: <input type="text" ng-model="DC.newCard.contexts[2]"></p>
+		<input class="btn btn-primary btn-lg" type="submit" ng-click="DC.create_long()" value="Create">
+	</div> <!-- makecard -->
+	<div class="GoogleTranslate col-md-5">
+		<h4>Translate word from English:</h4>
+		<p>(thanks, google translate!)</p>
+		<input type="text" ng-model="DC.translateStr">
+		<input type="submit" class="btn btn-success btn-sm" ng-click="DC.translate()" value="Translate">
+		<div class="resultOfTranslation bigNBold" ng-bind="DC.googResponse">
+			translation: {{DC.googResponse}}
+		</div>
+		<h4>-or-</h4>
+		<div class="googleImageSearch">
+			<h4>Google Image Search:</h4>
+			<div id='cse' style='width: 100%;'>waiting on Google servers...
+			</div>
+			<h5>
+				Search for the term in your target language (to see better how the word is used culturally);
+			</h5>
+			<h5>
+				right click the result and select 'copy image link', then paste that link in to the Image input box.
+			</h5>
+		</div> <!-- image search -->
+		<div class="Forvo">
+			<h5>Here be Forvo sounds</h5>
+		</div><!-- forvo -->
+	</div><!-- googletranslate -->
+</div> <!-- container -->

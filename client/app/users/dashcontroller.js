@@ -1,12 +1,17 @@
 //DASHBOARD - here is where info about users and cards comes together. It is part of the user app but separated from the core user functions.
 userApp.controller('dashController', function(userFactory, cardFactory, $location){
+	console.log('reinstantiating dashController')
     var that = this;
     this.error = '';
     this.user = userFactory.user();
     console.log(this.user);
     this.ownCards = [];
     this.otherCards = [];
+	 this.translateStr = ''
+	 this.googResponse = ''
     this.pos = ['Noun', 'Verb', 'Adjective', 'Adverb', 'Preposition', 'Pronoun', 'Conjunction', 'Particle', 'Interjection', 'Copula', 'Article', 'Determiner'];
+
+	 console.log('this.googResponse')
 
     //get 5 of user's recent cards
     this.indexOwnCards = function(){
@@ -75,5 +80,17 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
             })
         }
     };
+
+	 this.translate = function(){
+		 console.log('function invoked')
+		 console.log(this.translateStr)
+		 if (this.translateStr){
+			 cardFactory.translate(this.translateStr, function(data, callback){
+				 console.log(data, "this is what called back")
+				 that.googResponse = data.data.translations[0].translatedText
+				 console.log(that.googResponse)
+			 })
+		 }
+	 }
 
 });

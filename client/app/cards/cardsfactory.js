@@ -20,5 +20,12 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
         });
     };
 
+	 factory.translate = function(word, callback){
+		 $http.get('https://www.googleapis.com/language/translate/v2?key=AIzaSyBJ7xnAFQxD3lbhBEx48rbFKVI50gh5xhU&source=en&target=es&q='+word).success(function(output){
+			 console.log('RETRIEVED DATA FROM GOOGLE :::', output)
+			 callback(output)
+		 })
+	 }
+
     return factory;
 });
