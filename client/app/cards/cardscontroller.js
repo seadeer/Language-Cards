@@ -3,7 +3,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
     var that = this;
     this.error = ''
     this.user = userFactory.user();
-    this.decks = [];
+    this.deck = {};
     this.pos = ['Noun', 'Verb', 'Adjective', 'Adverb', 'Preposition', 'Pronoun', 'Conjunction', 'Particle', 'Interjection', 'Copula', 'Article', 'Determiner'];
 
     this.currentPage = 0;
@@ -54,6 +54,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         });
     };
 
+    //display all of the cards in user's languages
     this.index = function(){
         languageNames = that.user.languages.map(function(a){return a.name});
         console.log("Language Name array: ", languageNames);
@@ -63,6 +64,14 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
     };
 
     this.index();
+
+    this.indexDeck = function(deckID){
+        console.log("This is the deck I'm going to get:", deckID);
+        cardFactory.indexDeck(deckID, function(data){
+            console.log(data);
+            that.deck = data;
+        })
+    }
 
     this.createDeck = function(){
         that.errors = [];

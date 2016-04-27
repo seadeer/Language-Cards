@@ -79,8 +79,20 @@ module.exports = {
                 user.save();
                 res.json(deck);
             }
-            })
-        })
+            });
+        });
     },
+
+    indexDeck: function(req, res){
+        console.log("Got request for a deck ", req.body);
+        Deck.findOne({_id:req.params.id}, function(err, deck){
+            if(err){
+                res.json(err);
+            }
+            else{
+                res.json(deck);
+            }
+        });
+    }
 
 };

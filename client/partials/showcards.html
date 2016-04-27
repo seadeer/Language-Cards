@@ -11,13 +11,14 @@
         </nav>
     </div>
 <div class="container" ng-controller="cardsController as CC">
+<!-- {{CC}} -->
     <h4>View all cards in your languages</h4>
     <h5>Filter by language:
         <select ng-model="filter_name">
             <option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
         </select>
     </h5>
-    <input value="Search" ng-model="query">
+    <input type="text" placeholder="Search" ng-model="query">
     <div class="showCards big" ng-repeat="card in CC.cards |toArray |filter:filter_name |filter:query">
         <div class="cardFront">
             <h5>{{card.target_language}}</h5>
@@ -26,5 +27,15 @@
             <h5>{{card.translations[0]}}</h5>
             <h5>{{card._creator.name}}</h5>
         </div>
+    </div>
+    <div>
+        <h4>Cards in your deck</h4>
+        <h5>Choose your deck: </h5>
+        <select ng-model="CC.theDeck" ng-change="CC.indexDeck(CC.theDeck)">
+            <option value=""></option>
+            {{CC.deck}}
+            <option ng-repeat="deck in CC.user.decks track by $index" value={{deck._id}}>{{deck.name}}</option>
+        </select>
+        <div class="showCards" ng-repeat="card in CC.deck"></div>
     </div>
 </div>

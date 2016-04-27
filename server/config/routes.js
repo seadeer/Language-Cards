@@ -24,12 +24,14 @@ module.exports = function(app){
     });
 
     app.get('/languages/index', function(req, res){
+        console.log("got request to index languages");
         users.indexLang(req, res);
     });
 
-    app.get('/users/:id', function(req, res){
-        users.index(req, res);
-    });
+    app.get('/decks/:id', function(req, res){
+        console.log("got request from factory on decks", req.body);
+        cards.indexDeck(req, res);
+    })
 
     app.post('/users/:id/updateLanguages', function(req, res){
         users.addLanguage(req, res);
@@ -41,5 +43,9 @@ module.exports = function(app){
 
     app.post('/users/:id/decks/new', function(req, res){
         cards.createDeck(req, res);
+    });
+
+    app.get('/users/:id', function(req, res){
+        users.index(req, res);
     });
 };

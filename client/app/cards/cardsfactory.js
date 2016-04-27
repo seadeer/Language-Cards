@@ -38,6 +38,12 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
         });
     };
 
+    factory.indexDeck = function(id, callback){
+        $http.get('/decks/'+id).success(function(output){
+            callback(output);
+        });
+    };
+
     factory.create = function(data, callback){
         $http.post('/cards/new', data).success(function(output){
             callback(output);
