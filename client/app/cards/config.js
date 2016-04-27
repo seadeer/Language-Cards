@@ -9,8 +9,14 @@ cardsApp.config(function($routeProvider){
 
     .when('/cards/new', {
         templateUrl: 'partials/newcard.html'
-    });
+    })
 
+    .when('/cards/index', {
+        templateUrl: 'partials/showcards.html'
+    })
+
+
+});
 
 //DIRECTIVES
 cardsApp.directive('autoComplete', function($timeout){
@@ -23,8 +29,16 @@ cardsApp.directive('autoComplete', function($timeout){
                     iElement.trigger('input');
                 }, 0);
             }
-        })
+        });
+    };
+});
+
+//FILTERS
+cardsApp.filter('startFrom', function(){
+    return function(input, start){
+        start = +start;
+        return input.slice(start);
     }
 })
-});
+
 

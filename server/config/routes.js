@@ -15,6 +15,10 @@ module.exports = function(app){
         cards.indexFive(req, res);
     });
 
+    app.get('/cards/index/:id', function(req, res){
+        cards.index(req, res);
+    });
+
     app.post('/cards/new', function(req, res){
         cards.create(req, res);
     });

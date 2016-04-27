@@ -6,6 +6,14 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
     this.decks = [];
     this.pos = ['Noun', 'Verb', 'Adjective', 'Adverb', 'Preposition', 'Pronoun', 'Conjunction', 'Particle', 'Interjection', 'Copula', 'Article', 'Determiner'];
 
+    this.currentPage = 0;
+    this.pageSize = 15;
+    this.cards = {};
+    this.numberOfPages = function(){
+        return Math.ceil(that.cards.length / that.pageSize);
+    };
+
+
     this.logout = function(){
         console.log(that.user);
         usersFactory.logout(function(){
@@ -43,8 +51,18 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
     this.updateUser = function(){
         userFactory.updateUser(that.user._id, function(data){
             that.user = data;
-        })
-    }
+        });
+    };
+
+    this.index = function(){
+        languageNames = that.user.languages.map(function(a){return a.name});
+        console.log("Language Name array: ", languageNames);
+        cardFactory.index(languageNames, function(data){
+            that.cards = data;
+        });
+    };
+
+    this.index();
 
     this.createDeck = function(){
         that.errors = [];

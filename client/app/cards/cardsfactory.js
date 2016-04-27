@@ -1,5 +1,26 @@
 cardsApp.factory('cardFactory', function($http, $sessionStorage){
     var factory = {};
+    factory.cards = [];
+
+    factory.index = function(langs, callback){
+        //for each language, get the set of cards and put them into the factory object. When all languages are complete, call the callback function.
+        var retrieved = langs.length;
+        function retrieveComplete(){
+            retrieved --;
+            if(retrieved <= 0){
+                callback(factory.cards);
+            }
+        }
+        for(var i = 0; i < langs.length; i++){
+            var lang = langs[i];
+        $http.get('/cards/index/'+ langs[i]).success(function(output){
+            for(i in output){
+                factory.cards.push(output[i]);
+            }
+            retrieveComplete();
+            });
+        }
+    };
 
     factory.indexOwnCards = function(id, callback){
         console.log("Getting five cards from user", id);

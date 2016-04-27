@@ -7,7 +7,8 @@ module.exports = {
 
     login: function(req, res){
         console.log("Logging in...", req.body);
-        User.findOne({name:req.body.name}).populate('languages').exec(
+        var populateQuery = [{path: 'languages'}, {path: 'decks', select: 'name'}];
+        User.findOne({name:req.body.name}).populate(populateQuery).exec(
             function(err, user){
                 if(err){
                     res.json(err)
