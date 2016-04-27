@@ -18,7 +18,7 @@
         </select>
     </h5>
     <input value="Search" ng-model="query">
-    <div class="showCards big" ng-repeat="card in CC.cards |filter:filter_name |filter:query">
+    <div class="showCards big" ng-repeat="card in CC.cards |toArray |filter:filter_name |filter:query">
         <div class="cardFront">
             <h5>{{card.target_language}}</h5>
             <br><br>

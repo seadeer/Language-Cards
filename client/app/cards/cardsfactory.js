@@ -22,6 +22,8 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
         }
     };
 
+    ///Need to FIX the function above so that it doesn't keep pushing more cards into the factory each time the page loads!
+
     factory.indexOwnCards = function(id, callback){
         console.log("Getting five cards from user", id);
         $http.get('/users/'+id+'/cards/index').success(function(output){
