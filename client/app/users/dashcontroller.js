@@ -25,6 +25,7 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
     this.indexFive = function(){
         cardFactory.indexFive(function(data){
             if(data){
+                console.log(data);
                 that.otherCards = data;
             }
         });

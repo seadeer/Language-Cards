@@ -16,8 +16,9 @@
 
     <div class="makeCard">
 
-        <!-- <select ng-model="DC.newCard.target_language" ng-options='language for language in DC.user.languages'></select> -->
-        <p>Language:<input type="text" ng-model="CC.newCard.target_language"></p>
+        <select ng-model="CC.newCard.target_language">
+            <option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
+        </select>
         <p>Word: <input type="text" ng-model="CC.newCard.target_word"></p>
         <p>Translation 1: <input type="text" ng-model="CC.newCard.translations[0]"></p>
         <p>Translation 2 (optional): <input type="text" ng-model="DC.newCard.translations[1]"> </p>
