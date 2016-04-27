@@ -17,6 +17,8 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 	 this.translateAbbr = ''
 	 this.googResponse = ''
 
+	 this.creationErrs = []
+
 
     this.logout = function(){
         console.log(that.user);
