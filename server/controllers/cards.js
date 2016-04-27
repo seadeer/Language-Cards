@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Card = mongoose.model('Card');
+var Deck = mongoose.model('Deck');
 
 module.exports = {
     indexByUser: function(req, res){
@@ -39,28 +40,35 @@ module.exports = {
             else{
                 User.findOne({_id:req.body._creator}, function(err, user){ 
                 var newCard = new Card(req.body);
-                user.cards.push(newCard);
                 newCard.save(function(err){
                     if(err){
                         res.json(err);
                         }
                     else{
-                        user.save(function(err){
-                            if(err){
-                                res.json(err);
-                            }
-                            else{
-                                res.json("Card successfully saved!");
-                            }
-                        });
-                    };
+                        res.json("Card successfully saved!");
+                        }
+                    });
                 });
-            });
+            }
         
-        };
+        });
+    },
 
-    });
-            
+    createDeck: function(req, res){
+        console.log(req.body);
+        User.findOne({_id:req.params.id}, function(err, user){
+            var deck = new Deck(req.body);
+            deck.save(function(err, deck){
+                if(err){
+                    res.json(err);
+                }
+                else{
+                user.decks.addToSet(deck._id);
+                user.save();
+                res.json(deck);
+            }
+            })
+        })
     },
 
 };

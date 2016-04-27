@@ -34,6 +34,19 @@ module.exports = {
             });
     },
 
+    index: function(req, res){
+        var populateQuery = [{path: 'languages'}, {path: 'decks', select: 'name'}]
+        User.findOne({_id: req.params.id}).populate(populateQuery).exec(function(err, user){
+            if(err){
+                res.json(err);
+            }
+            else{
+            console.log("Here's what the populated user looks like ", user)
+                res.json(user);
+            }
+        });
+    },
+
     indexLang: function(req, res){
         Language.find({}, function(err, langs){
             if(err){
@@ -82,5 +95,6 @@ module.exports = {
                 res.json(user);
             }
         });
-    }
+    },
+
 };

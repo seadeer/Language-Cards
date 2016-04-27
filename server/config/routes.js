@@ -23,11 +23,19 @@ module.exports = function(app){
         users.indexLang(req, res);
     });
 
+    app.get('/users/:id', function(req, res){
+        users.index(req, res);
+    });
+
     app.post('/users/:id/updateLanguages', function(req, res){
         users.addLanguage(req, res);
     });
 
     app.post('/users/:id/setDefaultLanguage', function(req, res){
         users.setLanguage(req, res);
-    })
-}
+    });
+
+    app.post('/users/:id/decks/new', function(req, res){
+        cards.createDeck(req, res);
+    });
+};

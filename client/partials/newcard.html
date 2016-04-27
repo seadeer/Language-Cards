@@ -4,31 +4,31 @@
                 <div class="col s12">
                     <a href="#!" class="breadcrumb">My Cards</a>
                     <a href="#/home" class="breadcrumb">Dashboard</a>
-                    <a href="#!" class="breadcrumb">Settings</a>
+                    <a href="#/user/settings" class="breadcrumb">Settings</a>
                     <a href="#/" class="breadcrumb" ng-click=UC.logout()>Log Out</a>
                 </div>
             </div>
         </nav>
     </div>
-<div class="container" ng-controller="dashController as DC">
+<div class="container" ng-controller="cardsController as CC">
     <h1>Create New Card</h1>
 	 <div id='cse' style='width: 100%;'>Loading</div>
 
     <div class="makeCard">
 
         <!-- <select ng-model="DC.newCard.target_language" ng-options='language for language in DC.user.languages'></select> -->
-        <p>Language:<input type="text" ng-model="DC.newCard.target_language"></p>
-        <p>Word: <input type="text" ng-model="DC.newCard.target_word"></p>
-        <p>Translation 1: <input type="text" ng-model="DC.newCard.translations[0]"></p>
+        <p>Language:<input type="text" ng-model="CC.newCard.target_language"></p>
+        <p>Word: <input type="text" ng-model="CC.newCard.target_word"></p>
+        <p>Translation 1: <input type="text" ng-model="CC.newCard.translations[0]"></p>
         <p>Translation 2 (optional): <input type="text" ng-model="DC.newCard.translations[1]"> </p>
         <p>Translation 3 (optional): <input type="text" ng-model="DC.newCard.translations[2]"></p>
         <p>Part of Speech:
         <select ng-model='DC.newCard.part_of_speech'
-            ng-options="i as i for i in DC.pos"></select>
-        <p>Example 1: <input type="text" ng-model="DC.newCard.contexts[0]"></p>
-        <p>Example 2: <input type="text" ng-model="DC.newCard.contexts[1]"></p>
-        <p>Example 3: <input type="text" ng-model="DC.newCard.contexts[2]"></p>
-        <input class="waves-effect waves-light btn" type="submit" ng-click="DC.create_long()" value="Add">
+            ng-options="i as i for i in CC.pos"></select>
+        <p>Example 1: <input type="text" ng-model="CC.newCard.contexts[0]"></p>
+        <p>Example 2: <input type="text" ng-model="CC.newCard.contexts[1]"></p>
+        <p>Example 3: <input type="text" ng-model="CC.newCard.contexts[2]"></p>
+        <input class="waves-effect waves-light btn" type="submit" ng-click="CC.create_long()" value="Add">
     </div>
     <div class="GoogleTranslate">
         <h4>Check translations that you want to add:</h4>

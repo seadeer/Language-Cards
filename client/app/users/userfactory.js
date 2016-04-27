@@ -21,10 +21,20 @@ userApp.factory('userFactory', function($http, $sessionStorage){
         callback();
     };
 
+    //function to just pass user between views
     factory.user = function(){
         return $sessionStorage.currUser;
     };
 
+    //function to update user after another controller did something to user's data
+    factory.updateUser = function(id, callback){
+        $http.get('/users/'+id).success(function(output){
+            $sessionStorage.currUser = output;
+            callback(output);
+        })
+    }
+
+    //get all available languages
     factory.getLangs = function(callback){
         $http.get('/languages/index').success(function(output){
             factory.languages = output;
@@ -32,6 +42,7 @@ userApp.factory('userFactory', function($http, $sessionStorage){
         });
     };
 
+    //add a language to a specific user
     factory.addLanguage = function(language, id, callback){
         $http.post('/users/' + id + '/updateLanguages', language).success(function(output){
             $sessionStorage.currUser = output;
@@ -39,13 +50,13 @@ userApp.factory('userFactory', function($http, $sessionStorage){
         });
     };
 
+    //set user's default language
     factory.setLanguage = function(language, id, callback){
         $http.post('/users/' + id + '/setDefaultLanguage', language).success(function(output){
             $sessionStorage.currUser = output;
             callback(output);
         });
     };
-
 
     return factory;
 });

@@ -42,12 +42,13 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
                 target_language: that.newCard.target_language,
                 target_word: that.newCard.target_word,
                 translations: [that.newCard.translation],
-                translated_language: that.user.default_language
+                translated_language: that.user.default_language.name
             }
             cardFactory.create(card, function(data){
                 console.log(data);
                 that.newCard = {};
                 that.indexOwnCards();
+                that.indexFive();
             });
         }
     };
@@ -63,16 +64,16 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
                 target_word: that.newCard.target_word,
                 translations: that.newCard.translations,
                 part_of_speech: that.newCard.part_of_speech,
-                translated_language: that.user.default_language,
+                translated_language: that.user.default_language.name,
                 contexts: that.newCard.contexts,
-            }
+            };
             console.log(card);
             cardFactory.create(card, function(data){
                 console.log(data);
                 that.newCard={};
                 $location.url('/home');
                 that.index();
-            })
+            });
         }
     };
 	 

@@ -13,6 +13,7 @@
 
 <div class="container" ng-controller="dashController as DC">
     <h1>Welcome {{DC.user.name}}</h1>
+    {{DC}}
     <div class="UserSettings">
         <h6>Your languages: </h6>
         <div ng-repeat="language in DC.user.languages">
@@ -39,12 +40,29 @@
             <h5>{{card._creator.name}}</h5>
  		</div>
 	</div>
+
     <div class="makeCard">
-    <h5>Quick add a card:</h3>
-        <!-- <select ng-model="DC.newCard.target_language" ng-options='language for language in DC.user.languages'></select> -->
-        <p>Language:<input type="text" ng-model="DC.newCard.target_language"></p>
+    <h5>Quick add a card:</h5>
+        <select ng-model="DC.newCard.target_language">
+            <option ng-repeat="lang in DC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
+        </select>
         <p>Word: <input type="text" ng-model="DC.newCard.target_word"></p>
         <p>Translation: <input type="text" ng-model="DC.newCard.translation"></p>
         <input class="waves-effect waves-light btn" type="submit" ng-click="DC.create()" value="Add">
     </div>
 </div>
+<div ng-controller="cardsController as CC">
+    <h5>Your decks:</h5>
+    <div ng-repeat="deck in CC.user.decks">
+        <p><a href="#/deck/{{deck._id}}/index">{{deck.name}}</a></p>
+    </div>
+    <h6>Add a new deck:</h6>
+    <p>Deck name: <input type="text" ng-model="CC.newDeck.name"></p>
+    <p>Language: 
+        <select ng-model="CC.newDeck.target_language">
+            <option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
+        </select>
+    </p>
+    <p><input type="submit" ng-click="CC.createDeck()" value="Add Deck"></p>
+</div>
+
