@@ -34,7 +34,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
             console.log("Validations passed, saving new card!");
             var card = {
                 _creator: that.user._id,
-                target_language: that.newCard.target_language.name,
+                target_language: JSON.parse(this.newCard.target_language).name,
                 target_word: that.googResponse,
                 translations: [that.newCard.translations[0], that.newCard.translations[1], that.newCard.translations[2]],
                 part_of_speech: that.newCard.part_of_speech,
@@ -42,13 +42,13 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 					 image_url: that.newCard.image_url,
                 contexts: that.newCard.contexts,
             };
-            console.log(card);
+            console.log("new card",card);
             cardFactory.create(card, function(data){
                 console.log(data);
                 that.newCard={};
                 $location.url('/home');
                 //not sure if we need this line or not
-                usersController.updateUser();
+                that.updateUser();
             });
         }
     };
@@ -99,8 +99,9 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 	 this.translate = function(){
 		console.log('function invoked')
 
-		this.translateAbbr = this.newCard.target_language;
-		console.log(this.translateStr," :str full value: ", this.newCard.target_language, "abbr:", this.newCard.target_language)
+		this.translateAbbr = JSON.parse(this.newCard.target_language).abbreviation;
+		console.log(typeof(this.newCard.target_language))
+		console.log("str: ",this.translateStr," full value: ", this.newCard.target_language, "abbr:", this.translateAbbr)
 
 		if (this.translateStr && this.translateAbbr){
 			cardFactory.translate(this.translateStr, this.translateAbbr, function(data, callback){

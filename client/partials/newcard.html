@@ -45,7 +45,7 @@
 <!-- form to make card -->
 	<div class="makeCard col-md-4">
 		<select ng-model="CC.newCard.target_language">
-			<option ng-repeat="lang in CC.user.languages track by $index" value={{lang.abbreviation}}>
+			<option ng-repeat="lang in CC.user.languages track by $index" value={{lang}}>
 				{{lang.name}}
 			</option>
 		</select>
@@ -66,7 +66,7 @@
 	<h3>Translate word from English:</h3>
 	Translate to:
 	<select ng-model="CC.newCard.target_language">
-		<option ng-repeat="lang in CC.user.languages track by $index" value={{lang.abbreviation}}>
+		<option ng-repeat="lang in CC.user.languages track by $index" value={{lang}}>
 			{{lang.name}}
 		</option>
 	</select><br>
