@@ -48,4 +48,8 @@ module.exports = function(app){
     app.get('/users/:id', function(req, res){
         users.index(req, res);
     });
+
+    app.post('/decks/:id', function(req, res){
+        cards.addToDeck(req, res);
+    });
 };

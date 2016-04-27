@@ -86,10 +86,11 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         }
     };
 
-    this.addToDeck = function(){
-        cardFactory.addToDeck(that.theCard._id, that.theDeck._id, function(data){
+    this.addToDeck = function(cardId, deckId){
+        cardFactory.addToDeck(cardId, deckId, function(data){
             console.log(data);
-        })
+            that.deck = cardFactory.deck;
+        });
     }
 
 	 this.translate = function(){

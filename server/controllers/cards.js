@@ -93,6 +93,28 @@ module.exports = {
                 res.json(deck);
             }
         });
-    }
+    },
+
+    addToDeck: function(req, res){
+        console.log("Adding card to deck", req.body);
+        var id = req.body.id;
+        Deck.findById(req.params.id, function(err, deck){
+            Card.findById(id, function(err, card){
+                deck.cards.addToSet(card);
+                deck.save(function(err, deck){
+                    if(err){
+                        res.json(err)
+                    }
+                    else{
+                        res.json(deck)
+                    }
+                })
+
+            });
+        });
+            
+    },
+        
+    
 
 };

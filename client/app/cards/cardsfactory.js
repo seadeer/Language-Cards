@@ -1,6 +1,7 @@
 cardsApp.factory('cardFactory', function($http, $sessionStorage){
     var factory = {};
     factory.cards = [];
+    factory.deck = {};
 
     factory.index = function(langs, callback){
         //for each language, get the set of cards and put them into the factory object. When all languages are complete, call the callback function.
@@ -23,7 +24,6 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
         }
     };
 
-    ///Need to FIX the function above so that it doesn't keep pushing more cards into the factory each time the page loads!
 
     factory.indexOwnCards = function(id, callback){
         console.log("Getting five cards from user", id);
@@ -40,6 +40,7 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
 
     factory.indexDeck = function(id, callback){
         $http.get('/decks/'+id).success(function(output){
+            factory.deck = output;
             callback(output);
         });
     };
@@ -61,6 +62,16 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
         $http.post('/users/'+ userId + '/decks/new', deck).success(function(output){
             callback(output);
         });
+    };
+
+    factory.addToDeck = function(cardId, deckId, callback){
+        var id = {id: cardId};
+        console.log("in factory", cardId, deckId);
+        $http.post('/decks/'+ deckId, id).success(function(output){
+            factory.deck = output;
+            callback(output);
+        })
+
     };
 
     return factory;
