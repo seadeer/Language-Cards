@@ -9,3 +9,8 @@ npm-debug.log*
 # npm cache directory
 .npm
 node_modules
+*.orig
+*_BACKUP_*
+*_BASE_*
+*_LOCAL_*
+*_REMOTE_*
