@@ -13,6 +13,10 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         return Math.ceil(that.cards.length / that.pageSize);
     };
 
+	 this.translateStr = ''
+	 this.translateAbbr = ''
+	 this.googResponse = ''
+
 
     this.logout = function(){
         console.log(that.user);
@@ -30,8 +34,8 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
             console.log("Validations passed, saving new card!");
             var card = {
                 _creator: that.user._id,
-                target_language: that.newCard.target_language,
-                target_word: that.newCard.target_word,
+                target_language: that.newCard.target_language.name,
+                target_word: that.googResponse,
                 translations: [that.newCard.translations[0], that.newCard.translations[1], that.newCard.translations[2]],
                 part_of_speech: that.newCard.part_of_speech,
                 translated_language: that.user.default_language,
@@ -94,13 +98,24 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 
 	 this.translate = function(){
 		console.log('function invoked')
-		console.log(this.translateStr)
-		if (this.translateStr){
-			cardFactory.translate(this.translateStr, function(data, callback){
+
+		this.translateAbbr = this.newCard.target_language;
+		console.log(this.translateStr," :str full value: ", this.newCard.target_language, "abbr:", this.newCard.target_language)
+
+		if (this.translateStr && this.translateAbbr){
+			cardFactory.translate(this.translateStr, this.translateAbbr, function(data, callback){
 			   console.log(data, "this is what called back")
 			   that.googResponse = data.data.translations[0].translatedText
 			   console.log(that.googResponse)
 			})
+		}
+		else if (!this.translateAbbr){
+			console.log('language needed!')
+			that.error += "You must choose a language!"
+		}
+		else if (!this.translateStr){
+			console.log('query needed!')
+			that.error += "You must enter a word to search for!"
 		}
    }
 

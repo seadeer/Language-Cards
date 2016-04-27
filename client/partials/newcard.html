@@ -13,6 +13,7 @@
 <div class="container" ng-controller="cardsController as CC">
 
 	<h1>Create New Card</h1>
+<!-- google scripts	 -->
 	<script src='//www.google.com/jsapi' type='text/javascript'></script>
 	<script type='text/javascript'>
 		google.load('search', '1', {language: 'en', style: google.loader.themes.V2_DEFAULT});
@@ -41,12 +42,14 @@
 		customSearchControl.draw('cse', options);
 		}, true);
 	</script>
-
+<!-- form to make card -->
 	<div class="makeCard col-md-4">
 		<select ng-model="CC.newCard.target_language">
-			 <option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
+			<option ng-repeat="lang in CC.user.languages track by $index" value={{lang.abbreviation}}>
+				{{lang.name}}
+			</option>
 		</select>
-		<p>Word: <input type="text" ng-model="CC.newCard.target_word"></p>
+		<p>Word: <input type="text" ng-model="CC.googResponse"></p>
 		<p>Image: <input type="url" ng-model="CC.newCard.image_url"></p>
 		<p>Translation 1: <input type="text" ng-model="CC.newCard.translations[0]"></p>
 		<p>Translation 2 (optional): <input type="text" ng-model="CC.newCard.translations[1]"> </p>
@@ -60,13 +63,20 @@
 		<p>Example 3: <input type="text" ng-model="CC.newCard.contexts[2]"></p>
 		<input class="btn btn-primary btn-lg" type="submit" ng-click="CC.create_long()" value="Create">
 	</div> <!-- makecard -->
+	<h3>Translate word from English:</h3>
+	Translate to:
+	<select ng-model="CC.newCard.target_language">
+		<option ng-repeat="lang in CC.user.languages track by $index" value={{lang.abbreviation}}>
+			{{lang.name}}
+		</option>
+	</select><br>
 	<div class="GoogleTranslate col-md-5">
-		<h3>Translate word from English:</h3>
 		<p>(thanks, google translate!)</p>
 		<input type="text" ng-model="CC.translateStr">
+		{{CC.error}}
 		<input type="submit" class="btn btn-success btn-sm" ng-click="CC.translate()" value="Translate">
 		<div class="resultOfTranslation bigNBold" ng-bind="CC.googResponse">
-			translation: {{CC.googResponse}}
+			{{CC.googResponse}}
 		</div>
 		<h4>-or-</h4>
 	</div><!-- googletranslate -->
