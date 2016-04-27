@@ -7,7 +7,8 @@ module.exports = {
 
     login: function(req, res){
         console.log("Logging in...", req.body);
-        User.findOne({name:req.body.name}).populate('languages').exec(
+        var populateQuery = [{path: 'languages'}, {path: 'decks', select: 'name'}];
+        User.findOne({name:req.body.name}).populate(populateQuery).exec(
             function(err, user){
                 if(err){
                     res.json(err)
@@ -32,6 +33,19 @@ module.exports = {
                 }
 
             });
+    },
+
+    index: function(req, res){
+        var populateQuery = [{path: 'languages'}, {path: 'decks', select: 'name'}]
+        User.findOne({_id: req.params.id}).populate(populateQuery).exec(function(err, user){
+            if(err){
+                res.json(err);
+            }
+            else{
+            console.log("Here's what the populated user looks like ", user)
+                res.json(user);
+            }
+        });
     },
 
     indexLang: function(req, res){
@@ -82,5 +96,6 @@ module.exports = {
                 res.json(user);
             }
         });
-    }
+    },
+
 };

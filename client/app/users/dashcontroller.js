@@ -52,6 +52,7 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
                 console.log(data);
                 that.newCard = {};
                 that.indexOwnCards();
+                that.indexFive();
             });
         }
     };
@@ -68,16 +69,16 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
 					 image_url: that.newCard.image_url,
                 translations: that.newCard.translations,
                 part_of_speech: that.newCard.part_of_speech,
-                translated_language: that.user.default_language,
+                translated_language: that.user.default_language.name,
                 contexts: that.newCard.contexts,
-            }
+            };
             console.log(card);
             cardFactory.create(card, function(data){
                 console.log(data);
                 that.newCard={};
                 $location.url('/home');
-                that.indexFive();
-            })
+                that.index();
+            });
         }
     };
 

@@ -1,10 +1,10 @@
-//CONTROLLER
+//This controller is responsible for users and getting all the user assets.
 userApp.controller('usersController', function(userFactory, $location){
     var that = this;
     this.error = ''
     this.languages = {};
     this.user = userFactory.user();
-    console.log("Languages: ", this.languages)
+    console.log("Languages: ", this.languages);
     this.login = function(){
         console.log("Logging in", that.newUser);
         if(typeof(that.newUser) != 'undefined' && that.newUser.name.length >= 3){
@@ -18,6 +18,17 @@ userApp.controller('usersController', function(userFactory, $location){
         that.error = "User name should be longer than 3 characters!"
     }
     };
+
+    //Get the user object populated with languages and decks
+
+    this.updateUser = function(){
+        userFactory.updateUser(that.user._id, function(data){
+            that.user = data;
+        });
+    };
+    if(this.user){
+    this.updateUser();
+    } 
 
     this.getLangs = function(){
         userFactory.getLangs(function(data){
