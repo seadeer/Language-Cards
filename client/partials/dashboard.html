@@ -19,16 +19,19 @@
             <h5>{{language.name}}</h5>
         </div>
     </div>
-    <h6>Your recent cards:</h6>
+    <!-- <h6>Your recent cards:</h6> -->
 
-    <div class="showCards" ng-repeat="card in DC.ownCards | orderBy: '-createdAt' | limitTo:'4'">
+	 <!-- {{DC.otherCards}} -->
+
+    <!-- <div class="showCards" ng-repeat="card in DC.ownCards | orderBy: '-createdAt' | limitTo:'4'">
+
         <div class="cardFront">
 			  <h5>{{card.target_language}}</h5>
 			  <img class="img-small" src="{{card.image_url}}" alt="{{card.image_url}}" />
 			  <h5>{{card.target_word}}</h5>
 			  <h5>{{card.translations[0]['0']}}</h5>
 		  </div>
-    </div>
+    </div> -->
     <h6>New Cards added:</h6>
     <div class="showCards" ng-repeat="card in DC.otherCards | orderBy: 'date'">
 		 <div class="cardFront">
@@ -58,11 +61,10 @@
     </div>
     <h6>Add a new deck:</h6>
     <p>Deck name: <input type="text" ng-model="CC.newDeck.name"></p>
-    <p>Language: 
+    <p>Language:
         <select ng-model="CC.newDeck.target_language">
             <option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
         </select>
     </p>
     <p><input type="submit" ng-click="CC.createDeck()" value="Add Deck"></p>
 </div>
-

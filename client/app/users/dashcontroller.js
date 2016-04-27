@@ -82,16 +82,6 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
         }
     };
 
-	 this.translate = function(){
-		 console.log('function invoked')
-		 console.log(this.translateStr)
-		 if (this.translateStr){
-			 cardFactory.translate(this.translateStr, function(data, callback){
-				 console.log(data, "this is what called back")
-				 that.googResponse = data.data.translations[0].translatedText
-				 console.log(that.googResponse)
-			 })
-		 }
-	 }
+
 
 });

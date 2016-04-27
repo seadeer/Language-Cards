@@ -62,13 +62,14 @@ module.exports = {
 
     addLanguage: function(req, res){
         var langId = req.body._id;
-        
+
         User.findOne({_id:req.params.id}, function(err, user){
             //add language id to user's languages
             user.languages.addToSet(langId);
             //save user
             user.save(function(err, user){
                 if(err){
+						 console.log(err, "in user saving")
                     res.json(err);
                 }
                 else{

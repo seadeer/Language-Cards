@@ -35,6 +35,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
                 translations: [that.newCard.translations[0], that.newCard.translations[1], that.newCard.translations[2]],
                 part_of_speech: that.newCard.part_of_speech,
                 translated_language: that.user.default_language,
+					 image_url: that.newCard.image_url,
                 contexts: that.newCard.contexts,
             };
             console.log(card);
@@ -91,5 +92,16 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         })
     }
 
-});
+	 this.translate = function(){
+		console.log('function invoked')
+		console.log(this.translateStr)
+		if (this.translateStr){
+			cardFactory.translate(this.translateStr, function(data, callback){
+			   console.log(data, "this is what called back")
+			   that.googResponse = data.data.translations[0].translatedText
+			   console.log(that.googResponse)
+			})
+		}
+   }
 
+});
