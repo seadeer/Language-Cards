@@ -27,6 +27,7 @@ h1{
 	background-color: white;
 	color: black;
 	text-align: center;
+	overflow-y: scroll;
 }
 .showCards{
 	display: inline-block;

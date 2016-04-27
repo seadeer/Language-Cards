@@ -52,4 +52,12 @@
             <h5>{{card._creator.name}}</h5>
         </div>
     </div>
+	 <h6>Add a new deck:</h6>
+    <p>Deck name: <input type="text" ng-model="CC.newDeck.name"></p>
+    <p>Language:
+        <select ng-model="CC.newDeck.target_language">
+            <option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
+        </select>
+    </p>
+    <p><input type="submit" ng-click="CC.createDeck()" value="Add Deck"></p>
 </div>
