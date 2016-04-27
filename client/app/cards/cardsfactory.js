@@ -9,6 +9,7 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
             retrieved --;
             if(retrieved <= 0){
                 callback(factory.cards);
+                factory.cards = [];
             }
         }
         for(var i = 0; i < langs.length; i++){
