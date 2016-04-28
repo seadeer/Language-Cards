@@ -1,6 +1,6 @@
 //This controller is responsible for both cards and decks, as there isn't that much going on with cards.
 
-cardsApp.controller('cardsController', function($scope, userFactory, cardFactory, $sce, $location){
+cardsApp.controller('cardsController', function($scope, userFactory, cardFactory, $sce, $location, $routeParams){
 
     var that = this;
     this.error = ''
@@ -152,5 +152,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         });
 
    };
+
+	this.getDeck = function()
 
 });
