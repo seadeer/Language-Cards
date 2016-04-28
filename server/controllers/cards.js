@@ -143,7 +143,27 @@ module.exports = {
             }
             }
         });
-    }
+    },
+
+    imgSearch: function(req, res){
+        var word = encodeURI(req.body.term);
+        var language = req.body.language;
+        var reqUrl = "https://pixabay.com/api/?key="+ keys.pixaBay +"&lang="+language+"&q="+word+"&image_type=photo";
+        console.log(reqUrl);
+        request(reqUrl, function(err, data, body){
+            if(err){
+                res.json(err);
+            }
+            else{
+                var imgURLs = {images: []};
+                response = JSON.parse(body)
+                for (var i; i <= 10; i++){
+                    imgURLs.images.push(response.hits[i].webformatURL);
+                }
+                res.json(response);
+            }
+        });
+    },
         
     
 

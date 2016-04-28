@@ -1,9 +1,12 @@
 //This controller is responsible for both cards and decks, as there isn't that much going on with cards.
+
 cardsApp.controller('cardsController', function($scope, userFactory, cardFactory, $sce, $location){
+
     var that = this;
     this.error = ''
     this.user = userFactory.user();
     this.deck = {};
+    this.theImage = '';
     that.audioEl = {};
     this.pos = ['Noun', 'Verb', 'Adjective', 'Adverb', 'Preposition', 'Pronoun', 'Conjunction', 'Particle', 'Interjection', 'Copula', 'Article', 'Determiner'];
 
@@ -13,12 +16,12 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
     this.numberOfPages = function(){
         return Math.ceil(that.cards.length / that.pageSize);
     };
-
-	 this.translateStr = ''
-	 this.translateAbbr = ''
-	 this.googResponse = ''
-
-	 this.creationErrs = []
+    this.searchTerm=''
+    this.searchResults = []
+	this.translateStr = ''
+	this.translateAbbr = ''
+	this.googResponse = ''
+	this.creationErrs = []
 
 
     this.logout = function(){
@@ -43,7 +46,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
                 translations: [that.newCard.translations[0], that.newCard.translations[1], that.newCard.translations[2]],
                 part_of_speech: that.newCard.part_of_speech,
                 translated_language: that.user.default_language,
-					 image_url: that.newCard.image_url,
+				image_url: that.theImage,
                 contexts: that.newCard.contexts,
             };
             console.log("new card",card);
@@ -79,8 +82,8 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         cardFactory.indexDeck(deckID, function(data){
             console.log(data);
             that.deck = data;
-        })
-    }
+        });
+    };
 
     this.createDeck = function(){
         that.errors = [];
@@ -99,10 +102,10 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
             console.log(data);
             that.deck = cardFactory.deck;
         });
-    }
+    };
 
 	 this.translate = function(){
-		console.log('function invoked')
+		console.log('translate invoked');
 
 		this.translateAbbr = JSON.parse(this.newCard.target_language).abbreviation;
 		console.log(typeof(this.newCard.target_language))
@@ -142,10 +145,26 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
                 sound.play();
             }
             else{
-                that.playError = data.error
+                that.playError = data.error;
             }
         });
+    };
 
+    this.imgSearch = function(){
+        var request = {term: that.googResponse,
+            language: JSON.parse(that.newCard.target_language).abbreviation}
+        console.log("requesting to search this on Pixabay:", request);
+        cardFactory.imgSearch(request, function(data){
+            console.log(data);
+            for(i in data.hits){
+                that.searchResults.push(data.hits[i].webformatURL);
+            }
+        });
    };
+
+   this.addImage = function(index){
+    console.log(that.searchResults[index]);
+    that.theImage = that.searchResults[index]
+   }
 
 });
