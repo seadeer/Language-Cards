@@ -17,6 +17,9 @@ cardsApp.config(function($routeProvider){
 	 .when('/deck', {
         templateUrl: 'partials/deckflip.html'
     })
+	 .when('/deck/:id', {
+        templateUrl: 'partials/deckflip.html'
+    })
 
 });
 

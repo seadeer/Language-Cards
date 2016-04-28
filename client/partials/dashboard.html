@@ -50,7 +50,8 @@
         <select ng-model="DC.newCard.target_language">
             <option ng-repeat="lang in DC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
         </select>
-        <p>Word: <input type="text" ng-model="DC.newCard.target_word"></p>
+        <p>Word: <br>
+			  <input type="text" ng-model="DC.newCard.target_word"></p>
         <p>Translation: <input type="text" ng-model="DC.newCard.translations[0]"></p>
         <input class="waves-effect waves-light btn" type="submit" ng-click="DC.create()" value="Add">
     </div>
