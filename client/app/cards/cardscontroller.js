@@ -101,6 +101,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
     };
 
     this.addToDeck = function(){
+		 console.log(that.theCard, that.theDeck)
         cardFactory.addToDeck(that.theCard._id, that.theDeck._id, function(data){
             console.log(data);
         })
@@ -153,6 +154,8 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 
    };
 
-	this.getDeck = function()
+	this.getDeck = function(){
+
+	}
 
 });
