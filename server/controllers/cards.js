@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var keys = require('../config/keys');
 var request = require('request');
 var User = mongoose.model('User');
 var Card = mongoose.model('Card');
@@ -119,8 +120,12 @@ module.exports = {
     playSound: function(req, res){
         var word = encodeURI(req.body.word);
         var langCode = req.body.langCode;
-        request("http://apifree.forvo.com/action/word-pronunciations/format/json/word/"+ word +"/language/" + langCode + "/order/date-desc/key/d21ccc8cc77f304dd90c5d78a898666d/", function(err, data, body){
-            console.log("Here's what we got back", data, body);
+        var forvoKey = keys.forvo;
+        var reqUrl = "http://apifree.forvo.com/key/" + forvoKey + "/action/word-pronunciations/format/json/word/"+ word + "/language/" + langCode + "/order/date-desc";
+        
+        request(reqUrl, function(err, data, body){
+            console.log("Here's what we send: ", reqUrl,forvoKey);
+            console.log("Here's what we got back", body);
             if(err){
                 res.json(err);
             }
