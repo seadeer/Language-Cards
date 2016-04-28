@@ -100,9 +100,9 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         }
     };
 
-    this.addToDeck = function(){
-		 console.log(that.theCard, that.theDeck)
-        cardFactory.addToDeck(that.theCard._id, that.theDeck._id, function(data){
+    this.addToDeck = function(card, deckID){
+		 console.log(card._id, deckID)
+        cardFactory.addToDeck(card, deckID, function(data){
             console.log(data);
         })
     }
