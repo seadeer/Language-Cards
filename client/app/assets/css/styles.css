@@ -80,6 +80,7 @@ h1{
 	/*height: 80%;*/
 }
 
+
 .main-deck{
 	width: 550px;
 	text-align: center;
@@ -89,6 +90,17 @@ h1{
 	max-height: 800px;
 	background-color: white;
 }
+
+.soundIcon{
+  background-image: url('/app/assets/img/speaker_5-512.png');
+  height: 30px;
+  width: 30px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+}
+
+
 
 
 

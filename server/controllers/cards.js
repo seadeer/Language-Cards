@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var request = require('request');
 var User = mongoose.model('User');
 var Card = mongoose.model('Card');
 var Deck = mongoose.model('Deck');
@@ -114,6 +115,30 @@ module.exports = {
         });
             
     },
+
+    playSound: function(req, res){
+        var word = encodeURI(req.body.word);
+        var langCode = req.body.langCode;
+        request("http://apifree.forvo.com/action/word-pronunciations/format/json/word/"+ word +"/language/" + langCode + "/order/date-desc/key/d21ccc8cc77f304dd90c5d78a898666d/", function(err, data, body){
+            console.log("Here's what we got back", data, body);
+            if(err){
+                res.json(err);
+            }
+            else{
+                response = JSON.parse(body)
+                if(response.attributes.total > 0){
+                console.log(response);
+                links = {linkOgg: response.items[0].pathogg, linkMp3: response.items[0].pathmp3
+                };
+                res.json(links);
+            }
+            else{
+                var error = {error: "No audio file returned"};
+                res.json(error);
+            }
+            }
+        });
+    }
         
     
 

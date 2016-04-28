@@ -17,6 +17,7 @@
     "mongoose": "^4.4.13",
     "passport": "^0.3.2",
 	 "ng-storage": "latest",
+   "request": "2.72.0"
 
   }
 }

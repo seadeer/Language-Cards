@@ -42,3 +42,10 @@ cardsApp.filter('startFrom', function(){
         return input.slice(start);
     }
 })
+
+
+cardsApp.filter('trustedAudioUrl', function($sce) {
+    return function(path, audioFile) {
+        return $sce.trustAsResourceUrl(path + audioFile);
+    };
+})
