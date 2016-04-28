@@ -1,5 +1,5 @@
 //This controller is responsible for both cards and decks, as there isn't that much going on with cards.
-cardsApp.controller('cardsController', function($scope, userFactory, cardFactory, $location){
+cardsApp.controller('cardsController', function( userFactory, cardFactory, $location){
     var that = this;
     this.error = ''
     this.user = userFactory.user();
@@ -19,6 +19,8 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 
 	 this.creationErrors = []
 
+	 this.cardSide = false
+	 this.cardInDeck = {};
 
     this.logout = function(){
         console.log(that.user);

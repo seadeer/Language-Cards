@@ -15,18 +15,25 @@
 	<div class="viewer-main" ng-controller="cardsController as CC">
 
 		<div class="col-md-2 go-left">
-			<button type="button" class="btn btn-default btn-lg">
+			<button type="button" class="btn btn-default btn-lg" ng-click="moveBkwd()">
 			   <span class="glyphicon glyphicon-chevron-left">
 			   </span>
 			</button>
 		</div>
 
-		<div class="col-md-6 main-deck" ng-controller="cardsController as CC">
-			stuff goes here
-		</div>
+		<div class="col-md-6 main-deck">
+			<div class="card" ng-click="flip(card)">
+				<div ng-show="this.cardSide === false">
+					{{this.cardInDeck.target_word}}
+				</div>
+				<div ng-show="this.cardSide === true">
+					{{this.cardInDeck.translations[0]}}
+				</div>
+			</div>
+		</div> <!-- main-deck -->
 
 		<div class="col-md-2 go-right">
-			<button type="button" class="btn btn-default btn-lg">
+			<button type="button" class="btn btn-default btn-lg" ng-click="moveFwd()">
 			   <span class="glyphicon glyphicon-chevron-right">
 			   </span>
 			</button>
