@@ -56,4 +56,8 @@ module.exports = function(app){
     app.post('/cards/playSound', function(req, res){
         cards.playSound(req, res);
     })
+
+    app.post('/pixaimgsearch/', function(req, res){
+        cards.imgSearch(req, res);
+    })
 };

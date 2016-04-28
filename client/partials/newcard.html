@@ -15,7 +15,7 @@
 
 	<h1>Create New Card</h1>
 <!-- google scripts	 -->
-	<script src='//www.google.com/jsapi' type='text/javascript'></script>
+<!-- 	<script src='//www.google.com/jsapi' type='text/javascript'></script>
 	<script type='text/javascript'>
 		google.load('search', '1', {language: 'en', style: google.loader.themes.V2_DEFAULT});
 		google.setOnLoadCallback(function() {
@@ -42,7 +42,10 @@
 		options.setAutoComplete(true);
 		customSearchControl.draw('cse', options);
 		}, true);
-	</script>
+	</script> -->
+<!-- roll our own search bar for google image search-->
+	
+
 <!-- form to make card -->
 	<div class="makeCard col-md-4">
 		<div ng-repeat="err in creationErrors">
@@ -54,7 +57,7 @@
 			</option>
 		</select>
 		<p>Word: <input type="text" ng-model="CC.googResponse"></p>
-		<p>Image: <input type="url" ng-model="CC.newCard.image_url"></p>
+		<p>Image: <input type="url" ng-model="CC.theImage"></p>
 		<p>Translation 1: <input type="text" ng-model="CC.newCard.translations[0]"></p>
 		<p>Translation 2 (optional): <input type="text" ng-model="CC.newCard.translations[1]"> </p>
 		<p>Translation 3 (optional): <input type="text" ng-model="CC.newCard.translations[2]"></p>
@@ -82,20 +85,15 @@
 		<div class="resultOfTranslation bigNBold" ng-bind="CC.googResponse">
 			{{CC.googResponse}}
 		</div>
-		<h4>-then-</h4>
 	</div><!-- googletranslate -->
-	<div class="googleImageSearch col-md-6">
-		<h4>Google Image Search:</h4>
-		<h5>
-			Search for the term in your target language (to see better how the word is used culturally);
-		</h5>
-		<h5>
-			right click the result and select 'copy image link', then paste that link in to the Image input box below.
-		</h5>
-		<div id='cse' style='width: 100%;'>waiting on Google servers...</div> <!-- cse -->
-	</div> <!-- googleimagesearch -->
-	<div class="Forvo">
-		<!-- <h5>Here be Forvo sounds</h5> -->
+	<input type="text" ng-model="CC.googResponse">
+	<input type="submit" value="Search Image" ng-click="CC.imgSearch()">
+	<div ng-repeat = "result in CC.SearchResults |limitTo: 6">
+		<div>{{result}}</div>
 	</div>
+	<!-- PixaBay imagesearch results -->
+	<h3 class="col-md-5">PixaBay Search results:</h3>
+	<div class="showbox">
+		<div class="img-display" ng-repeat="result in CC.searchResults track by $index" ng-model="that.theClicked" ng-click="CC.addImage($index)"><img class="img-small" src="{{result}}"></div>
+	</div> 
 </div> <!-- container -->
-<div>
