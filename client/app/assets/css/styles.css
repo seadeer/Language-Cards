@@ -56,6 +56,15 @@ h1{
 	font-weight: bolder;
 }
 
+.soundIcon{
+  background-image: url('/app/assets/img/speaker_5-512.png');
+  height: 30px;
+  width: 30px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+}
+
 
 
 

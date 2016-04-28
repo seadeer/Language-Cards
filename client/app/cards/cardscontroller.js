@@ -1,9 +1,10 @@
 //This controller is responsible for both cards and decks, as there isn't that much going on with cards.
-cardsApp.controller('cardsController', function($scope, userFactory, cardFactory, $location){
+cardsApp.controller('cardsController', function($scope, userFactory, cardFactory, $sce, $location){
     var that = this;
     this.error = ''
     this.user = userFactory.user();
     this.deck = {};
+    that.audioEl = {};
     this.pos = ['Noun', 'Verb', 'Adjective', 'Adverb', 'Preposition', 'Pronoun', 'Conjunction', 'Particle', 'Interjection', 'Copula', 'Article', 'Determiner'];
 
     this.currentPage = 0;
@@ -37,6 +38,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
             var card = {
                 _creator: that.user._id,
                 target_language: JSON.parse(this.newCard.target_language).name,
+                language_code: JSON.parse(this.newCard.target_language).abbreviation,
                 target_word: that.googResponse,
                 translations: [that.newCard.translations[0], that.newCard.translations[1], that.newCard.translations[2]],
                 part_of_speech: that.newCard.part_of_speech,
@@ -119,8 +121,31 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 		}
 		else if (!this.translateStr){
 			console.log('query needed!')
-			that.error += "You must enter a word to search for!"
+			that.error += "You must enter a word to search for!";
 		}
-   }
+   };
+
+    this.playSound = function(card){
+        console.log(card);
+
+        var sound_request = {
+            langCode: card.language_code.toLowerCase(),
+            word: card.target_word
+        };
+
+        cardFactory.playSound(sound_request, function(data, $sce){
+            console.log(data);
+            if(!data.error){
+            that.soundUrlOgg = data.linkOgg;
+            that.soundUrlMp3 = data.linkMp3
+            var sound = new Audio(that.soundUrlMp3 + ".mp3");
+                sound.play();
+            }
+            else{
+                that.playError = data.error
+            }
+        });
+
+   };
 
 });

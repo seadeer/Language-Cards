@@ -70,9 +70,17 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
         $http.post('/decks/'+ deckId, id).success(function(output){
             factory.deck = output;
             callback(output);
-        })
+        });
 
     };
+
+    factory.playSound = function(request, callback){
+        $http.post('/cards/playSound', request).success(function(output){
+            callback(output);
+        });
+    };
+
+    
 
     return factory;
 });

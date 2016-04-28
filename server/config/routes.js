@@ -52,4 +52,8 @@ module.exports = function(app){
     app.post('/decks/:id', function(req, res){
         cards.addToDeck(req, res);
     });
+
+    app.post('/cards/playSound', function(req, res){
+        cards.playSound(req, res);
+    })
 };
