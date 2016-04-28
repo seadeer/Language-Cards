@@ -14,7 +14,9 @@ cardsApp.config(function($routeProvider){
     .when('/cards/index', {
         templateUrl: 'partials/showcards.html'
     })
-
+	 .when('/deck', {
+        templateUrl: 'partials/deckflip.html'
+    })
 
 });
 
@@ -40,5 +42,3 @@ cardsApp.filter('startFrom', function(){
         return input.slice(start);
     }
 })
-
-

@@ -14,5 +14,7 @@ userApp.config(function($routeProvider){
     .when('/user/settings', {
         templateUrl: 'partials/settings.html'
     })
+	 .when('/deck', {
+		  templateUrl: 'partials/deckflip.html'
+	 })
 });
-

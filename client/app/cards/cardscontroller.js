@@ -17,7 +17,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 	 this.translateAbbr = ''
 	 this.googResponse = ''
 
-	 this.creationErrs = []
+	 this.creationErrors = []
 
 
     this.logout = function(){
@@ -37,6 +37,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
             var card = {
                 _creator: that.user._id,
                 target_language: JSON.parse(this.newCard.target_language).name,
+					 language_code: JSON.parse(this.newCard.target_language).abbreviation,
                 target_word: that.googResponse,
                 translations: [that.newCard.translations[0], that.newCard.translations[1], that.newCard.translations[2]],
                 part_of_speech: that.newCard.part_of_speech,
@@ -92,11 +93,10 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         }
     };
 
-    this.addToDeck = function(cardId, deckId){
-        cardFactory.addToDeck(cardId, deckId, function(data){
+    this.addToDeck = function(){
+        cardFactory.addToDeck(that.theCard._id, that.theDeck._id, function(data){
             console.log(data);
-            that.deck = cardFactory.deck;
-        });
+        })
     }
 
 	 this.translate = function(){

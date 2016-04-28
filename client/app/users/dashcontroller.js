@@ -7,7 +7,7 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
     console.log(this.user);
     this.ownCards = [];
     this.otherCards = [];
-	 
+
     this.pos = ['Noun', 'Verb', 'Adjective', 'Adverb', 'Preposition', 'Pronoun', 'Conjunction', 'Particle', 'Interjection', 'Copula', 'Article', 'Determiner'];
 
 	 console.log('this.googResponse')
@@ -30,6 +30,7 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
             if(data){
                 that.otherCards = data;
             }
+				console.log(data, "CARDS ERE")
         });
     };
 

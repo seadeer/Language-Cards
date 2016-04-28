@@ -1,0 +1,49 @@
+<div class="container">
+	<div class="navbar-fixed" ng-controller="usersController as UC">
+		<nav>
+			<div class="nav-wrapper">
+				<div class="col s12">
+					<a href="#/cards/index" class="breadcrumb">View Cards</a>
+					<a href="#/cards/new" class="breadcrumb">New Card</a>
+					<a href="#/user/settings" class="breadcrumb">Settings</a>
+					<a href="#/" class="breadcrumb" ng-click=UC.logout()>Log Out</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+	<div class="viewer-main" ng-controller="cardsController as CC">
+
+		<div class="col-md-2 go-left">
+			<button type="button" class="btn btn-default btn-lg">
+			   <span class="glyphicon glyphicon-chevron-left">
+			   </span>
+			</button>
+		</div>
+
+		<div class="col-md-6 main-deck" ng-controller="cardsController as CC">
+			stuff goes here
+		</div>
+
+		<div class="col-md-2 go-right">
+			<button type="button" class="btn btn-default btn-lg">
+			   <span class="glyphicon glyphicon-chevron-right">
+			   </span>
+			</button>
+		</div>
+
+
+
+	</div><!-- viewer-main -->
+
+
+
+
+
+
+
+
+
+
+
+</div> <!-- container -->

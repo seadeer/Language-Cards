@@ -55,9 +55,40 @@ h1{
 	font-size: 3em;
 	font-weight: bolder;
 }
+.glyphicon{
+	font-size: 3em;
+	color: blue;
+}
+.viewer-main{
+	padding: 30px;
+	/*display: block;*/
+	margin: 0 auto;
+	width: 90%;
+	min-height: 400px;
+}
+.go-left{
+	display: inline;
+	margin-top: 180px;
+	/*width: 20%;*/
+	/*height: 80%;*/
+}
+.go-right{
+	display: inline;
+	margin-top: 180px;
+	/*margin: 40px;*/
+	/*width: 20%;*/
+	/*height: 80%;*/
+}
 
-
-
+.main-deck{
+	width: 550px;
+	text-align: center;
+	/*display: inline-block;*/
+	/*margin: 40px;*/
+	min-height: 400px;
+	max-height: 800px;
+	background-color: white;
+}
 
 
 
