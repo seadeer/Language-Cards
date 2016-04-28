@@ -1,3 +1,4 @@
+<div class="settingsPage">
 <div class="navbar-fixed" ng-controller="usersController as UC">
         <nav>
             <div class="nav-wrapper">
@@ -11,7 +12,7 @@
         </nav>
     </div>
 <div class="container" ng-controller="usersController as UC">
-	{{UC}}
+	
     <h1>Settings</h1>
     <div class="UserSettings">
         <h4>Your languages </h4>
@@ -36,5 +37,7 @@
             <li>{{deck.name}}</li>
         </ul>
     </div>
-
+    <p>Temporary information for debugging:</p>
+    {{UC}}
+</div>
 </div>

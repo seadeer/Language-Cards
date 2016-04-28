@@ -1,9 +1,10 @@
+<div class="showcardsPage">
 <div class="navbar-fixed" ng-controller="usersController as UC">
         <nav>
             <div class="nav-wrapper">
                 <div class="col s12">
-                    <a href="#/home" class="breadcrumb">Dashboard</a>
                     <a href="#/cards/new" class="breadcrumb">New Card</a>
+                    <a href="#/home" class="breadcrumb">Dashboard</a>                    
                     <a href="#/user/settings" class="breadcrumb">Settings</a>
                     <a href="#/" class="breadcrumb" ng-click=UC.logout()>Log Out</a>
                 </div>
@@ -71,4 +72,5 @@
     </p>
     <p><input type="submit" ng-click="CC.createDeck()" value="Add Deck"></p>
      
+</div>
 </div>

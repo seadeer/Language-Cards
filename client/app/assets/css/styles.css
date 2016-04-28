@@ -1,24 +1,66 @@
-body{
-	background-color: #AF5A5E;
-	width: 90%;
-	margin: 0 auto;
+/*body{
+background-image: url("/app/assets/img/babel.jpg");
+  width: 90%;
+  margin: 0 auto;
+}
+*/
+
+*{
+  margin: 0px;
+  padding: 0px;
 }
 
-h1{
-    font-weight: bold;
+.loginPage{
+  background-color: #4db8ff;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 800px;
 }
+  .subdiv{
+    background-color: #4db8ff;
+    text-align: center;
+    color:#ffcc00;
+    margin: 35px 0px 35px 0px;
+  }
+    .subdiv h1{
+      font-weight: bold;
+    }
 
-.subdiv{
-    background-color: #AF5A5E;
-
-}
-
-.login{
-    background-color: silver;
+  .login{
+    background-color: #4db8ff;
     padding: 20px;
     width: 300px;
-    margin-top: 20px;
+    margin-right: 20px;
+    display: inline-block;
+  }
+  .image{
+    display: inline-block;
+    margin-left: 50px;
+    vertical-align: top;
+    border: 1px solid #660066; 
+  }
+
+.dashboardPage{
+  background-color: #4db8ff;
+  min-height: 800px;
 }
+
+.newcardPage{
+  background-color: #4db8ff;
+  min-height: 800px;
+}
+
+.showcardsPage{
+  background-color: #4db8ff;
+  min-height: 800px;
+}
+
+.settingsPage{
+  background-color: #4db8ff;
+  min-height: 800px; 
+}
+
+
 .cardFront{
 	display: inline-block;
 	margin: 5px;
