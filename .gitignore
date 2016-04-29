@@ -14,4 +14,4 @@ node_modules
 *_BASE_*
 *_LOCAL_*
 *_REMOTE_*
-keys.js
+**/keys.js

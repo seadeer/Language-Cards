@@ -1,17 +1,15 @@
-<div class="newcardPage">
 <div class="navbar-fixed" ng-controller="usersController as UC">
-  <nav>
-      <div class="nav-wrapper">
-          <div class="col s12">
-              <a href="#/cards/index" class="breadcrumb">View Cards</a>
-              <a href="#/home" class="breadcrumb">Dashboard</a>
-              <a href="#/user/settings" class="breadcrumb">Settings</a>
-              <a href="#/" class="breadcrumb" ng-click=UC.logout()>Log Out</a>
-          </div>
-      </div>
-  </nav>
+ 	<nav>
+     	<div class="nav-wrapper">
+          	<div class="col s12">
+            	<a href="#/cards/index" class="breadcrumb">View Cards</a>
+              	<a href="#/home" class="breadcrumb">Dashboard</a>
+              	<a href="#/user/settings" class="breadcrumb">Settings</a>
+              	<a href="#/" class="breadcrumb" ng-click=UC.logout()>Log Out</a>
+          	</div>
+      	</div>
+  	</nav>
 </div>
-<div class="container" ng-controller="cardsController as CC">
 
 	<h1>Create New Card</h1>
 
@@ -39,6 +37,7 @@
 		<p>Example 3: <input type="text" ng-model="CC.newCard.contexts[2]"></p>
 		<input class="btn btn-primary btn-lg" type="submit" ng-click="CC.create_long()" value="Create">
 	</div> <!-- makecard -->
+
 	<h3>Translate word from English:</h3>
 	Translate to:
 	<select ng-model="CC.newCard.target_language">
@@ -56,8 +55,8 @@
 		</div>
 	<!-- googletranslate -->
 	<!-- PixaBay Image Search -->
-	<input type="text" ng-model="CC.googResponse">
-	<input type="submit" class="btn btn-sm btn-warning" value="Search Image" ng-click="CC.imgSearch()">
+		<input type="text" ng-model="CC.googResponse">
+		<input type="submit" class="btn btn-sm btn-warning" value="Search Image" ng-click="CC.imgSearch()">
 	</div>
 	<div ng-repeat = "result in CC.SearchResults |limitTo: 6">
 		<div>{{result}}</div>
