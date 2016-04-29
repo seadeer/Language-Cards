@@ -77,7 +77,6 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
             that.cards = data;
         });
     };
-
     this.index();
 
     this.indexDeck = function(deckID){
@@ -87,7 +86,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
             that.deck = data;
         })
     }
-
+//create new deck
     this.createDeck = function(){
         that.errors = [];
         //add validations :p
@@ -100,16 +99,16 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         }
     };
 
+//adds card to deck
     this.addToDeck = function(card, deckID){
 		 console.log(card._id, deckID)
         cardFactory.addToDeck(card, deckID, function(data){
             console.log(data);
         })
     }
-
+//Google Translate function
 	 this.translate = function(){
 		console.log('function invoked')
-
 		this.translateAbbr = JSON.parse(this.newCard.target_language).abbreviation;
 		console.log(typeof(this.newCard.target_language))
 		console.log("str: ",this.translateStr," full value: ", this.newCard.target_language, "abbr:", this.translateAbbr)
@@ -154,8 +153,6 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 
    };
 
-	this.getDeck = function(){
 
-	}
 
 });

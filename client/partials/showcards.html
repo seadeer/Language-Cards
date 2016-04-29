@@ -53,9 +53,11 @@
         <h5>Choose your deck: </h5>
         <select ng-model="CC.theDeck" ng-change="CC.indexDeck(CC.theDeck)">
             <option value=""></option>
-            {{CC.deck}}
             <option ng-repeat="deck in CC.user.decks track by $index" value={{deck._id}}>{{deck.name}}</option>
         </select>
+		  <div ng-repeat="deck in CC.user.decks">
+	         <p><a href="#/deck/{{deck._id}}">{{deck.name}}</a></p>
+	     </div>
     <div>
         <div class="showCards" ng-repeat="card in CC.deck.cards">
             <div class="cardFront">
@@ -67,6 +69,7 @@
             </div>
         </div>
     </div>
+	 <a href="#/decks/">View Deck</a>
 	<h6>Add a new deck:</h6>
     <p>Deck name: <input type="text" ng-model="CC.newDeck.name"></p>
     <p>Language:

@@ -37,7 +37,7 @@ background-image: url("/app/assets/img/babel.jpg");
     display: inline-block;
     margin-left: 50px;
     vertical-align: top;
-    border: 1px solid #660066; 
+    border: 1px solid #660066;
   }
 
 .dashboardPage{
@@ -57,7 +57,7 @@ background-image: url("/app/assets/img/babel.jpg");
 
 .settingsPage{
   background-color: #4db8ff;
-  min-height: 800px; 
+  min-height: 800px;
 }
 
 
@@ -126,12 +126,16 @@ background-image: url("/app/assets/img/babel.jpg");
 .main-deck{
 	width: 550px;
 	text-align: center;
-	/*display: inline-block;*/
-	/*margin: 40px;*/
+	/*position: absolute;*/
 	min-height: 400px;
 	max-height: 800px;
 	background-color: white;
+	border: 3px  ridge black;
+	padding: 30px;
 }
+	/*.main-deck img{
+		margin-top: 50px;
+	}*/
 
 .soundIcon{
   background-image: url('/app/assets/img/speaker_5-512.png');

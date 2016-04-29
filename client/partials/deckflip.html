@@ -12,28 +12,38 @@
 		</nav>
 	</div>
 
-	<div class="viewer-main" ng-controller="cardsController as CC">
+	<div class="viewer-main" ng-controller="oneDeckController as ODC">
 
 		<div class="col-md-2 go-left">
-			<button type="button" class="btn btn-default btn-lg" ng-click="moveBkwd()">
+			<button type="button" class="btn btn-default btn-lg" ng-click="ODC.moveBkwd()">
 			   <span class="glyphicon glyphicon-chevron-left">
 			   </span>
 			</button>
 		</div>
 
-		<div class="col-md-6 main-deck">
-			<div class="card" ng-click="flip(card)">
-				<div ng-show="this.cardSide === false">
-					{{this.cardInDeck.target_word}}
+		<!-- {{ODC.deckCards[ODC.cardInDeck]}} -->
+		<div class="col-md-6 main-deck" ng-click="ODC.flip()">
+			<div class="card">
+				<div ng-show="ODC.cardSide === false">
+					<h2>
+						{{ODC.deckCards[ODC.cardInDeck].target_word}}
+					</h2>
+
 				</div>
-				<div ng-show="this.cardSide === true">
-					{{this.cardInDeck.translations[0]}}
+				<div ng-show="ODC.cardSide === true">
+					<h2>
+						{{ODC.deckCards[ODC.cardInDeck].translations[0]}}<br>
+						{{ODC.deckCards[ODC.cardInDeck].translations[1]}}<br>
+						{{ODC.deckCards[ODC.cardInDeck].translations[2]}}<br>
+						<img src="{{ODC.deckCards[ODC.cardInDeck].image_url}}" alt="{{ODC.deckCards[ODC.cardInDeck].target_word}}" /><br>
+						{{ODC.deckCards[ODC.cardInDeck].part_of_speech}}<br>
+					</h2>
 				</div>
 			</div>
 		</div> <!-- main-deck -->
 
 		<div class="col-md-2 go-right">
-			<button type="button" class="btn btn-default btn-lg" ng-click="moveFwd()">
+			<button type="button" class="btn btn-default btn-lg" ng-click="ODC.moveFwd()">
 			   <span class="glyphicon glyphicon-chevron-right">
 			   </span>
 			</button>

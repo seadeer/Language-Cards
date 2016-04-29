@@ -58,8 +58,9 @@
 </div>
 <div ng-controller="cardsController as CC">
     <h5>Your decks:</h5>
+<!-- GO TO DECK PAGE -->
     <div ng-repeat="deck in CC.user.decks">
-        <p><a href="#/deck/{{deck._id}}/index">{{deck.name}}</a></p>
+        <p><a href="#/deck/{{deck._id}}" ng-click="this.getDeck()">{{deck.name}}</a></p>
     </div>
     <h6>Add a new deck:</h6>
     <p>Deck name: <input type="text" ng-model="CC.newDeck.name"></p>
