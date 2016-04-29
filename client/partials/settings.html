@@ -24,12 +24,12 @@
             <option ng-repeat = "lang in UC.languages" value={{lang}}>{{lang.name}}
             </option>
         </select>
-        <input type="submit" value="Add Language" ng-click="UC.addLanguage()">
+        <input class="btn btn-warning" type="submit" value="Add Language" ng-click="UC.addLanguage()">
         <h6>Set your native language: </h6>
         <select ng-model="UC.userLanguage">
             <option ng-repeat = "lang in UC.languages" value={{lang}}>{{lang.name}}</option>
         </select>
-        <input type="submit" value="Set Language" ng-click="UC.setLanguage()">
+        <input type="submit" class="btn btn-warning" value="Set Language" ng-click="UC.setLanguage()">
     </div>
     <div>
         <h4>Your decks</h4>

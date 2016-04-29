@@ -37,7 +37,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         });
     };
 
-    //long version of creating a card, with all the fields
+//long version of creating a card, with all the fields
     this.create_long = function(){
         that.errors = [];
         //validations here
@@ -58,7 +58,9 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
             cardFactory.create(card, function(data){
                 console.log(data);
                 that.newCard={};
-                $location.url('/home');
+					 that.googResponse = ''
+					 that.translateStr = ''
+               //  $location.url('/home');
                 //not sure if we need this line or not
                 that.updateUser();
             });
@@ -71,7 +73,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         });
     };
 
-    //display all of the cards in user's languages
+//display all of the cards in user's languages
     this.index = function(){
         languageNames = that.user.languages.map(function(a){return a.name});
         console.log("Language Name array: ", languageNames);
