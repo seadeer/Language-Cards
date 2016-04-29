@@ -13,21 +13,20 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
     this.currentPage = 0;
     this.pageSize = 15;
     this.cards = {};
+    this.theCard = {};
     this.numberOfPages = function(){
         return Math.ceil(that.cards.length / that.pageSize);
     };
+
     this.searchTerm=''
     this.searchResults = []
 	this.translateStr = ''
 	this.translateAbbr = ''
 	this.googResponse = ''
 	this.creationErrs = []
-
-
-	 this.creationErrors = []
-
-	 this.cardSide = false
-	 this.cardInDeck = {};
+	this.creationErrors = []
+	this.cardSide = false
+	this.cardInDeck = {};
 
     this.logout = function(){
         console.log(that.user);
@@ -37,7 +36,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         });
     };
 
-    //long version of creating a card, with all the fields
+    //Long version of creating a card, with all the fields
     this.create_long = function(){
         that.errors = [];
         //validations here
@@ -71,7 +70,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         });
     };
 
-    //display all of the cards in user's languages
+    //Display all of the cards in user's languages
     this.index = function(){
         languageNames = that.user.languages.map(function(a){return a.name});
         console.log("Language Name array: ", languageNames);
@@ -90,7 +89,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
     };
 
 
-//create new deck
+//Create new deck
     this.createDeck = function(){
         that.errors = [];
         //add validations :p
@@ -103,7 +102,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         }
     };
 
-//adds card to deck
+//Add card to deck
     this.addToDeck = function(card, deckID){
 		 console.log(card._id, deckID)
         cardFactory.addToDeck(card, deckID, function(data){
@@ -136,6 +135,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 		}
    };
 
+//Play sound using Forvo API
     this.playSound = function(card){
         console.log(card);
 
@@ -158,22 +158,77 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         });
     };
 
+//fetch images from PixaBay by the key word and language
     this.imgSearch = function(){
+        //search from the create new card partial
+        if(!$routeParams.id){
+            console.log("images for creating new card")
         var request = {term: that.googResponse,
             language: JSON.parse(that.newCard.target_language).abbreviation}
+        }
+        //search from the edit card partial
+        else{
+            console.log("images for editing card")
+           var request = {term: that.theCard.target_word,
+                language: that.theCard.target_language
+            } 
+        }
         console.log("requesting to search this on Pixabay:", request);
         cardFactory.imgSearch(request, function(data){
             console.log(data);
             for(i in data.hits){
                 that.searchResults.push(data.hits[i].webformatURL);
-            }
-        });
+                }
+            });
+        };
+   
+
+//add URL to image from search results to the card
+   this.addImage = function(index){
+    if(!$routeParams.id){
+        console.log(that.searchResults[index]);
+        that.theImage = that.searchResults[index];
+    }
+    else{
+    console.log(that.searchResults[index]);
+    that.theCard.image_url = that.searchResults[index];
+}
    };
 
+//Display one card by id
+   this.indexCard = function(){
+    cardFactory.indexCard($routeParams.id, function(data){
+        that.theCard = data;
+        console.log(that.theCard);
+    });
+   };
 
-   this.addImage = function(index){
-    console.log(that.searchResults[index]);
-    that.theImage = that.searchResults[index]
+   if($routeParams.id){
+    this.indexCard();
    }
+
+//Edit card
+   this.updateCard = function(){
+    that.errors = [];
+        //validations here
+        if(that.errors.length <= 0){
+            console.log("Validations passed, updating card!");
+            var card = {
+                translations: [that.theCard.translations[0], that.theCard.translations[1], that.theCard.translations[2]],
+                part_of_speech: that.theCard.part_of_speech,
+                image_url: that.theCard.image_url,
+                contexts: that.theCard.contexts,
+            };
+            console.log("Updates to card", card);
+            cardFactory.update(that.theCard._id, card, function(data){
+                console.log(data);
+                that.theCard={};
+                $location.url('/home');
+                //not sure if we need this line or not
+                that.updateUser();
+            });
+        }
+   };
+
 
 });

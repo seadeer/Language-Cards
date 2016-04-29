@@ -21,6 +21,10 @@ cardsApp.config(function($routeProvider){
         templateUrl: 'partials/deckflip.html'
     })
 
+    .when('/edit/:id', {
+        templateUrl: 'partials/editcard.html'
+     })
+
 });
 
 //DIRECTIVES

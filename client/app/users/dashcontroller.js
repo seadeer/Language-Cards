@@ -7,6 +7,9 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
     console.log(this.user);
     this.ownCards = [];
     this.otherCards = [];
+    this.cardsTotals = {};
+    this.usersTotal;
+    this.newCards;
 
     this.pos = ['Noun', 'Verb', 'Adjective', 'Adverb', 'Preposition', 'Pronoun', 'Conjunction', 'Particle', 'Interjection', 'Copula', 'Article', 'Determiner'];
 
@@ -81,6 +84,19 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
             });
         }
     };
+
+    this.getLangStats = function(){
+        var query = []
+        for(lang in that.user.languages){
+            query.push(that.user.languages[lang].name)
+        console.log("my lang stats query:", query);
+        }
+        cardFactory.getLangStats(query, function(data){
+            console.log("Getting language stats: ", data);
+            that.cardsTotals = data;
+        });
+    };
+    this.getLangStats();
 
 
 

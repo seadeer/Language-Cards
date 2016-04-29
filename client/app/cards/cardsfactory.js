@@ -38,6 +38,12 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
         });
     };
 
+    factory.indexCard = function(id, callback){
+        $http.get('cards/'+id).success(function(output){
+            callback(output);
+        })
+    }
+
     factory.indexDeck = function(id, callback){
         $http.get('/decks/'+id).success(function(output){
             factory.deck = output;
@@ -50,6 +56,14 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
             callback(output);
         });
     };
+
+    factory.update = function(id, data, callback){
+        $http.post("/cards/edit/"+id, data).success(function(output){
+            callback(output)
+        })
+    }
+
+
 
 	 factory.translate = function(word, lang, callback){
 		 var data = {word: word, lang: lang}
@@ -84,6 +98,13 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
     factory.imgSearch = function(request, callback){
         $http.post('/pixaimgsearch/', request).success(function(output){
             callback(output)
+        })
+    }
+
+    factory.getLangStats = function(query, callback){
+        $http.post('/cards/stats', query).success(function(output){
+            console.log("Output of count query", output);
+            callback(output);
         })
     }
 

@@ -23,6 +23,10 @@ module.exports = function(app){
         cards.create(req, res);
     });
 
+    app.post('/cards/edit/:id', function(req, res){
+        cards.update(req, res)
+    });
+
     app.get('/languages/index', function(req, res){
         users.indexLang(req, res);
     });
@@ -53,10 +57,18 @@ module.exports = function(app){
 
     app.post('/cards/playSound', function(req, res){
         cards.playSound(req, res);
-    })
+    });
 
     app.post('/pixaimgsearch/', function(req, res){
         cards.imgSearch(req, res);
+    });
+
+    app.get('/cards/:id', function(req, res){
+        cards.indexCard(req, res);
+    });
+
+    app.post('/cards/stats', function(req, res){
+        cards.getLangStats(req, res);
     })
 	 app.post('/translate', function(req, res){
 		 cards.translate(req, res);
