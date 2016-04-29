@@ -80,7 +80,11 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
         });
     };
 
-    
+    factory.imgSearch = function(request, callback){
+        $http.post('/pixaimgsearch/', request).success(function(output){
+            callback(output)
+        })
+    }
 
     return factory;
 });

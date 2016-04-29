@@ -10,6 +10,27 @@ background-image: url("/app/assets/img/babel.jpg");
   padding: 0px;
 }
 
+
+.showbox{
+  display: inline-block;
+  width: 550px;
+  min-height: 400px;
+  border: 1px solid silver;
+}
+
+.img-small{
+  max-width: 150px;
+  max-height: 100px;
+  height: 100px;
+  width: auto;
+  display: inline-block;
+}
+ 
+.img-display{
+  display: inline-block;
+  margin: 5px;
+}
+
 .loginPage{
   background-color: #4db8ff;
   width: 100%;
