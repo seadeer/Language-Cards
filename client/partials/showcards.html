@@ -37,6 +37,7 @@
 	          {{CC.deck}}
 	          <option ng-repeat="deck in CC.user.decks track by $index" value={{deck._id}}>{{deck.name}}</option>
 	      </select>
+	<!-- card play icon		 -->
 	      <p class="error" ng-show="CC.playError">{{CC.playError}}</p>
 	      <div class="soundIcon" ng-click="CC.playSound(card)">
 	           <audio ng-model="CC.audioEl"autoplay="autoplay">
@@ -44,6 +45,7 @@
 	               <source ng-src="CC.soundUrlMp3 |trustedAudioUrl:audio)" type="audio/mpeg">If you can read this, your browser doesn't support audio element.
 	           </audio>
 	      </div>
+
 	      <input type="submit" ng-click="CC.addToDeck(card, card.theDeck)" value="Add To Deck">
 		</div> <!--card front-->
   </div><!-- showcards big -->

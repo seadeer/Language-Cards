@@ -25,7 +25,7 @@ background-image: url("/app/assets/img/babel.jpg");
   width: auto;
   display: inline-block;
 }
- 
+
 .img-display{
   display: inline-block;
   margin: 5px;
@@ -159,16 +159,21 @@ background-image: url("/app/assets/img/babel.jpg");
 	}*/
 
 .soundIcon{
+	margin-top: 15px;
   background-image: url('/app/assets/img/speaker_5-512.png');
   height: 30px;
   width: 30px;
   background-repeat: no-repeat;
   background-size: cover;
-  display: inline-block;
+  display: block;
 }
 
 
+.centered{
 
+	margin: 0 auto;
+	display: block;
+}
 
 
 

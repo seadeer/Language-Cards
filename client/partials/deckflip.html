@@ -29,6 +29,7 @@
 						{{ODC.deckCards[ODC.cardInDeck].target_word}}
 					</h2>
 
+
 				</div>
 				<div ng-show="ODC.cardSide === true">
 					<h2>
@@ -37,8 +38,8 @@
 						{{ODC.deckCards[ODC.cardInDeck].translations[2]}}<br>
 						<img src="{{ODC.deckCards[ODC.cardInDeck].image_url}}" alt="{{ODC.deckCards[ODC.cardInDeck].target_word}}" /><br>
 						{{ODC.deckCards[ODC.cardInDeck].part_of_speech}}<br>
-						
 					</h2>
+
 				</div>
 			</div>
 		</div> <!-- main-deck -->
@@ -49,10 +50,21 @@
 			   </span>
 			</button>
 		</div>
-
-
-
 	</div><!-- viewer-main -->
+
+<div class="centered play-sound">
+	<p class="error" ng-show="ODC.playError">
+		{{ODC.playError}}
+	</p>
+	<div class="soundIcon" ng-click="ODC.playSound(ODC.deckCards[ODC.cardInDeck])">
+		  <audio ng-model="ODC.audioEl"autoplay="autoplay">
+				<source ng-src="ODC.soundUrlOgg |trustedAudioUrl:audio)" type="audio/ogg">
+				<source ng-src="ODC.soundUrlMp3 |trustedAudioUrl:audio)" type="audio/mpeg">If you can read this, your browser doesn't support audio element.
+		  </audio>
+	</div>
+</div>
+
+
 
 
 

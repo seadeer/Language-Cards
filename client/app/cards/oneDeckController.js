@@ -52,7 +52,7 @@ cardsApp.controller('oneDeckController', function(userFactory, cardFactory, $loc
 		 };
 
 		 cardFactory.playSound(sound_request, function(data, $sce){
-			  console.log(data);
+			  console.log(data, sound_request, "playing sound");
 			  if(!data.error){
 			  that.soundUrlOgg = data.linkOgg;
 			  that.soundUrlMp3 = data.linkMp3
