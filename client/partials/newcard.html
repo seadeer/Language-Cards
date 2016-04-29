@@ -1,19 +1,17 @@
-<div class="newcardPage">
 <div class="navbar-fixed" ng-controller="usersController as UC">
-  <nav>
-      <div class="nav-wrapper">
-          <div class="col s12">
-              <a href="#/cards/index" class="breadcrumb">View Cards</a>
-              <a href="#/home" class="breadcrumb">Dashboard</a>
-              <a href="#/user/settings" class="breadcrumb">Settings</a>
-              <a href="#/" class="breadcrumb" ng-click=UC.logout()>Log Out</a>
-          </div>
-      </div>
-  </nav>
+ 	<nav>
+     	<div class="nav-wrapper">
+          	<div class="col s12">
+            	<a href="#/cards/index" class="breadcrumb">View Cards</a>
+              	<a href="#/home" class="breadcrumb">Dashboard</a>
+              	<a href="#/user/settings" class="breadcrumb">Settings</a>
+              	<a href="#/" class="breadcrumb" ng-click=UC.logout()>Log Out</a>
+          	</div>
+      	</div>
+  	</nav>
 </div>
-<div class="container" ng-controller="cardsController as CC">
 
-	<h1>Create New Card</h1>
+<div class="container" ng-controller="cardsController as CC">
 <!-- google scripts	 -->
 <!-- 	<script src='//www.google.com/jsapi' type='text/javascript'></script>
 	<script type='text/javascript'>
@@ -45,31 +43,35 @@
 	</script> -->
 <!-- roll our own search bar for google image search-->
 	
-
-<!-- form to make card -->
-	<div class="makeCard col-md-4">
-		<div ng-repeat="err in creationErrors">
-			{{err}}
-		</div>
-		<select ng-model="CC.newCard.target_language">
-			<option ng-repeat="lang in CC.user.languages track by $index" value={{lang}}>
-				{{lang.name}}
-			</option>
-		</select>
-		<p>Word: <input type="text" ng-model="CC.googResponse"></p>
-		<p>Image: <input type="url" ng-model="CC.theImage"></p>
-		<p>Translation 1: <input type="text" ng-model="CC.newCard.translations[0]"></p>
-		<p>Translation 2 (optional): <input type="text" ng-model="CC.newCard.translations[1]"> </p>
-		<p>Translation 3 (optional): <input type="text" ng-model="CC.newCard.translations[2]"></p>
-		<p>Part of Speech:
-		<select ng-model='CC.newCard.part_of_speech'
-		ng-options="i as i for i in CC.pos">
-		</select>
-		<p>Example 1: <input type="text" ng-model="CC.newCard.contexts[0]"></p>
-		<p>Example 2: <input type="text" ng-model="CC.newCard.contexts[1]"></p>
-		<p>Example 3: <input type="text" ng-model="CC.newCard.contexts[2]"></p>
-		<input class="btn btn-primary btn-lg" type="submit" ng-click="CC.create_long()" value="Create">
-	</div> <!-- makecard -->
+		<h1>Create New Card</h1>
+	<!-- form to make card -->
+		<div class="makeCard col-md-4">
+			<div ng-repeat="err in creationErrors">
+				{{err}}
+			</div>
+			<label>Select a language</label>
+		
+				<select ng-model="CC.newCard.target_language">
+					<option ng-repeat="lang in CC.user.languages track by $index" value={{lang}}>
+						{{lang.name}}
+					</option>
+				</select>
+	
+			<p>Word: <input type="text" ng-model="CC.googResponse"></p>
+			<p>Image: <input type="url" ng-model="CC.theImage"></p>
+			<p>Translation 1: <input type="text" ng-model="CC.newCard.translations[0]"></p>
+			<p>Translation 2 (optional): <input type="text" ng-model="CC.newCard.translations[1]"> </p>
+			<p>Translation 3 (optional): <input type="text" ng-model="CC.newCard.translations[2]"></p>
+			<p>Part of Speech:
+			<select ng-model='CC.newCard.part_of_speech'
+				ng-options="i as i for i in CC.pos">
+			</select>
+			<p>Example 1: <input type="text" ng-model="CC.newCard.contexts[0]"></p>
+			<p>Example 2: <input type="text" ng-model="CC.newCard.contexts[1]"></p>
+			<p>Example 3: <input type="text" ng-model="CC.newCard.contexts[2]"></p>
+			<input class="btn btn-warning btn-lg" type="submit" ng-click="CC.create_long()" value="Create">
+		</div> <!-- makecard -->
+	</form>
 	<h3>Translate word from English:</h3>
 	Translate to:
 	<select ng-model="CC.newCard.target_language">
@@ -87,8 +89,8 @@
 		</div>
 	<!-- googletranslate -->
 	<!-- PixaBay Image Search -->
-	<input type="text" ng-model="CC.googResponse">
-	<input type="submit" class="btn btn-sm btn-warning" value="Search Image" ng-click="CC.imgSearch()">
+		<input type="text" ng-model="CC.googResponse">
+		<input type="submit" class="btn btn-sm btn-warning" value="Search Image" ng-click="CC.imgSearch()">
 	</div>
 	<div ng-repeat = "result in CC.SearchResults |limitTo: 6">
 		<div>{{result}}</div>

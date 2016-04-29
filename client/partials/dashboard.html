@@ -11,6 +11,7 @@
             </div>
         </nav>
     </div>
+    <div class="ribbon">
          <div class="pictures">
             <h3>Welcome
             <img src="/app/assets/img/USA4.png" alt="Picture goes here"></h3>
@@ -43,14 +44,16 @@
             <h3>환영
             <img src="/app/assets/img/Korea2.png" alt="Picture goes here"></h3>
         </div>
-    <div ng-controller="dashController as DC">
 
-        <h1>{{DC.user.name}}</h1>
+    </div>    
+    <div ng-controller="dashController as DC">
+        <h1 class="bolding">{{DC.user.name}}</h1>
         <div class="UserSettings">
-            <h6>Your languages: </h6>
-            <div ng-repeat="language in DC.user.languages">
-                <h5>{{language.welcome}} ({{language.name}})</h5>
+            <h4 class="langSide">Your languages:</h4>
+            <div class="langSide" ng-repeat="language in DC.user.languages">
+             <h4><span class="bolding">{{language.welcome}} {{language.name}}</span></h4>
             </div>
+        <p>New Cards added:</p>
     </div>
 
     <!-- <h6>Your recent cards:</h6> -->
@@ -67,7 +70,7 @@
 		  </div>
     </div> -->
 
-    <h6>New Cards added:</h6>
+    
     <div class="showCards" ng-repeat="card in DC.otherCards | orderBy: 'date'">
 		 <div class="cardFront">
  			<!-- <h5>{{card.target_language}}</h5> -->
@@ -76,34 +79,33 @@
  			<h5>{{card.translations[0]}}</h5>
             <h5>{{card._creator.name}}</h5>
  		</div>
-	</div>
-    <h5><a href="#/cards/index">See more...</a>
-
-    <div class="makeCard">
-    <h5>Quick add a card:</h5>
-        <select ng-model="DC.newCard.target_language">
-            <option ng-repeat="lang in DC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
-        </select>
-        <p>Word: <br>
-			  <input type="text" ng-model="DC.newCard.target_word"></p>
-        <p>Translation: <input type="text" ng-model="DC.newCard.translations[0]"></p>
-        <input class="waves-effect waves-light btn" type="submit" ng-click="DC.create()" value="Add">
     </div>
-</div>
+    <h3><a class="seeMore" href="#/cards/index">See more...</a></h3>
+    
 
-<div ng-controller="cardsController as CC">
-    <h5>Your decks:</h5>
-<!-- GO TO DECK PAGE -->
-    <div ng-repeat="deck in CC.user.decks">
-        <p><a href="#/deck/{{deck._id}}" ng-click="this.getDeck()">{{deck.name}}</a></p>
-    </div>
-    <h6>Add a new deck:</h6>
-    <p>Deck name: <input type="text" ng-model="CC.newDeck.name"></p>
-    <p>Language:
+    <div class="toDorow"ng-controller="cardsController as CC">
+        <h5>Your decks:</h5>
+        <!-- GO TO DECK PAGE -->
+        <div ng-repeat="deck in CC.user.decks">
+            <p><a href="#/deck/{{deck._id}}" ng-click="this.getDeck()">{{deck.name}}</a></p>
+        </div>
+        <h6>Add a new deck:</h6>
+        <p>Deck name: <input type="text" ng-model="CC.newDeck.name"></p>
+        <p>Language:
         <select ng-model="CC.newDeck.target_language">
             <option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
         </select>
-    </p>
-    <p><input type="submit" ng-click="CC.createDeck()" value="Add Deck"></p>
-</div>
+        </p>
+        <p><input type="submit" ng-click="CC.createDeck()" value="Add Deck"></p>
+    </div>
+    <div class="toDorow">
+        <h5>Quick add a card:
+        <select ng-model="DC.newCard.target_language">
+            <option ng-repeat="lang in DC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
+        </select>
+        <p></p>
+        <p>Word: <input type="text" ng-model="DC.newCard.target_word"></p>
+        <p>Translation: <input type="text" ng-model="DC.newCard.translations[0]"></p>
+        <input class="waves-effect waves-light btn" type="submit" ng-click="DC.create()" value="Add">
+    </div>
 </div>
