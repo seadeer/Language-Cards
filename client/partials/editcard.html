@@ -32,13 +32,13 @@
         <p>Example 1: <input type="text" ng-model="CC.theCard.contexts[0]"></p>
         <p>Example 2: <input type="text" ng-model="CC.theCard.contexts[1]"></p>
         <p>Example 3: <input type="text" ng-model="CC.theCard.contexts[2]"></p>
-        <input class="btn btn-primary btn-lg" type="submit" ng-click="CC.create_long()" value="Create">
+        <input class="btn btn-primary btn-lg" type="submit" ng-click="CC.updateCard()" value="Update">
     </div> <!-- makecard -->
     <!-- PixaBay Image Search -->
     <h4>Search PixaBay for image:</h4>
     <input type="text" ng-model="CC.theCard.target_word">
     <input type="submit" class="btn btn-sm btn-warning" value="Search Image" ng-click="CC.imgSearch()">
-    </div>
+    
     <div ng-repeat = "result in CC.SearchResults |limitTo: 6">
         <div>{{result}}</div>
     </div>
@@ -47,4 +47,4 @@
     <div class="showbox">
         <div class="img-display" ng-repeat="result in CC.searchResults track by $index" ng-model="that.theClicked" ng-click="CC.addImage($index)"><img class="img-small" src="{{result}}"></div>
     </div> 
-</div> <!-- container -->
+</div>

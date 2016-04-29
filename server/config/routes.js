@@ -23,6 +23,10 @@ module.exports = function(app){
         cards.create(req, res);
     });
 
+    app.post('/cards/edit/:id', function(req, res){
+        cards.update(req, res)
+    });
+
     app.get('/languages/index', function(req, res){
         console.log("got request to index languages");
         users.indexLang(req, res);

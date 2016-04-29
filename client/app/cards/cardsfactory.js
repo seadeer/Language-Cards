@@ -57,6 +57,14 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
         });
     };
 
+    factory.update = function(id, data, callback){
+        $http.post("/cards/edit/"+id, data).success(function(output){
+            callback(output)
+        })
+    }
+
+
+
 	 factory.translate = function(word, lang, callback){
 		 $http.get('https://www.googleapis.com/language/translate/v2?key=AIzaSyBJ7xnAFQxD3lbhBEx48rbFKVI50gh5xhU&source=en&target='+lang+'&q='+word).success(function(output){
 			 console.log('RETRIEVED DATA FROM GOOGLE :::', output)

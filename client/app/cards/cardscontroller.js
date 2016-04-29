@@ -162,11 +162,13 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
     this.imgSearch = function(){
         //search from the create new card partial
         if(!$routeParams.id){
+            console.log("images for creating new card")
         var request = {term: that.googResponse,
             language: JSON.parse(that.newCard.target_language).abbreviation}
         }
         //search from the edit card partial
         else{
+            console.log("images for editing card")
            var request = {term: that.theCard.target_word,
                 language: that.theCard.target_language
             } 
@@ -183,8 +185,14 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 
 //add URL to image from search results to the card
    this.addImage = function(index){
+    if(!$routeParams.id){
+        console.log(that.searchResults[index]);
+        that.theImage = that.searchResults[index];
+    }
+    else{
     console.log(that.searchResults[index]);
-    that.theImage = that.searchResults[index]
+    that.theCard.image_url = that.searchResults[index];
+}
    };
 
    this.indexCard = function(){
@@ -197,6 +205,28 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
    if($routeParams.id){
     this.indexCard();
    }
+
+   this.updateCard = function(){
+    that.errors = [];
+        //validations here
+        if(that.errors.length <= 0){
+            console.log("Validations passed, updating card!");
+            var card = {
+                translations: [that.theCard.translations[0], that.theCard.translations[1], that.theCard.translations[2]],
+                part_of_speech: that.theCard.part_of_speech,
+                image_url: that.theCard.image_url,
+                contexts: that.theCard.contexts,
+            };
+            console.log("Updates to card", card);
+            cardFactory.update(that.theCard._id, card, function(data){
+                console.log(data);
+                that.theCard={};
+                $location.url('/home');
+                //not sure if we need this line or not
+                that.updateUser();
+            });
+        }
+   };
 
 
 });

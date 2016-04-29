@@ -68,6 +68,21 @@ module.exports = {
         });
     },
 
+    update: function(req, res){
+        var translations = req.body.translations;
+        var part_of_speech = req.body.part_of_speech;
+        var image_url = req.body.image_url;
+        var contexts = req.body.contexts;
+        Card.findOneAndUpdate({_id:req.params.id},{$set:{translations:translations, part_of_speech: part_of_speech, image_url: image_url, contexts: contexts}}, function(err, card){
+            if(err){
+                res.json(err);
+            }
+            else{
+                res.json(card);
+            }
+        });
+    },
+
     createDeck: function(req, res){
         console.log(req.body);
         User.findOne({_id:req.params.id}, function(err, user){
