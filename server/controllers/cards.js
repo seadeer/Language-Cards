@@ -4,6 +4,7 @@ var request = require('request');
 var User = mongoose.model('User');
 var Card = mongoose.model('Card');
 var Deck = mongoose.model('Deck');
+var async = require('async');
 
 module.exports = {
     indexByUser: function(req, res){
@@ -52,7 +53,7 @@ module.exports = {
                 res.json("Card already exists!", card)
             }
             else{
-                User.findOne({_id:req.body._creator}, function(err, user){
+                User.findOne({_id:req.body._creator}, function(err, user){ 
                 var newCard = new Card(req.body);
                 newCard.save(function(err){
                     if(err){
@@ -64,7 +65,22 @@ module.exports = {
                     });
                 });
             }
+        
+        });
+    },
 
+    update: function(req, res){
+        var translations = req.body.translations;
+        var part_of_speech = req.body.part_of_speech;
+        var image_url = req.body.image_url;
+        var contexts = req.body.contexts;
+        Card.findOneAndUpdate({_id:req.params.id},{$set:{translations:translations, part_of_speech: part_of_speech, image_url: image_url, contexts: contexts}}, function(err, card){
+            if(err){
+                res.json(err);
+            }
+            else{
+                res.json(card);
+            }
         });
     },
 
@@ -114,7 +130,7 @@ module.exports = {
 
             });
         });
-
+            
     },
 
     playSound: function(req, res){
@@ -122,7 +138,7 @@ module.exports = {
         var langCode = req.body.langCode;
         var forvoKey = keys.forvo;
         var reqUrl = "http://apifree.forvo.com/key/" + forvoKey + "/action/word-pronunciations/format/json/word/"+ word + "/language/" + langCode + "/order/date-desc";
-
+        
         request(reqUrl, function(err, data, body){
             console.log("Here's what we send: ", reqUrl,forvoKey);
             console.log("Here's what we got back", body);
@@ -165,20 +181,59 @@ module.exports = {
         });
     },
 
-	translate: function(req, res){
-		var word = req.body.word;
-		var lang = req.body.lang;
-		var reqUrl = 'https://www.googleapis.com/language/translate/v2?key='+keys.googleTranslate+'&source=en&target='+lang+'&q='+word
+    indexCard: function(req, res){
+        Card.findById(req.params.id, function(err, card){
+            if(err){
+                res.json(err);
+            }
+            else{
+                res.json(card);
+            }
+        });
+    },
 
-		request(reqUrl, function(err, data, body){
-			if (err){
-				res.json(err)
-			}else{
-				console.log("data",data,"body", body)
-				res.json(body)
-			}
-		})
-	},
+    translate: function(req, res){
+        var word = req.body.word;
+        var lang = req.body.lang;
+        var reqUrl = 'https://www.googleapis.com/language/translate/v2?key='+keys.googleTranslate+'&source=en&target='+lang+'&q='+word
+
+        request(reqUrl, function(err, data, body){
+            if (err){
+                res.json(err)
+            }else{
+                console.log("data",data,"body", body)
+                res.json(body)
+            }
+        })
+    },
+
+    getLangStats: function(req, res){
+        var result = {};
+        var languages = req.body;
+        console.log("These are the languages in teh query:", languages);
+        async.map(languages, function(language, done){
+            Card.count({target_language:language}, function(err, count){
+                if(err){
+                    console.log("*************ERROR", err);
+                    done(err);
+                }
+                else{
+                result[language] = count;
+                console.log("**************Count result: ", result);
+                done(null, result);
+                }
+            });
+        },
+        function(err, result){
+            console.log("sending result off to the frontend ############################", result);
+            if(err){
+                res.json(err);
+            }
+            else{
+                res.json(result);
+            }
+        });
+    },
 
 
 };

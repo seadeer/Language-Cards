@@ -89,8 +89,8 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
         var query = []
         for(lang in that.user.languages){
             query.push(that.user.languages[lang].name)
-        console.log("my lang stats query:", query);
         }
+        console.log("my lang stats query:", query);
         cardFactory.getLangStats(query, function(data){
             console.log("Getting language stats: ", data);
             that.cardsTotals = data;
