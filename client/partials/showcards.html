@@ -24,6 +24,7 @@
 	</h5>
 
 	<input type="text" placeholder="Search" ng-model="query">
+	<br><br>
 	<div class="showCards big" ng-repeat="card in CC.cards | toArray | filter:filter_name | filter:query">
 	  <div class="cardFront">
 	      <h5>{{card.target_language}}</h5>
