@@ -1,8 +1,9 @@
-/*body{
-background-image: url("/app/assets/img/babel.jpg");
+body{
+  background-color:#4db8ff;
   width: 90%;
   margin: 0 auto;
 }
+  /*Login page*/
 */
 
 *{
@@ -61,25 +62,18 @@ background-image: url("/app/assets/img/babel.jpg");
     border: 1px solid #660066;
   }
 
+  /*Dashborad*/
+  .pictures{
+    display: inline-block;
+    margin-right: 4px;
+  }
 .dashboardPage{
   background-color: #4db8ff;
   min-height: 800px;
 }
 
-.newcardPage{
-  background-color: #4db8ff;
-  min-height: 800px;
-}
 
-.showcardsPage{
-  background-color: #4db8ff;
-  min-height: 800px;
-}
 
-.settingsPage{
-  background-color: #4db8ff;
-  min-height: 800px;
-}
 
 
 .cardFront{

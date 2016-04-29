@@ -1,5 +1,5 @@
-<div class="dashboardPage">
-<div class="navbar-fixed" ng-controller="usersController as UC">
+<div class="class="container"">
+    <div class="navbar-fixed" ng-controller="usersController as UC">
         <nav>
             <div class="nav-wrapper">
                 <div class="col s12">
@@ -11,15 +11,48 @@
             </div>
         </nav>
     </div>
-
-<div class="container" ng-controller="dashController as DC">
-    <h1>Welcome {{DC.user.name}}</h1>
-    <div class="UserSettings">
-        <h6>Your languages: </h6>
-        <div ng-repeat="language in DC.user.languages">
-            <h5>{{language.welcome}} ({{language.name}})</h5>
+         <div class="pictures">
+            <h3>Welcome
+            <img src="/app/assets/img/USA4.png" alt="Picture goes here"></h3>
         </div>
+        <div class="pictures">
+            <h3>Willkommen
+            <img src="/app/assets/img/German3.png" alt="Picture goes here"></h3>
+        </div>
+        <div class="pictures">
+            <h3>Üdvözöljük
+            <img src="/app/assets/img/Hungary2.png" alt="Picture goes here"></h3>
+        </div>
+        <div class="pictures">
+            <h3>Bienvenue
+            <img src="/app/assets/img/French3.png" alt="Picture goes here"></h3>
+        </div>
+        <div class="pictures">
+            <h3>ようこそ
+            <img src="/app/assets/img/Japan3.png" alt="Picture goes here"></h3>
+        </div>
+        <div class="pictures">
+            <h3>Bienvenido
+            <img src="/app/assets/img/Spanish3.png" alt="Picture goes here"></h3>
+        </div>
+        <div class="pictures">
+            <h3>Добро пожаловать
+            <img src="/app/assets/img/Russia2.png" alt="Picture goes here"></h3>
+        </div>
+        <div class="pictures">
+            <h3>환영
+            <img src="/app/assets/img/Korea2.png" alt="Picture goes here"></h3>
+        </div>
+    <div ng-controller="dashController as DC">
+
+        <h1>{{DC.user.name}}</h1>
+        <div class="UserSettings">
+            <h6>Your languages: </h6>
+            <div ng-repeat="language in DC.user.languages">
+                <h5>{{language.welcome}} ({{language.name}})</h5>
+            </div>
     </div>
+
     <!-- <h6>Your recent cards:</h6> -->
 
 	 <!-- {{DC.otherCards}} -->
@@ -33,6 +66,7 @@
 			  <h5>{{card.translations[0]['0']}}</h5>
 		  </div>
     </div> -->
+
     <h6>New Cards added:</h6>
     <div class="showCards" ng-repeat="card in DC.otherCards | orderBy: 'date'">
 		 <div class="cardFront">
@@ -56,6 +90,7 @@
         <input class="waves-effect waves-light btn" type="submit" ng-click="DC.create()" value="Add">
     </div>
 </div>
+
 <div ng-controller="cardsController as CC">
     <h5>Your decks:</h5>
 <!-- GO TO DECK PAGE -->
