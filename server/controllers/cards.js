@@ -164,7 +164,16 @@ module.exports = {
             }
         });
     },
-        
-    
+
+    indexCard: function(req, res){
+        Card.findById(req.params.id, function(err, card){
+            if(err){
+                res.json(err);
+            }
+            else{
+                res.json(card);
+            }
+        });
+    },
 
 };

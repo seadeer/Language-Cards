@@ -1,0 +1,50 @@
+<div class="newcardPage">
+<div class="navbar-fixed" ng-controller="usersController as UC">
+  <nav>
+      <div class="nav-wrapper">
+          <div class="col s12">
+              <a href="#/cards/index" class="breadcrumb">View Cards</a>
+              <a href="#/home" class="breadcrumb">Dashboard</a>
+              <a href="#/user/settings" class="breadcrumb">Settings</a>
+              <a href="#/" class="breadcrumb" ng-click=UC.logout()>Log Out</a>
+          </div>
+      </div>
+  </nav>
+</div>
+<div class="container" ng-controller="cardsController as CC">
+
+    <h1>Edit Card</h1>
+<!-- form to make card -->
+    <div class="makeCard col-md-4">
+        <div ng-repeat="err in creationErrors">
+            {{err}}
+        </div>
+        <p>Language: {{CC.theCard.target_language}}</p>
+        <p>Word: <input type="text" ng-model="CC.theCard.target_word"></p>
+        <p>Image: <input type="url" ng-model="CC.theCard.image_url"></p>
+        <p>Translation 1: <input type="text" ng-model="CC.theCard.translations[0]"></p>
+        <p>Translation 2 (optional): <input type="text" ng-model="CC.theCard.translations[1]"> </p>
+        <p>Translation 3 (optional): <input type="text" ng-model="CC.theCard.translations[2]"></p>
+        <p>Part of Speech:
+        <select ng-model='CC.theCard.part_of_speech'
+        ng-options="i as i for i in CC.pos">
+        </select>
+        <p>Example 1: <input type="text" ng-model="CC.theCard.contexts[0]"></p>
+        <p>Example 2: <input type="text" ng-model="CC.theCard.contexts[1]"></p>
+        <p>Example 3: <input type="text" ng-model="CC.theCard.contexts[2]"></p>
+        <input class="btn btn-primary btn-lg" type="submit" ng-click="CC.create_long()" value="Create">
+    </div> <!-- makecard -->
+    <!-- PixaBay Image Search -->
+    <h4>Search PixaBay for image:</h4>
+    <input type="text" ng-model="CC.theCard.target_word">
+    <input type="submit" class="btn btn-sm btn-warning" value="Search Image" ng-click="CC.imgSearch()">
+    </div>
+    <div ng-repeat = "result in CC.SearchResults |limitTo: 6">
+        <div>{{result}}</div>
+    </div>
+    <!-- PixaBay imagesearch results -->
+    <h3 class="col-md-5">PixaBay Search results:</h3>
+    <div class="showbox">
+        <div class="img-display" ng-repeat="result in CC.searchResults track by $index" ng-model="that.theClicked" ng-click="CC.addImage($index)"><img class="img-small" src="{{result}}"></div>
+    </div> 
+</div> <!-- container -->

@@ -15,6 +15,7 @@
 <!-- MAIN BODY -->
 <!-- ALL CARDS VIEWER -->
 <div class="container" ng-controller="cardsController as CC">
+{{CC.cards}}
 	<h4>View all cards in your languages</h4>
 
 	<h5>Filter by language:
@@ -26,6 +27,7 @@
 	<input type="text" placeholder="Search" ng-model="query">
 	<div class="showCards big" ng-repeat="card in CC.cards | toArray | filter:filter_name | filter:query">
 	  <div class="cardFront">
+        <a href="#/edit/{{card._id}}" class="glyphicon glyphicon-cog"></a>
 	      <h5>{{card.target_language}}</h5>
 	      <img class="img-small" src="{{card.image_url}}" alt="{{card.image_url}}" />
 	      <h5>{{card.target_word}}</h5>
