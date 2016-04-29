@@ -52,7 +52,7 @@ module.exports = {
                 res.json("Card already exists!", card)
             }
             else{
-                User.findOne({_id:req.body._creator}, function(err, user){ 
+                User.findOne({_id:req.body._creator}, function(err, user){
                 var newCard = new Card(req.body);
                 newCard.save(function(err){
                     if(err){
@@ -64,7 +64,7 @@ module.exports = {
                     });
                 });
             }
-        
+
         });
     },
 
@@ -114,7 +114,7 @@ module.exports = {
 
             });
         });
-            
+
     },
 
     playSound: function(req, res){
@@ -122,7 +122,7 @@ module.exports = {
         var langCode = req.body.langCode;
         var forvoKey = keys.forvo;
         var reqUrl = "http://apifree.forvo.com/key/" + forvoKey + "/action/word-pronunciations/format/json/word/"+ word + "/language/" + langCode + "/order/date-desc";
-        
+
         request(reqUrl, function(err, data, body){
             console.log("Here's what we send: ", reqUrl,forvoKey);
             console.log("Here's what we got back", body);
@@ -164,7 +164,21 @@ module.exports = {
             }
         });
     },
-        
-    
+
+	translate: function(req, res){
+		var word = req.body.word;
+		var lang = req.body.lang;
+		var reqUrl = 'https://www.googleapis.com/language/translate/v2?key='+keys.googleTranslate+'&source=en&target='+lang+'&q='+word
+
+		request(reqUrl, function(err, data, body){
+			if (err){
+				res.json(err)
+			}else{
+				console.log("data",data,"body", body)
+				res.json(body)
+			}
+		})
+	},
+
 
 };

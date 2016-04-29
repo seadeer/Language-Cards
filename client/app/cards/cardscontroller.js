@@ -121,8 +121,8 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 
 		if (this.translateStr && this.translateAbbr){
 			cardFactory.translate(this.translateStr, this.translateAbbr, function(data, callback){
-			   console.log(data, "this is what called back")
-			   that.googResponse = data.data.translations[0].translatedText
+			   console.log(JSON.parse(data), "this is what called back")
+			   that.googResponse = JSON.parse(data).data.translations[0].translatedText
 			   console.log(that.googResponse)
 			})
 		}

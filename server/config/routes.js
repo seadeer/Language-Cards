@@ -24,12 +24,10 @@ module.exports = function(app){
     });
 
     app.get('/languages/index', function(req, res){
-        console.log("got request to index languages");
         users.indexLang(req, res);
     });
 
     app.get('/decks/:id', function(req, res){
-        console.log("got request from factory on decks", req.body);
         cards.indexDeck(req, res);
     })
 
@@ -60,4 +58,8 @@ module.exports = function(app){
     app.post('/pixaimgsearch/', function(req, res){
         cards.imgSearch(req, res);
     })
+	 app.post('/translate', function(req, res){
+		 cards.translate(req, res);
+	 })
+
 };

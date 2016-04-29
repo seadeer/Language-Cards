@@ -34,7 +34,7 @@
     <div>
         <h4>Your decks</h4>
         <ul ng-repeat="deck in UC.user.decks">
-            <li>{{deck.name}}</li>
+            <li><a href="#/deck/{{deck._id}}">{{deck.name}}</a></li>
         </ul>
     </div>
     <!-- <p>Temporary information for debugging:</p>

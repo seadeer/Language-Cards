@@ -11,6 +11,12 @@ body{
   padding: 0px;
 }
 
+a{
+	color: #f0e465;
+}
+.navbar-fixed a{
+	color: #659ff0;
+}
 
 .showbox{
   display: inline-block;
@@ -26,7 +32,7 @@ body{
   width: auto;
   display: inline-block;
 }
- 
+
 .img-display{
   display: inline-block;
   margin: 5px;
@@ -148,9 +154,10 @@ body{
 	border: 3px  ridge black;
 	padding: 30px;
 }
-	/*.main-deck img{
-		margin-top: 50px;
-	}*/
+	.main-deck img{
+		height: 300px;
+		width: 450px;
+	}
 
 .soundIcon{
   background-image: url('/app/assets/img/speaker_5-512.png');
