@@ -11,6 +11,31 @@ body{
   padding: 0px;
 }
 
+#name{
+  font-size: 4em;
+  text-transform: capitalize;
+  color: #2D563D;
+}
+
+.dashCluster{
+  background-color: #99CAFF;
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  margin-right: 15px;
+  vertical-align: top;
+}
+
+.dashCluster-2{
+  display: inline-block;
+  padding: 10px;
+  margin: 5px; 
+}
+
+.helper-link{
+  margin-top: 0px;
+  margin-left: 4px;
+}
 
 .showbox{
   display: inline-block;
@@ -20,11 +45,11 @@ body{
 }
 
 .img-small{
-  max-width: 150px;
   max-height: 100px;
-  height: 100px;
-  width: auto;
+  width: 200px;
+  height: auto;
   display: inline-block;
+  vertical-align: middle;
 }
  
 .img-display{
@@ -66,15 +91,34 @@ body{
   .pictures{
     display: inline-block;
     margin-right: 4px;
+    margin-top: 0;
+    margin-bottom: 0;
+    vertical-align: center;
   }
+
 .dashboardPage{
   background-color: #4db8ff;
   min-height: 800px;
 }
 
+.ribbon{
+  width: 90%;
+  height: 30px;
+  margin-top: 15px;
+  vertical-align: center;
+  padding-bottom: 10px;
+}
+
+  .ribbon h4{
+    margin: 0px;
+    font-size: 1em;
+
+  }
 
 
-
+.navbar-fixed a{
+  font-size: 2em;
+}
 
 .cardFront{
 	display: inline-block;
@@ -84,13 +128,20 @@ body{
 	background-color: white;
 	color: black;
 	text-align: center;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 .showCards{
 	display: inline-block;
 	color: black;
   vertical-align: top;
+  text-align: center;
 }
+h6.caption{
+  margin-top: 0;
+  text-align: center;
+  font-family: arial;
+}
+
 .gsc-control-cse{
 	margin: 15px;
 	border-radius: 10px;
@@ -163,7 +214,19 @@ body{
 
 
 
-
+/*Shadow classes*/
+.box-shadow--2dp {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12)
+}
+.box-shadow--3dp {
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12)
+}
+.box-shadow--4dp {
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2)
+}
+.box-shadow--6dp {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2)
+}
 
 
 

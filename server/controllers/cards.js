@@ -191,4 +191,9 @@ module.exports = {
         });
     },
 
+    getStats: function(req, res){
+        var languages = req.body.query;
+        Card.find({'_id':{$in:[languages]}})
+    }
+
 };

@@ -195,6 +195,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 }
    };
 
+//Display one card by id
    this.indexCard = function(){
     cardFactory.indexCard($routeParams.id, function(data){
         that.theCard = data;
@@ -206,6 +207,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
     this.indexCard();
    }
 
+//Edit card
    this.updateCard = function(){
     that.errors = [];
         //validations here

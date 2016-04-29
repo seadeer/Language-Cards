@@ -67,5 +67,9 @@ module.exports = function(app){
 
     app.get('/cards/:id', function(req, res){
         cards.indexCard(req, res);
+    });
+
+    app.post('/cards/stats', function(req, res){
+        cards.getStats(req, res);
     })
 };

@@ -11,46 +11,69 @@
             </div>
         </nav>
     </div>
+<!-- Greetings ribbon -->
+    <div class="ribbon">
          <div class="pictures">
-            <h3>Welcome
-            <img src="/app/assets/img/USA4.png" alt="Picture goes here"></h3>
+            <h4>Welcome
+            <img src="/app/assets/img/USA4.png" alt="Picture goes here"></h4>
         </div>
         <div class="pictures">
-            <h3>Willkommen
-            <img src="/app/assets/img/German3.png" alt="Picture goes here"></h3>
+            <h4>Willkommen
+            <img src="/app/assets/img/German3.png" alt="Picture goes here"></h4>
         </div>
         <div class="pictures">
-            <h3>Üdvözöljük
-            <img src="/app/assets/img/Hungary2.png" alt="Picture goes here"></h3>
+            <h4>Üdvözöljük
+            <img src="/app/assets/img/Hungary2.png" alt="Picture goes here"></h4>
         </div>
         <div class="pictures">
-            <h3>Bienvenue
-            <img src="/app/assets/img/French3.png" alt="Picture goes here"></h3>
+            <h4>Bienvenue
+            <img src="/app/assets/img/French3.png" alt="Picture goes here"></h4>
         </div>
         <div class="pictures">
-            <h3>ようこそ
-            <img src="/app/assets/img/Japan3.png" alt="Picture goes here"></h3>
+            <h4>ようこそ
+            <img src="/app/assets/img/Japan3.png" alt="Picture goes here"></h4>
         </div>
         <div class="pictures">
-            <h3>Bienvenido
-            <img src="/app/assets/img/Spanish3.png" alt="Picture goes here"></h3>
+            <h4>Bienvenido
+            <img src="/app/assets/img/Spanish3.png" alt="Picture goes here"></h4>
         </div>
         <div class="pictures">
-            <h3>Добро пожаловать
-            <img src="/app/assets/img/Russia2.png" alt="Picture goes here"></h3>
+            <h4>Добро пожаловать
+            <img src="/app/assets/img/Russia2.png" alt="Picture goes here"></h4>
         </div>
         <div class="pictures">
-            <h3>환영
-            <img src="/app/assets/img/Korea2.png" alt="Picture goes here"></h3>
+            <h4>환영
+            <img src="/app/assets/img/Korea2.png" alt="Picture goes here"></h4>
         </div>
+    </div>
+<!-- End of Users controller -->
+<!-- Start of Dash controller -->
     <div ng-controller="dashController as DC">
-
-        <h1>{{DC.user.name}}</h1>
-        <div class="UserSettings">
-            <h6>Your languages: </h6>
+        <h1 id="name">{{DC.user.name}}'s Sprog Dashboard</h1>
+        <div class="dashCluster box-shadow--2dp">
+            <h4>Your languages </h4>
+            <hr>
             <div ng-repeat="language in DC.user.languages">
-                <h5>{{language.welcome}} ({{language.name}})</h5>
+                <h4>{{language.name}}</h4>
             </div>
+        </div>
+        <div class="dashCluster box-shadow--2dp">
+            <h4>Card Stats </h4>
+            <hr>
+            <div ng-repeat="language in DC.user.languages">
+                <h4>{{language.name}}</h4>
+            </div>
+        </div>
+    <div class="dashCluster box-shadow--4dp">
+    <h4>Quick add a card</h4>
+    <hr>
+        <select ng-model="DC.newCard.target_language">
+            <option ng-repeat="lang in DC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
+        </select>
+        <p>Word: <br>
+              <input type="text" ng-model="DC.newCard.target_word"></p>
+        <p>Translation: <input type="text" ng-model="DC.newCard.translations[0]"></p>
+        <input class="waves-effect waves-light btn" type="submit" ng-click="DC.create()" value="Add">
     </div>
 
     <!-- <h6>Your recent cards:</h6> -->
@@ -67,43 +90,44 @@
 		  </div>
     </div> -->
 
-    <h6>New Cards added:</h6>
+    <h3>Recently added cards:</h3>
+    <div class="dashCluster-2">
     <div class="showCards" ng-repeat="card in DC.otherCards | orderBy: 'date'">
-		 <div class="cardFront">
+		 <div class="cardFront box-shadow--4dp">
  			<!-- <h5>{{card.target_language}}</h5> -->
+            <h4>{{card.target_word}}</h4>
  			<img class="img-small" src="{{card.image_url}}" alt="{{card.image_url}}" />
- 			<h5>{{card.target_word}}</h5>
- 			<h5>{{card.translations[0]}}</h5>
-            <h5>{{card._creator.name}}</h5>
+ 			<h4>{{card.translations[0]}}</h4>
  		</div>
+        <h6 class="caption text-info">Created by: {{card._creator.name}} {{card.createdAt |date:'short'}}</h6>
 	</div>
-    <h5><a href="#/cards/index">See more...</a>
-
-    <div class="makeCard">
-    <h5>Quick add a card:</h5>
-        <select ng-model="DC.newCard.target_language">
-            <option ng-repeat="lang in DC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
-        </select>
-        <p>Word: <br>
-			  <input type="text" ng-model="DC.newCard.target_word"></p>
-        <p>Translation: <input type="text" ng-model="DC.newCard.translations[0]"></p>
-        <input class="waves-effect waves-light btn" type="submit" ng-click="DC.create()" value="Add">
+    <h4 class="helper-link"><a href="#/cards/index">View more cards</a></h4>
     </div>
-</div>
 
-<div ng-controller="cardsController as CC">
-    <h5>Your decks:</h5>
-<!-- GO TO DECK PAGE -->
-    <div ng-repeat="deck in CC.user.decks">
-        <p><a href="#/deck/{{deck._id}}" ng-click="this.getDeck()">{{deck.name}}</a></p>
+    
+</div>
+<!-- End of Dash controller -->
+<!-- Start of Cards controller -->
+    <div style="display:inline-block" ng-controller="cardsController as CC">
+        <div class="dashCluster box-shadow--4dp">
+            <h4>Your decks</h4>
+            <hr>
+            <!-- GO TO DECK PAGE -->
+            <div ng-repeat="deck in CC.user.decks">
+                <h4><a href="#/deck/{{deck._id}}" ng-click="this.getDeck()">{{deck.name}}</a></h4>
+            </div>
+        </div>
+        <div class="dashCluster box-shadow--4dp">
+            <h4>Add a new deck</h4>
+            <hr>
+            <p>Deck name: <input type="text" ng-model="CC.newDeck.name"></p>
+            <p>Language:
+            <select ng-model="CC.newDeck.target_language">
+                <option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
+            </select>
+            </p>
+            <p><input type="submit" ng-click="CC.createDeck()" value="Add Deck"></p>
+        </div>
     </div>
-    <h6>Add a new deck:</h6>
-    <p>Deck name: <input type="text" ng-model="CC.newDeck.name"></p>
-    <p>Language:
-        <select ng-model="CC.newDeck.target_language">
-            <option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
-        </select>
-    </p>
-    <p><input type="submit" ng-click="CC.createDeck()" value="Add Deck"></p>
-</div>
-</div>
+<!-- End of Cards controller -->
+

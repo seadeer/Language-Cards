@@ -100,5 +100,11 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
         })
     }
 
+    factory.getStats = function(query, callback){
+        $http.post('/cards/stats', query).success(function(output){
+            callback(output);
+        })
+    }
+
     return factory;
 });
