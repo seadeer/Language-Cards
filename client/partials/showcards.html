@@ -50,34 +50,41 @@
   </div><!-- showcards big -->
 
 <!-- DECK VIEWER -->
-    <h4>Cards in your deck</h4>
-        <h5>Choose your deck: </h5>
-        <select ng-model="CC.theDeck" ng-change="CC.indexDeck(CC.theDeck)">
-            <option value=""></option>
-            <option ng-repeat="deck in CC.user.decks track by $index" value={{deck._id}}>{{deck.name}}</option>
-        </select>
-		  <div ng-repeat="deck in CC.user.decks">
-	         <p><a href="#/deck/{{deck._id}}">{{deck.name}}</a></p>
-	     </div>
-    <div>
-        <div class="showCards" ng-repeat="card in CC.deck.cards">
-            <div class="cardFront">
-                <h5>{{card.target_language}}</h5>
-                <img class="img-small" src="{{card.image_url}}" alt="{{card.image_url}}" />
-                <h5>{{card.target_word}}</h5>
-                <h5>{{card.translations[0]}}</h5>
-                <h5>{{card._creator.name}}</h5>
-            </div>
-        </div>
-    </div>
-	<h6>Add a new deck:</h6>
-    <p>Deck name: <input type="text" ng-model="CC.newDeck.name"></p>
-    <p>Language:
-        <select ng-model="CC.newDeck.target_language">
-            <option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
-        </select>
-    </p>
-    <p><input type="submit" ng-click="CC.createDeck()" value="Add Deck"></p>
+<div class="bottomThings col-md-12">
 
-</div><!-- for deck viewer -->
+	<div class="newDeckAdder col-md-4">
+		<h4>Add a new deck:</h4>
+		<p>Deck name: <input type="text" ng-model="CC.newDeck.name"></p>
+		<label for="languagePicker">Language:</label>
+		<select id="languagePicker" ng-model="CC.newDeck.target_language">
+			<option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
+		</select>
+		<input class="btn btn-warning btn-sm" type="submit" ng-click="CC.createDeck()" value="Add Deck">
+		<h4>Your decks:</h4>
+		<div ng-repeat="deck in CC.user.decks">
+			<p><a href="#/deck/{{deck._id}}">{{deck.name}}</a></p>
+		</div><!-- deck in decks -->
+	</div> <!--deck adder-->
+
+	<div class="deckViewer col-md-8">
+	    <h4>Cards in this deck:</h4>
+	        <h5>Choose your deck: </h5>
+	        <select ng-model="CC.theDeck" ng-change="CC.indexDeck(CC.theDeck)">
+	            <option value=""></option>
+	            <option ng-repeat="deck in CC.user.decks track by $index" value={{deck._id}}>{{deck.name}}</option>
+	        </select><br>
+	</div><!--  deck viewer -->
+
+	<div class="showCards" ng-repeat="card in CC.deck.cards">
+		<div class="cardFront">
+			<h5>{{card.target_language}}</h5>
+			<img class="img-small" src="{{card.image_url}}" alt="{{card.image_url}}" />
+			<h5>{{card.target_word}}</h5>
+			<h5>{{card.translations[0]}}</h5>
+			<h5>{{card._creator.name}}</h5>
+		</div><!-- deckFront -->
+	</div><!-- showCards -->
+
+
+</div><!-- bottomthings -->
 </div><!-- for whole page -->
