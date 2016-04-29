@@ -59,9 +59,11 @@
         </div>
         <div class="dashCluster box-shadow--2dp">
             <h4>Card Stats </h4>
+            <h4>Number of cards <br>created for your languages:</h4>
             <hr>
-            <div ng-repeat="language in DC.user.languages">
-                <h4>{{language.name}}</h4>
+            <div ng-repeat="(language, total) in DC.cardsTotals[0]">
+
+                <h4>{{language}}:{{total}}</h4>
             </div>
         </div>
     <div class="dashCluster box-shadow--4dp">

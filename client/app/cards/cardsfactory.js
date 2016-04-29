@@ -100,8 +100,9 @@ cardsApp.factory('cardFactory', function($http, $sessionStorage){
         })
     }
 
-    factory.getStats = function(query, callback){
+    factory.getLangStats = function(query, callback){
         $http.post('/cards/stats', query).success(function(output){
+            console.log("Output of count query", output);
             callback(output);
         })
     }

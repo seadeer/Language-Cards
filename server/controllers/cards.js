@@ -4,6 +4,7 @@ var request = require('request');
 var User = mongoose.model('User');
 var Card = mongoose.model('Card');
 var Deck = mongoose.model('Deck');
+var async = require('async');
 
 module.exports = {
     indexByUser: function(req, res){
@@ -191,9 +192,33 @@ module.exports = {
         });
     },
 
-    getStats: function(req, res){
-        var languages = req.body.query;
-        Card.find({'_id':{$in:[languages]}})
-    }
+    getLangStats: function(req, res){
+        var result = {};
+        var languages = req.body;
+        console.log("These are the languages in teh query:", languages);
+        async.map(languages, function(language, done){
+            Card.count({target_language:language}, function(err, count){
+                if(err){
+                    console.log("*************ERROR", err);
+                    done(err);
+                }
+                else{
+                result[language] = count;
+                console.log("**************Count result: ", result);
+                done(null, result);
+                }
+            });
+        },
+        function(err, result){
+            console.log("sending result off to the frontend ############################", result);
+            if(err){
+                res.json(err);
+            }
+            else{
+                res.json(result);
+            }
+        });
+    },
+
 
 };

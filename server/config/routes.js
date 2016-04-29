@@ -70,6 +70,6 @@ module.exports = function(app){
     });
 
     app.post('/cards/stats', function(req, res){
-        cards.getStats(req, res);
+        cards.getLangStats(req, res);
     })
 };

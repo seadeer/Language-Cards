@@ -85,15 +85,18 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
         }
     };
 
-    this.getCardStats = function(){
+    this.getLangStats = function(){
         var query = []
         for(lang in that.user.languages){
-            query.push(that.user.languages[lang]._id)
+            query.push(that.user.languages[lang].name)
+        console.log("my lang stats query:", query);
         }
-        cardFactory.getStats(query, function(data){
-            console.log(data);
-        })
-    }
+        cardFactory.getLangStats(query, function(data){
+            console.log("Getting language stats: ", data);
+            that.cardsTotals = data;
+        });
+    };
+    this.getLangStats();
 
 
 
