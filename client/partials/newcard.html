@@ -85,9 +85,11 @@
 		<div class="resultOfTranslation bigNBold" ng-bind="CC.googResponse">
 			{{CC.googResponse}}
 		</div>
-	</div><!-- googletranslate -->
+	<!-- googletranslate -->
+	<!-- PixaBay Image Search -->
 	<input type="text" ng-model="CC.googResponse">
-	<input type="submit" value="Search Image" ng-click="CC.imgSearch()">
+	<input type="submit" class="btn btn-sm btn-warning" value="Search Image" ng-click="CC.imgSearch()">
+	</div>
 	<div ng-repeat = "result in CC.SearchResults |limitTo: 6">
 		<div>{{result}}</div>
 	</div>
