@@ -23,6 +23,12 @@ a{
   color: #2D563D;
 }
 
+.centered{
+
+  margin: 0 auto;
+  display: block;
+}
+
 .dashCluster{
   background-color: #99CAFF;
   display: inline-block;
@@ -96,9 +102,7 @@ a{
   }
 
   /*Dashborad*/
-	.ribbon{
-		margin-top: 25px;
-	}
+	
 	.pictures{
 		display: inline-block;
 		margin-right: 4px;
@@ -206,7 +210,7 @@ h6.caption{
 }
 .glyphicon{
 	font-size: 2em;
-	color: blue;
+	color: gray;
 }
 .viewer-main{
 	padding: 30px;
@@ -242,17 +246,19 @@ h6.caption{
 	text-align: center;
 }
 
-
-
 .soundIcon{
+  margin-top: 15px;
   background-image: url('/app/assets/img/speaker_5-512.png');
   height: 30px;
   width: 30px;
   background-repeat: no-repeat;
   background-size: cover;
-  display: inline-block;
+  display: block;
 }
 
+#playSound{
+  text-align: center;
+}
 
 
 /*Shadow classes*/

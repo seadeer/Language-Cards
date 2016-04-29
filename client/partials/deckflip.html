@@ -13,6 +13,7 @@
 	</div>
 
 	<div class="viewer-main" ng-controller="oneDeckController as ODC">
+	<div class="row">
 
 		<div class="col-md-2 go-left">
 			<button type="button" class="btn btn-default btn-lg" ng-click="ODC.moveBkwd()">
@@ -42,26 +43,29 @@
 				</div>
 			</div>
 		</div> <!-- main-deck -->
-
 		<div class="col-md-2 go-right">
 			<button type="button" class="btn btn-default btn-lg" ng-click="ODC.moveFwd()">
 			   <span class="glyphicon glyphicon-chevron-right">
 			   </span>
 			</button>
 		</div>
+	</div>
+		<div class="row">
+				<!-- div for playing sound -->
+			<div class="col-md-2"></div>
+			<div id="playSound" class="col-md-6">
+				<p class="error" ng-show="ODC.playError">
+					{{ODC.playError}}
+				</p>
+				<div class="soundIcon" ng-click="ODC.playSound(ODC.deckCards[ODC.cardInDeck])">
+					  <audio ng-model="ODC.audioEl"autoplay="autoplay">
+							<source ng-src="ODC.soundUrlOgg |trustedAudioUrl:audio)" type="audio/ogg">
+							<source ng-src="ODC.soundUrlMp3 |trustedAudioUrl:audio)" type="audio/mpeg">If you can read this, your browser doesn't support audio element.
+					  </audio>
+				</div>
+			</div><!-- playSound -->
+	
+	</div> <!-- container -->
 
-
-
-	</div><!-- viewer-main -->
-</div> <!-- container -->
-
-
-
-
-
-
-
-
-
-
-</div> <!-- container -->
+</div>  <!-- viewer-main -->
+</div><!-- container -->

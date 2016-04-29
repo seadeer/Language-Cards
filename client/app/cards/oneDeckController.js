@@ -39,10 +39,6 @@ cardsApp.controller('oneDeckController', function(userFactory, cardFactory, $loc
 	}
 
 
-
-
-
-
 	this.playSound = function(card){
 		 console.log(card);
 
