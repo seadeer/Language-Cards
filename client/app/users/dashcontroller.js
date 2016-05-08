@@ -69,7 +69,7 @@ userApp.controller('dashController', function(userFactory, cardFactory, $locatio
                 _creator: that.user._id,
                 target_language: that.newCard.target_language,
                 target_word: that.newCard.target_word,
-					 image_url: that.newCard.image_url,
+					 image_key: that.newCard.image_key,
                 translations: that.newCard.translations,
                 part_of_speech: that.newCard.part_of_speech,
                 translated_language: that.user.default_language.name,

@@ -29,7 +29,7 @@
 	  <div class="cardFront">
         <a href="#/edit/{{card._id}}" class="glyphicon glyphicon-cog"></a>
 	      <h5>{{card.target_language}}</h5>
-	      <img class="img-small" src="{{card.image_url}}" alt="{{card.image_url}}" />
+	      <img class="img-small" src="{{card.image_key}}" alt="{{card.image_key}}" />
 	      <h5>{{card.target_word}}</h5>
 	      <h5>{{card.translations[0]}}</h5>
 	      <!-- <h5>{{card._creator.name}}</h5> -->
@@ -79,7 +79,7 @@
 	<div class="showCards" ng-repeat="card in CC.deck.cards">
 		<div class="cardFront">
 			<h5>{{card.target_language}}</h5>
-			<img class="img-small" src="{{card.image_url}}" alt="{{card.image_url}}" />
+			<img class="img-small" src="{{card.image_key}}" alt="{{card.image_key}}" />
 			<h5>{{card.target_word}}</h5>
 			<h5>{{card.translations[0]}}</h5>
 			<h5>{{card._creator.name}}</h5>

@@ -23,7 +23,7 @@
 		</div>
 
 		<!-- {{ODC.deckCards[ODC.cardInDeck]}} -->
-		<div class="col-md-6 main-deck" ng-click="ODC.flip()">
+		<div class="col-md-6 main-deck  box-shadow--4dp" ng-click="ODC.flip()">
 			<div class="card">
 				<div ng-show="ODC.cardSide === false">
 					<h2>
@@ -36,7 +36,7 @@
 						{{ODC.deckCards[ODC.cardInDeck].translations[0]}}<br>
 						{{ODC.deckCards[ODC.cardInDeck].translations[1]}}<br>
 						{{ODC.deckCards[ODC.cardInDeck].translations[2]}}<br>
-						<img src="{{ODC.deckCards[ODC.cardInDeck].image_url}}" alt="{{ODC.deckCards[ODC.cardInDeck].target_word}}" /><br>
+						<img src="{{ODC.deckCards[ODC.cardInDeck].image_key}}" alt="{{ODC.deckCards[ODC.cardInDeck].target_word}}" /><br>
 						{{ODC.deckCards[ODC.cardInDeck].part_of_speech}}<br>
 
 					</h2>

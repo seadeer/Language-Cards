@@ -1,10 +1,14 @@
 var mongoose = require('mongoose');
 var keys = require('../config/keys');
 var request = require('request');
+var paths = require('../config/paths');
 var User = mongoose.model('User');
 var Card = mongoose.model('Card');
 var Deck = mongoose.model('Deck');
 var async = require('async');
+var fs = require('fs');
+var url = require('url');
+
 
 module.exports = {
     indexByUser: function(req, res){
@@ -46,24 +50,64 @@ module.exports = {
         });
     },
 
+
+
     create: function(req, res){
+        //save image from image URL and calls the create card function with path to image
+        var saveImage = function(uri, filename, callback){
+        var imgPath = paths.imagePath;
+        request.get({url: uri, encoding: 'binary'}, function(err, res, body){
+            console.log('content-type:', res.headers['content-type']);
+            console.log('content-length', res.headers['content-length']);
+            imgPath = imgPath;
+            fs.writeFile(imgPath+filename, body, 'binary', function(err){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    
+                    console.log("Image successfully saved", imgPath);
+                callback(filename);
+                    }
+            });
+        });
+        };
+
         console.log("looking for this card: ", req.body)
         Card.findOne({target_language: req.body.target_language, target_word: req.body.target_word}, function(err, card){
             if(card){
                 res.json("Card already exists!", card)
             }
             else{
-                User.findOne({_id:req.body._creator}, function(err, user){ 
-                var newCard = new Card(req.body);
-                newCard.save(function(err){
-                    if(err){
-                        res.json(err);
-                        }
-                    else{
-                        res.json("Card successfully saved!");
-                        }
+                //create image name using the hash in the request URL and card attributes
+                var img_filename = url.parse(req.body.image_key).pathname.split('/').pop();
+                console.log("Saving this image name to database: ", img_filename)
+                //save image passed from URL and use the returned link as the image URL
+                saveImage(req.body.image_key, img_filename, function(imgFileName){
+                    User.findOne({_id:req.body._creator}, function(err, user){ 
+                    var newCard = new Card({
+                        target_language: req.body.target_language,
+                        language_code: req.body.language_code,
+                        _creator: req.body._creator,
+                        target_word: req.body.target_word,
+                        translations: req.body.translations,
+                        part_of_speech: req.body.part_of_speech,
+                        translated_language: req.body.translated_language,
+                        contexts: req.body.contexts,
+                        image_key: imgFileName
                     });
+                    newCard.save(function(err){
+                        if(err){
+                            res.json(err);
+                            }
+                        else{
+                            res.json("Card successfully saved!");
+                           }
+                        });
+                    });
+
                 });
+                
             }
         
         });
@@ -72,9 +116,9 @@ module.exports = {
     update: function(req, res){
         var translations = req.body.translations;
         var part_of_speech = req.body.part_of_speech;
-        var image_url = req.body.image_url;
+        var image_key = req.body.image_key;
         var contexts = req.body.contexts;
-        Card.findOneAndUpdate({_id:req.params.id},{$set:{translations:translations, part_of_speech: part_of_speech, image_url: image_url, contexts: contexts}}, function(err, card){
+        Card.findOneAndUpdate({_id:req.params.id},{$set:{translations:translations, part_of_speech: part_of_speech, image_key: image_key, contexts: contexts}}, function(err, card){
             if(err){
                 res.json(err);
             }

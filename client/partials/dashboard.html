@@ -87,7 +87,7 @@
 
         <div class="cardFront">
 			  <h5>{{card.target_language}}</h5>
-			  <img class="img-small" src="{{card.image_url}}" alt="{{card.image_url}}" />
+			  <img class="img-small" src="{{card.image_key}}" alt="{{card.image_key}}" />
 			  <h5>{{card.target_word}}</h5>
 			  <h5>{{card.translations[0]['0']}}</h5>
 		  </div>
@@ -99,7 +99,7 @@
 		 <div class="cardFront box-shadow--4dp">
  			<!-- <h5>{{card.target_language}}</h5> -->
             <h4>{{card.target_word}}</h4>
- 			<img class="img-small" src="{{card.image_url}}" alt="{{card.image_url}}" />
+ 			<img class="img-small" src="{{card.image_key}}" alt="{{card.image_key}}" />
  			<h4>{{card.translations[0]}}</h4>
  		</div>
         <h6 class="caption text-info">Created by: {{card._creator.name}} {{card.createdAt |date:'short'}}</h6>

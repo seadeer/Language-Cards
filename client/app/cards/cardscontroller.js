@@ -41,7 +41,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         that.errors = [];
         //validations here
         if(that.errors.length <= 0){
-            console.log("Validations passed, saving new card!");
+            console.log("Validations passed, saving new card!", that.newCard);
             var card = {
                 _creator: that.user._id,
                 target_language: JSON.parse(this.newCard.target_language).name,
@@ -50,7 +50,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
                 translations: [that.translateStr, that.newCard.translations[1], that.newCard.translations[2]],
                 part_of_speech: that.newCard.part_of_speech,
                 translated_language: that.user.default_language,
-				image_url: that.theImage,
+				image_key: that.theImage,
                 contexts: that.newCard.contexts,
             };
             console.log("new card",card);
@@ -192,7 +192,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
     }
     else{
     console.log(that.searchResults[index]);
-    that.theCard.image_url = that.searchResults[index];
+    that.theCard.image_key = that.searchResults[index];
 }
    };
 
@@ -217,7 +217,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
             var card = {
                 translations: [that.theCard.translations[0], that.theCard.translations[1], that.theCard.translations[2]],
                 part_of_speech: that.theCard.part_of_speech,
-                image_url: that.theCard.image_url,
+                image_key: that.theCard.image_key,
                 contexts: that.theCard.contexts,
             };
             console.log("Updates to card", card);
