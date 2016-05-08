@@ -42,6 +42,23 @@ cardsApp.directive('autoComplete', function($timeout){
     };
 });
 
+cardsApp.directive('slideToggle', function(){
+    return{
+        restrict: 'A',
+        scope: {
+            isOpen: "=slideToggle" //data-slide-toggle in the html file
+        },
+        link: function(scope, element, attr){
+            var slideDuration = parseInt(attr.slideToggleDuration, 10) || 200;
+        scope.$watch('isOpen', function(newIsOpenVal, oldIsOpenVal){
+            if(newIsOpenVal !== oldIsOpenVal){
+                element.stop().slideToggle(slideDuration);
+            }
+        });
+        }
+    }
+})
+
 //FILTERS
 cardsApp.filter('startFrom', function(){
     return function(input, start){

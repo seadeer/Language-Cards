@@ -164,7 +164,7 @@ a{
 
 .showbox{
   display: inline-block;
-  width: 550px;
+  width: 100%;
   min-height: 400px;
   border: 1px solid silver;
 }
@@ -235,6 +235,10 @@ h6.caption{
 		height: 300px;
 		width: 450px;
 	}
+
+.dropdownWrap{
+  display: none;
+}
 
 .go-left{
 	display: inline;

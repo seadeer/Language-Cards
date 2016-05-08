@@ -1,14 +1,15 @@
 <html ng-app="app">
 <head>
 	<title>Sprog: a language learning community</title>
-
+	<!-- jquery -->
+	<script src='app/assets/js/jquery-2.2.3.js'></script>
 	<!-- angular -->
 	<script src='/angular/angular.js'></script>
 	<script src='/angular-route/angular-route.js'></script>
 
 	<!-- angular ToArray filter -->
 	<script src='/app/cards/ArrayFilter.js'></script>
-
+	
 	<!-- stylesheet -->
 	<link rel="stylesheet" href="/app/assets/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="/app/assets/css/styles.css">
@@ -21,9 +22,8 @@
 
 	<!-- ui-bootstrap -->
 	<!-- <script src="/app/assets/js/ui-bootstrap.js"></script> -->
-
 	</script>
-
+	
 	<!-- users -->
 	<script src='/app/users/config.js'></script>
 	<script src='/app/users/userfactory.js'></script>
@@ -38,38 +38,6 @@
 
 	<!-- dashboard -->
 	<script src='/app/users/dashcontroller.js'></script>
-
-	<!-- google image search -->
-	<!-- <script src='//www.google.com/jsapi' type='text/javascript'></script>
-	<script type='text/javascript'>
-		google.load('search', '1', {language: 'en', style: google.loader.themes.V2_DEFAULT});
-		google.setOnLoadCallback(function() {
-		var customSearchOptions = {};
-		var orderByOptions = {};
-		orderByOptions['keys'] = [
-			{label: 'Relevance', key: ''} ,
-		 {label: 'Date', key: 'date'}
-	 ];
-		customSearchOptions['enableOrderBy'] = true;
-		customSearchOptions['orderByOptions'] = orderByOptions;
-		customSearchOptions['limitTo'] = 6;
-		// customSearchOptions['enableImageSearch'] = true;
-		var imageSearchOptions = {};
-		imageSearchOptions['layout'] = 'google.search.ImageSearch.LAYOUT_COLUMN';
-		customSearchOptions['enableImageSearch'] = true;
-		customSearchOptions['defaultToImageSearch'] = true;
-		customSearchOptions['imageSearchResultSetSize'] = 'small';
-		customSearchOptions['imageSearchLayout'] = 'column';
-
-		var customSearchControl =   new google.search.CustomSearchControl('016395638918268128046:viw6pearh8i', customSearchOptions);
-		customSearchControl.setResultSetSize(google.search.Search.SMALL_RESULTSET);
-		var options = new google.search.DrawOptions();
-		options.setAutoComplete(true);
-		customSearchControl.draw('cse', options);
-		}, true);
-	</script> -->
-
-	<!-- google translate -->
 
 
 </head>

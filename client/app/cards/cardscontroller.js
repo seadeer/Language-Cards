@@ -47,7 +47,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
                 target_language: JSON.parse(this.newCard.target_language).name,
                 language_code: JSON.parse(this.newCard.target_language).abbreviation,
                 target_word: that.googResponse,
-                translations: [that.newCard.translations[0], that.newCard.translations[1], that.newCard.translations[2]],
+                translations: [that.translateStr, that.newCard.translations[1], that.newCard.translations[2]],
                 part_of_speech: that.newCard.part_of_speech,
                 translated_language: that.user.default_language,
 				image_url: that.theImage,
@@ -160,6 +160,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 
 //fetch images from PixaBay by the key word and language
     this.imgSearch = function(){
+        that.searchResults = []
         //search from the create new card partial
         if(!$routeParams.id){
             console.log("images for creating new card")
