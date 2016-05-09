@@ -1,6 +1,8 @@
+
+<img id="bg" src="/app/assets/img/babel.jpg">
 <div class="navbar-fixed">
     <nav>
-        <div class="nav-wrapper">
+        <div id="nav-wrapper">
             <div class="col s12">
                 <a href="#!" class="breadcrumb">Register</a>
                 <a href="#!" class="breadcrumb">Features</a>
@@ -10,21 +12,18 @@
     </nav>
 </div>
 <div class="container">
-    <div ng-controller = "usersController as UC">
-        <div class="subdiv" >
-            <h1>SPROG</h1>
-            <h3>Language learning - Social - Playful</h3>
-        </div>
+    <div ng-controller = "usersController as UC" style="text-align: center;">
+            
+            <h1 class="appTitle">SPROG</h1>
+            <h3 class="appTitle">Language learning - Social - Playful</h3>
         <div class="login">
-            <h4>Log in</h4>
-            <p>User name:</p>
-            <input type="text" ng-model = "UC.newUser.name"></p>
-            <p>Password: </p>
-            <p><input type="password" placeholder="no password yet" =""></p>
-            <input class="waves-effect waves-light btn" type="submit" value="Enter" ng-click="UC.login()">
-        </div>
-        <div class="image">
-            <img src="/app/assets/img/babel.jpg" alt="Picture goes here">
+            <h3>Log in</h3>
+            <label>User Name</label>
+            <p><input type="text" class="form-control" ng-model = "UC.newUser.name"></p>
+            <label>Password</label>
+            <p><input type="password" class="form-control" placeholder="Don't enter password yet"></p>
+            <input class="btn btn-success form-control" type="submit" value="Enter" ng-click="UC.login()">
         </div>
     </div>
-</div> <!-- container -->
+</div>
+ <!-- container -->

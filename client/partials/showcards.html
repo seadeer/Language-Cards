@@ -1,3 +1,4 @@
+<div class="pageWrapper">
 <!-- MENU MENU -->
 <div class="navbar-fixed" ng-controller="usersController as UC">
   <nav>
@@ -14,15 +15,16 @@
 <!-- MAIN BODY -->
 <!-- ALL CARDS VIEWER -->
 <div class="container" ng-controller="cardsController as CC">
+	<div class="DashCluster">
 	<h4>View all cards in your languages</h4>
-
+	<hr>
 	<h5>Filter by language:
 	  <select ng-model="filter_name">
 	      <option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
 	  </select>
 	</h5>
-
 	<input type="text" placeholder="Search" ng-model="query">
+	</div>
 	<br><br>
 	<div class="showCards big" ng-repeat="card in CC.cards | toArray | filter:filter_name | filter:query">
 	  <div class="cardFront">
@@ -50,10 +52,10 @@
   </div><!-- showcards big -->
 
 <!-- DECK VIEWER -->
-<div class="bottomThings col-md-12">
-
-	<div class="newDeckAdder col-md-4">
-		<h4>Add a new deck:</h4>
+<div>
+	<div class="DashCluster">
+		<h4>Add a new deck</h4>
+		<hr>
 		<p>Deck name: <input type="text" ng-model="CC.newDeck.name"></p>
 		<label for="languagePicker">Language:</label>
 		<select id="languagePicker" ng-model="CC.newDeck.target_language">
@@ -64,17 +66,18 @@
 		<div ng-repeat="deck in CC.user.decks">
 			<p><a href="#/deck/{{deck._id}}">{{deck.name}}</a></p>
 		</div><!-- deck in decks -->
-	</div> <!--deck adder-->
+	</div> 
 
-	<div class="deckViewer col-md-8">
-	    <h4>Cards in this deck:</h4>
+	<div class="DashCluster">
+	    <h4>View Deck</h4>
+	    <hr>
 	        <h5>Choose your deck: </h5>
 	        <select ng-model="CC.theDeck" ng-change="CC.indexDeck(CC.theDeck)">
 	            <option value=""></option>
 	            <option ng-repeat="deck in CC.user.decks track by $index" value={{deck._id}}>{{deck.name}}</option>
 	        </select><br>
-	</div><!--  deck viewer -->
-
+	</div>
+	<div>
 	<div class="showCards" ng-repeat="card in CC.deck.cards">
 		<div class="cardFront">
 			<h5>{{card.target_language}}</h5>
@@ -87,3 +90,4 @@
 
 
 </div><!-- bottomthings -->
+</div>
