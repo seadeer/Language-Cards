@@ -1,5 +1,5 @@
 body{
-  background-color:#4db8ff;
+  background-color:#BFBFBF;
   width: 90%;
   margin: 0 auto;
   
@@ -21,7 +21,6 @@ a{
 }
 .navbar-fixed a{
   font-size: 2em;
-	color: #659ff0;
 }
 
 #nav-wrapper{
@@ -29,7 +28,18 @@ a{
   z-index: 1000;
 }
   #nav-wrapper a{
-    color: gray;
+    color: chartreuse;
+  }
+    #nav-wrapper a:hover{
+      color: darkred;
+      text-decoration: none;
+    }
+
+.breadcrumb{
+  background-color: gray;
+}
+  .breadcrumb:hover{
+    background-color: lightgray;
   }
 .container{
   text-align: left;
@@ -119,18 +129,22 @@ a{
   margin-top: 20px;
   display: inline-block;
   text-align: left;
-  color: gold;
+  color: chartreuse;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+  border-radius: 5%;
 }
 
 .appTitle{
-  color: gold;
+  color: chartreuse;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+
 }
   h1.appTitle{
-    font-size: 5em;
+    font-family: "Architects daughter";
+    font-weight: bold;
+    font-size: 6em;
   }
 
 /*Dashborad*/
@@ -307,5 +321,5 @@ h6.caption{
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2)
 }
 
-
+/*Fonts*/
 
