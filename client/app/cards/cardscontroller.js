@@ -42,6 +42,7 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
         //validations here
         if(that.errors.length <= 0){
             console.log("Validations passed, saving new card!", that.newCard);
+            if(that.translations){
             var card = {
                 _creator: that.user._id,
                 target_language: JSON.parse(this.newCard.target_language).name,
@@ -53,6 +54,20 @@ cardsApp.controller('cardsController', function($scope, userFactory, cardFactory
 				image_key: that.theImage,
                 contexts: that.newCard.contexts,
             };
+        }
+        else {
+             var card = {
+                _creator: that.user._id,
+                target_language: JSON.parse(this.newCard.target_language).name,
+                language_code: JSON.parse(this.newCard.target_language).abbreviation,
+                target_word: that.googResponse,
+                translations: [that.translateStr],
+                part_of_speech: that.newCard.part_of_speech,
+                translated_language: that.user.default_language,
+                image_key: that.theImage,
+            };
+
+        }
             console.log("new card",card);
             cardFactory.create(card, function(data){
                 console.log(data);
