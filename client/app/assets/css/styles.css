@@ -2,6 +2,7 @@ body{
   background-color:#4db8ff;
   width: 90%;
   margin: 0 auto;
+  
 }
   /*Login page*/
 
@@ -96,20 +97,6 @@ a{
 
 /*Login page*/
 
-/*.login-splash{
-  background: url(/app/assets/img/babel.jpg) no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  min-height: 100%;
-  min-width: 720px;
-  width: 100%;
-  height: auto;
-  text-align: center;
-
-}*/
-
 #bg{
   /*positioning*/
   position: fixed;
@@ -132,11 +119,19 @@ a{
   margin-top: 20px;
   display: inline-block;
   text-align: left;
+  color: gold;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
 }
 
-h1.appTitle{
-  font-size: 5em;
+.appTitle{
+  color: gold;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
 }
+  h1.appTitle{
+    font-size: 5em;
+  }
 
 /*Dashborad*/
 

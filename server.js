@@ -14,11 +14,6 @@ require("./server/config/mongoose.js");
 require("./server/config/routes.js")(app);
 
 
-
-
-
-
-
 port = 8000;
 app.listen(port, function(){
     console.log("Running on port 8000");
