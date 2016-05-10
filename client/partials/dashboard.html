@@ -12,71 +12,38 @@
         </nav>
     </div>
 <div class="container">
-<!-- Greetings ribbon -->
-    <div class="ribbon">
-         <div class="pictures">
-            <h4>Welcome
-            <img src="/app/assets/img/USA4.png" alt="Picture goes here"></h4>
-        </div>
-        <div class="pictures">
-            <h4>Willkommen
-            <img src="/app/assets/img/German3.png" alt="Picture goes here"></h4>
-        </div>
-        <div class="pictures">
-            <h4>Üdvözöljük
-            <img src="/app/assets/img/Hungary2.png" alt="Picture goes here"></h4>
-        </div>
-        <div class="pictures">
-            <h4>Bienvenue
-            <img src="/app/assets/img/French3.png" alt="Picture goes here"></h4>
-        </div>
-        <div class="pictures">
-            <h4>ようこそ
-            <img src="/app/assets/img/Japan3.png" alt="Picture goes here"></h4>
-        </div>
-        <div class="pictures">
-            <h4>Bienvenido
-            <img src="/app/assets/img/Spanish3.png" alt="Picture goes here"></h4>
-        </div>
-        <div class="pictures">
-            <h4>Добро пожаловать
-            <img src="/app/assets/img/Russia2.png" alt="Picture goes here"></h4>
-        </div>
-        <div class="pictures">
-            <h4>환영
-            <img src="/app/assets/img/Korea2.png" alt="Picture goes here"></h4>
-        </div>
-    </div>
 <!-- End of Users controller -->
 <!-- Start of Dash controller -->
     <div ng-controller="dashController as DC">
         <h1 id="name">{{DC.user.name}}'s Sprog Dashboard</h1>
         <div class="dashCluster box-shadow--4dp">
-            <h3 class="">Your languages </h3>
-            <hr>
-            <div ng-repeat="language in DC.user.languages">
-                <h4>{{language.name}}</h4>
+            <div class="subdiv">
+                <h3 class="">Your languages </h3>
+                <hr>
+                <div ng-repeat="language in DC.user.languages">
+                    <h4><img class="flag" src="/app/assets/img/{{language.abbreviation}}.png"> {{language.name}}</h4>
+                </div>
+            </div>
+            <div class="subdiv">
+                <h3>Card Stats </h3>
+                <hr>
+                <h4>Number of cards <br>created for your languages:</h4>
+                <div ng-repeat="(language, total) in DC.cardsTotals[0]">
+                    <h4>{{language}}: {{total}}</h4>
+                </div>
+            </div>
+            <div class="subdiv">
+                <h3>Quick add a card</h3>
+                <hr>
+                <select class="form-control" ng-model="DC.newCard.target_language">
+                    <option ng-repeat="lang in DC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
+                </select>
+                <label>Word: </label><br>
+                      <input type="text" class="form-control" ng-model="DC.newCard.target_word">
+                <label>Translation: </label> <input type="text" class="form-control" ng-model="DC.newCard.translations[0]">
+                <input class="btn btn-success form-control" style="margin-top:10px;" type="submit" ng-click="DC.create()" value="Add">
             </div>
         </div>
-        <div class="dashCluster box-shadow--4dp">
-            <h3>Card Stats </h3>
-            <hr>
-            <h4>Number of cards <br>created for your languages:</h4>
-            <div ng-repeat="(language, total) in DC.cardsTotals[0]">
-                <h4>{{language}}: {{total}}</h4>
-            </div>
-        </div>
-    <div class="dashCluster box-shadow--4dp">
-    <h3>Quick add a card</h3>
-    <hr>
-        <select class="form-control" ng-model="DC.newCard.target_language">
-            <option ng-repeat="lang in DC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
-        </select>
-        <label>Word: </label><br>
-              <input type="text" class="form-control" ng-model="DC.newCard.target_word">
-        <label>Translation: </label> <input type="text" class="form-control" ng-model="DC.newCard.translations[0]">
-        <input class="btn btn-success form-control" style="margin-top:10px;" type="submit" ng-click="DC.create()" value="Add">
-    </div>
 
     <!-- <h6>Your recent cards:</h6> -->
 
@@ -112,23 +79,25 @@
 <!-- Start of Cards controller -->
     <div style="display:inline-block" ng-controller="cardsController as CC">
         <div class="dashCluster box-shadow--4dp">
-            <h3>Your decks</h3>
-            <hr>
-            <!-- GO TO DECK PAGE -->
-            <div ng-repeat="deck in CC.user.decks">
-                <h4><a href="#/deck/{{deck._id}}" ng-click="this.getDeck()">{{deck.name}}</a></h4>
+            <div class="subdiv">
+                <h3>Your decks</h3>
+                <hr>
+                <!-- GO TO DECK PAGE -->
+                <div ng-repeat="deck in CC.user.decks">
+                    <h4><a href="#/deck/{{deck._id}}" ng-click="this.getDeck()">{{deck.name}}</a></h4>
+                </div>
             </div>
-        </div>
-        <div class="dashCluster box-shadow--4dp">
-            <h3>Add a new deck</h3>
-            <hr>
-            <p>Deck name: <input type="text" ng-model="CC.newDeck.name"></p>
-            <p>Language:
-            <select ng-model="CC.newDeck.target_language">
-                <option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
-            </select>
-            </p>
-            <p><input type="submit" class="btn btn-success" ng-click="CC.createDeck()" value="Add Deck"></p>
+            <div class="subdiv">
+                <h3>Add a new deck</h3>
+                <hr>
+                <label>Deck name: </label>
+                <input type="text" class="form-control" ng-model="CC.newDeck.name"></p>
+                <label>Language:</label>
+                <select class="form-control" ng-model="CC.newDeck.target_language">
+                    <option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
+                </select>
+                <input type="submit" style="margin-top:10px;" class="btn btn-success form-control" ng-click="CC.createDeck()" value="Add Deck">
+            </div>
         </div>
     </div>
 <!-- End of Cards controller -->

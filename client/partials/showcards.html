@@ -15,69 +15,67 @@
 <!-- MAIN BODY -->
 <!-- ALL CARDS VIEWER -->
 <div class="container" ng-controller="cardsController as CC">
-	<div class="DashCluster">
-	<h4>View all cards in your languages</h4>
+	<div class="DashCluster" style="width: 250px;">
+	<h3>View all cards in your languages</h3>
 	<hr>
-	<h5>Filter by language:
-	  <select ng-model="filter_name">
+	<label>Filter by language:</label>
+	  <select class="form-control" ng-model="filter_name">
 	      <option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
 	  </select>
-	</h5>
-	<input type="text" placeholder="Search" ng-model="query">
+	<input class="form-control" style="margin-top: 10px;" type="text" placeholder="Search" ng-model="query">
 	</div>
 	<br><br>
 	<div class="showCards big" ng-repeat="card in CC.cards | toArray | filter:filter_name | filter:query">
-	  <div class="cardFront">
-        <a href="#/edit/{{card._id}}" class="glyphicon glyphicon-cog"></a>
-	      <h5>{{card.target_language}}</h5>
-	      <img class="img-small" src="{{card.image_key}}" alt="{{card.image_key}}" />
-	      <h5>{{card.target_word}}</h5>
-	      <h5>{{card.translations[0]}}</h5>
-	      <!-- <h5>{{card._creator.name}}</h5> -->
-	      <h5>Choose the deck:</h5>
-	      <select ng-model="card.theDeck">
-	          <option value=""></option>
-	          {{CC.deck}}
-	          <option ng-repeat="deck in CC.user.decks track by $index" value={{deck._id}}>{{deck.name}}</option>
-	      </select>
-	      <p class="error" ng-show="CC.playError">{{CC.playError}}</p>
-	      <div class="soundIcon" ng-click="CC.playSound(card)">
-	           <audio ng-model="CC.audioEl"autoplay="autoplay">
+	<p class="error" ng-show="CC.playError">{{CC.playError}}</p>
+	  <div class="cardFront box-shadow--2dp">
+	  	<div class="cardTop">
+        	<a href="#/edit/{{card._id}}" class="glyphicon glyphicon-cog"></a>
+        	<a class="glyphicon glyphicon-heart"></a>
+        	<a class="glyphicon glyphicon-plus" ng-click="CC.addToDeck(card, CC.theDeck)"></a>
+        	<a class="glyphicon glyphicon-play-circle" ng-click="CC.playSound(card)">
+        		<audio ng-model="CC.audioEl"autoplay="autoplay">
 	               <source ng-src="CC.soundUrlOgg |trustedAudioUrl:audio)" type="audio/ogg">
 	               <source ng-src="CC.soundUrlMp3 |trustedAudioUrl:audio)" type="audio/mpeg">If you can read this, your browser doesn't support audio element.
 	           </audio>
-	      </div>
-	      <input type="submit" ng-click="CC.addToDeck(card, card.theDeck)" value="Add To Deck">
+        	</a>
+        </div>
+	      <h5 class="text-muted">{{card.target_language}}</h5>
+	      <img class="img-small" src="{{card.image_key}}" alt="{{card.image_key}}" />
+	      <h4>{{card.target_word}} : {{card.translations[0]}}</h4>
 		</div> <!--card front-->
   </div><!-- showcards big -->
 
 <!-- DECK VIEWER -->
 <div>
 	<div class="DashCluster">
-		<h4>Add a new deck</h4>
-		<hr>
-		<p>Deck name: <input type="text" ng-model="CC.newDeck.name"></p>
-		<label for="languagePicker">Language:</label>
-		<select id="languagePicker" ng-model="CC.newDeck.target_language">
-			<option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
-		</select>
-		<input class="btn btn-warning btn-sm" type="submit" ng-click="CC.createDeck()" value="Add Deck">
-		<h4>Your decks:</h4>
-		<div ng-repeat="deck in CC.user.decks">
-			<p><a href="#/deck/{{deck._id}}">{{deck.name}}</a></p>
-		</div><!-- deck in decks -->
-	</div> 
-
-	<div class="DashCluster">
-	    <h4>View Deck</h4>
-	    <hr>
-	        <h5>Choose your deck: </h5>
-	        <select ng-model="CC.theDeck" ng-change="CC.indexDeck(CC.theDeck)">
+		<div class="subdiv">
+			<h3>Add a new deck</h3>
+			<hr>
+			<label> Deck name</label><input class="form-control" type="text" ng-model="CC.newDeck.name">
+			<label for="languagePicker">Language</label>
+			<select class="form-control" id="languagePicker" ng-model="CC.newDeck.target_language">
+				<option ng-repeat="lang in CC.user.languages track by $index" value={{lang.name}}>{{lang.name}}</option>
+			</select>
+			<input class="btn btn-success form-control" style="margin-top: 10px;" type="submit" ng-click="CC.createDeck()" value="Add Deck">
+		</div>
+		<div class="subdiv">
+			<h3>Your decks</h3>
+			<hr>
+			<div ng-repeat="deck in CC.user.decks">
+				<h4><a href="#/deck/{{deck._id}}">{{deck.name}}</a></h4>
+			</div><!-- deck in decks -->
+		</div>
+		<div class="subdiv">
+		    <h3>View Deck</h3>
+		    <hr>
+		    <label>Choose your deck</label>
+	        <select ng-model="CC.theDeck" class="form-control" ng-change="CC.indexDeck(CC.theDeck)">
 	            <option value=""></option>
 	            <option ng-repeat="deck in CC.user.decks track by $index" value={{deck._id}}>{{deck.name}}</option>
 	        </select><br>
+		</div>
 	</div>
-	<div>
+	<br><br>
 	<div class="showCards" ng-repeat="card in CC.deck.cards">
 		<div class="cardFront">
 			<h5>{{card.target_language}}</h5>
